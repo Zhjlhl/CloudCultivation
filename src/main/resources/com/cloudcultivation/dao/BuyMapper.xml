@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudcultivation.dao.BuyMapper">
+    <!--通过id查询订单-->
+    <select id="selectBuyById" parameterType="Integer" resultMap="selectBuyResult">
+        SELECT *
+        FROM buy
+        WHERE buy_id=#{id}
+    </select>
+    <resultMap id="selectBuyResult" type="buy">
+        <id property="id" column="buy_id"/>
+        <result property="amount" column="buy_amount"/>
+        <result property="description" column="buy_description"/>
+        <result property="paymentState" column="buy_payment_state"/>
+        <result property="paymentAmount" column="buy_payment_amount"/>
+        <result property="date" column="buy_date"/>
+        <result property="remain" column="buy_remain"/>
+        <!--外键 orders_id-->
+        <association property="orders" column="orders_id"
+                     select="com.cloudcultivation.dao.OrdersMapper.selectOrdersById"
+                     javaType="com.cloudcultivation.po.Orders"/>
+        <!--外键 feed_id-->
+        <association property="feed" column="feed_id"
+                     select="com.cloudcultivation.dao.FeedMapper.selectFeedById"
+                     javaType="com.cloudcultivation.po.Feed"/>
+    </resultMap>
+
+
+    <!--通过订单id查询-->
+    <select id="selectBuyByOrdersId" parameterType="Integer"
+            resultMap="selectBuyResult">
+        SELECT *
+        FROM buy
+        WHERE orders_id=#{ordersId}
+    </select>
+
+    <!--通过库存饲料Id查询-->
+    <select id="selectBuyByFeedId" parameterType="Integer"
+            resultMap="selectBuyResult">
+        SELECT *
+        FROM buy
+        WHERE feed_id=#{feedId}
+    </select>
+
+    <!--查询所有购买饲料的订单-->
+    <select id="selectAllBuy" resultMap="selectBuyResult">
+        SELECT *
+        FROM buy
+    </select>
+    <!--新增购买饲料的订单-->
+    <insert id="addBuy" parameterType="buy">
+        INSERT INTO buy(orders_id, feed_id, buy_amount, buy_description,
+                        buy_payment_state, buy_payment_amount,buy_date,buy_remain)
+        VALUES (#{orders.id},#{feed.id},#{amount},
+                #{description},#{paymentState},#{paymentAmount},#{date},#{remain})
+    </insert>
+
+    <!--update购买饲料的订单-->
+    <update id="updateBuy" parameterType="buy">
+        UPDATE buy
+        SET orders_id=#{orders.id}, feed_id=#{feed.id},  buy_amount=#{amount},
+            buy_description=#{description}, buy_payment_state=#{paymentState}, buy_payment_amount=#{paymentAmount},
+            buy_date=#{date},buy_remain=#{remain}
+        WHERE buy_id=#{id}
+    </update>
+
+    <!--通过id删除购买饲料的订单-->
+    <delete id="deleteBuyById" parameterType="Integer">
+        DELETE FROM buy
+        WHERE buy_id=#{id}
+    </delete>
+</mapper>

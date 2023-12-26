@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudcultivation.dao.ServiceMapper">
+
+    <!--通过id查客服-->
+    <select id="selectServiceById" parameterType="Integer"
+            resultMap="selectServiceResult">
+        SELECT *
+        FROM service
+        WHERE service_id = #{id}
+    </select>
+    <resultMap id="selectServiceResult" type="service">
+        <id property="id" column="service_id"/>
+        <result property="account" column="service_account"/>
+        <result property="name" column="service_name"/>
+        <result property="nickname" column="service_nickname"/>
+        <result property="gender" column="service_gender"/>
+        <result property="phone" column="service_phone"/>
+        <result property="description" column="service_description"/>
+        <result property="password" column="service_password"/>
+
+        <!--一对多 多个dispute-->
+        <collection property="disputeList" javaType="list" column="service_id"
+                    select="com.cloudcultivation.dao.DisputeMapper.selectDisputeByServiceId"
+                    ofType="dispute"/>
+    </resultMap>
+
+
+
+    <!--通过account查询客服-->
+    <select id="selectServiceByAccount" parameterType="string"
+            resultMap="selectServiceResult">
+        SELECT *
+        FROM service
+        WHERE service_account = #{account}
+    </select>
+
+    <!--查询所有的客服-->
+    <select id="selectAllService" resultMap="selectServiceResult">
+        SELECT * FROM service
+    </select>
+
+
+    <!--新增客服-->
+    <insert id="addService" parameterType="service">
+        INSERT INTO service(service_account, service_name, service_nickname, service_gender, service_phone, service_description, service_password)
+        VALUES (#{account}, #{name},#{nickname},#{gender},#{phone},#{description},#{password})
+    </insert>
+
+    <!--更新客服信息-->
+    <update id="updateService" parameterType="service">
+        UPDATE service
+        SET service_account=#{account},service_name=#{name},service_nickname=#{nickname},service_gender=#{gender},
+            service_phone=#{phone},service_description=#{description},service_password=#{password}
+        WHERE service_id=#{id}
+    </update>
+
+    <!--通过id删除用户-->
+    <delete id="deleteServiceById" parameterType="Integer">
+        DELETE FROM service
+        WHERE service_id=#{id}
+    </delete>
+</mapper>

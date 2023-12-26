@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudcultivation.dao.UserMapper">
+    <!--通过user_id查询用户-->
+    <select id="selectUserById" resultMap="selectUserResult"
+            parameterType="Integer">
+        SELECT *
+        FROM user
+        WHERE user_id=#{id}
+    </select>
+    <resultMap id="selectUserResult" type="user">
+        <id property="id" column="user_id"/>
+        <result property="account" column="user_account"/>
+        <result property="name" column="user_name"/>
+        <result property="password" column="user_password"/>
+        <result property="gender" column="user_gender"/>
+        <result property="phone" column="user_phone"/>
+        <result property="zipcode" column="user_zipcode"/>
+        <result property="balance" column="user_balance"/>
+        <!--一对多 一个用户拥有多个订单-->
+        <collection property="ordersList" javaType="list" column="user_id"
+                    select="com.cloudcultivation.dao.OrdersMapper.selectOrdersByUserId"
+                    ofType="orders"/>
+    </resultMap>
+
+    <!--通过account查询用户-->
+    <select id="selectUserByAccount" parameterType="string"
+            resultMap="selectUserResult">
+        SELECT *
+        FROM user
+        WHERE user_account=#{account}
+    </select>
+
+    <!--查询所有用户-->
+    <select id="selectAllUser" parameterType="Integer"
+            resultMap="selectUserResult">
+        SELECT * FROM user
+    </select>
+    
+
+    <!--添加用户-->
+    <insert id="addUser" parameterType="user">
+        INSERT INTO
+            user(user_account,user_name,user_password,user_gender,user_phone,user_zipcode,user_balance)
+        VALUES (#{account},#{name},#{password},#{gender},#{phone},#{zipcode},#{balance})
+    </insert>
+
+
+    <!--更新用户信息-->
+    <update id="updateUser" parameterType="user">
+        UPDATE user
+        SET user_account=#{account}, user_name=#{name}, user_password=#{password}, user_gender=#{gender},
+            user_phone=#{phone}, user_zipcode=#{zipcode}, user_balance=#{balance}
+        WHERE user_id = #{id}
+    </update>
+
+    <!--通过ID删除用户-->
+    <delete id="deleteUserById" parameterType="Integer">
+        DELETE FROM user
+        WHERE user_id = #{id}
+    </delete>
+
+</mapper>

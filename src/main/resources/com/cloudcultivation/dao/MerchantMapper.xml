@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudcultivation.dao.MerchantMapper">
+
+    <!--通过id查询商家信息-->
+    <select id="selectMerchantById" parameterType="Integer"
+            resultMap="selectMerchantResult">
+        SELECT *
+        FROM merchant
+        WHERE merchant_id=#{id}
+    </select>
+    <resultMap id="selectMerchantResult" type="merchant">
+        <id property="id" column="merchant_id"/>
+        <result property="account" column="merchant_account"/>
+        <result property="name" column="merchant_name"/>
+        <result property="password" column="merchant_password"/>
+        <result property="contacts" column="merchant_contacts"/>
+        <result property="phone" column="merchant_phone"/>
+        <result property="description" column="merchant_description"/>
+        <result property="balance" column="merchant_balance"/>
+        <result property="promise" column="merchant_promise"/>
+
+        <!--一对多 多个orders-->
+        <collection property="ordersList" javaType="list" column="merchant_id"
+                    select="com.cloudcultivation.dao.OrdersMapper.selectOrdersByMerchantId"
+                    ofType="orders"/>
+        <!--一对多 多个feed-->
+        <collection property="feedList" javaType="list" column="merchant_id"
+                    select="com.cloudcultivation.dao.FeedMapper.selectFeedByMerchantId"
+                    ofType="feed"/>
+        <!--一对多 多个goods-->
+        <collection property="goodsList" javaType="list" column="merchant_id"
+                    select="com.cloudcultivation.dao.GoodsMapper.selectGoodsByMerchantId"
+                    ofType="goods"/>
+    </resultMap>
+
+    <!--通过account查询商家-->
+    <select id="selectMerchantByAccount" parameterType="string"
+            resultMap="selectMerchantResult">
+        SELECT *
+        FROM merchant
+        WHERE merchant_account=#{account}
+    </select>
+
+
+    <!--查询所有商家信息-->
+    <select id="selectAllMerchant" parameterType="Integer"
+            resultMap="selectMerchantResult">
+        SELECT * FROM merchant
+    </select>
+
+    <!--添加新商家信息-->
+    <insert id="addMerchant" parameterType="harvest">
+        INSERT INTO
+            merchant(merchant_id, merchant_account, merchant_name , merchant_password, merchant_contacts , merchant_phone , merchant_description, merchant_balance )
+        VALUES (#{id},#{account},#{name},#{password},#{contacts},#{phone},#{description},#{balance})
+    </insert>
+
+
+    <!--更新商家信息-->
+    <update id="updateMerchant" parameterType="harvest">
+        UPDATE merchant
+        SET merchant_id=#{id}, merchant_account=#{account}, merchant_name=#{name}, merchant_password=#{password},
+            merchant_contacts=#{contacts}, merchant_phone=#{phone}, merchant_description=#{description}, merchant_balance=#{balance}
+        WHERE merchant_id = #{id}
+    </update>
+
+    <!--通过ID删除商家信息-->
+    <delete id="deleteMerchantById" parameterType="Integer">
+        DELETE FROM merchant
+        WHERE merchant_id = #{id}
+    </delete>
+</mapper>

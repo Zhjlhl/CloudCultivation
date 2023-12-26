@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudcultivation.dao.OrdersMapper">
+    <!--通过id查询订单-->
+    <select id="selectOrdersById" parameterType="Integer" resultMap="selectOrdersResult">
+        SELECT *
+        FROM orders
+        WHERE orders_id=#{id}
+    </select>
+    <resultMap id="selectOrdersResult" type="orders">
+        <id property="id" column="orders_id"/>
+        <result property="description" column="orders_description"/>
+        <result property="paymentState" column="orders_payment_state"/>
+        <result property="amount" column="orders_amount"/>
+        <result property="state" column="orders_state"/>
+        <result property="remark" column="orders_remark"/>
+        <result property="date" column="orders_date"/>
+        <result property="insurance" column="orders_insurance"/>
+        <result property="endTime" column="orders_end_time"/>
+        <result property="endYield" column="orders_end_yield"/>
+        <result property="endState" column="orders_end_state"/>
+        <result property="nickname" column="orders_nickname"/>
+        <result property="feed" column="orders_feed"/>
+        <!--外键 user_id-->
+        <association property="user" column="user_id"
+                     select="com.cloudcultivation.dao.UserMapper.selectUserById"
+                     javaType="com.cloudcultivation.po.User"/>
+        <!--外键 merchant_id-->
+        <association property="merchant" column="merchant_id"
+                     select="com.cloudcultivation.dao.MerchantMapper.selectMerchantById"
+                     javaType="merchant"/>
+        <!--外键 goods_id-->
+        <association property="goods" column="goods_id"
+                     select="com.cloudcultivation.dao.GoodsMapper.selectGoodsById"
+                     javaType="goods"/>
+
+        <!--一对多 多个feeding-->
+        <collection property="feedingList" javaType="list" column="orders_id"
+                    select="com.cloudcultivation.dao.FeedingMapper.selectFeedingByOrdersId"
+                    ofType="feeding"/>
+        <!--一对多 多个harvest-->
+        <collection property="harvestList" javaType="list" column="orders_id"
+                    select="com.cloudcultivation.dao.HarvestMapper.selectHarvestByOrdersId"
+                    ofType="harvest"/>
+        <!--一对多 多个dispute-->
+        <collection property="disputeList" javaType="list" column="orders_id"
+                    select="com.cloudcultivation.dao.DisputeMapper.selectDisputeByOrdersId"
+                    ofType="dispute"/>
+        <!--一对多 多个buy-->
+        <collection property="buyList" javaType="list" column="orders_id"
+                    select="com.cloudcultivation.dao.BuyMapper.selectBuyByOrdersId"
+                    ofType="buy"/>
+    </resultMap>
+
+
+
+    <!--通过user_id查询订单-->
+    <select id="selectOrdersByUserId" parameterType="Integer"
+            resultMap="selectOrdersResult">
+        SELECT *
+        FROM orders
+        WHERE user_id=#{userId}
+    </select>
+
+    <!--通过merchant_id查询订单-->
+    <select id="selectOrdersByMerchantId" parameterType="Integer"
+            resultMap="selectOrdersResult">
+        SELECT *
+        FROM orders
+        WHERE merchant_id=#{merchantId}
+    </select>
+
+    <!--通过goods_id查询订单-->
+    <select id="selectOrdersByGoodsId" parameterType="Integer"
+            resultMap="selectOrdersResult">
+        SELECT *
+        FROM orders
+        WHERE goods_id=#{goodsId}
+    </select>
+
+    <!--查询所有用户-->
+    <select id="selectAllOrders" resultMap="selectOrdersResult">
+        SELECT *
+        FROM orders
+    </select>
+
+    <!--新增订单-->
+    <insert id="addOrder" parameterType="orders">
+        INSERT INTO orders(user_id, merchant_id, goods_id, orders_description, orders_payment_state, orders_amount, orders_state)
+        VALUES (#{user.id},#{merchant.id},#{goods.id},#{description},#{paymentState},#{amount},#{state})
+    </insert>
+
+    <!--update订单-->
+    <update id="updateOrder" parameterType="orders">
+        UPDATE orders
+        SET user_id=#{user.id}, merchant_id=#{merchant.id}, goods_id=#{goods.id}, orders_description=#{description},
+            orders_payment_state=#{paymentState}, orders_amount=#{amount}, orders_state=#{state}
+        WHERE orders_id=#{id}
+    </update>
+
+    <!--通过id删除订单-->
+    <delete id="deleteOrderById" parameterType="Integer">
+        DELETE FROM orders
+        WHERE orders_id=#{id}
+    </delete>
+</mapper>

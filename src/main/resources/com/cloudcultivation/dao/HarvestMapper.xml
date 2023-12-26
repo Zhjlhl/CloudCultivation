@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- @author hyy-->
+<mapper namespace="com.cloudcultivation.dao.HarvestMapper">
+    <!--通过harvest_id查询收获信息-->
+    <select id="selectHarvestById" parameterType="Integer"
+            resultMap="selectHarvestResult">
+        SELECT *
+        FROM harvest
+        WHERE harvest_id=#{id}
+    </select>
+    <resultMap id="selectHarvestResult" type="harvest">
+        <id property="id" column="harvest_id"/>
+        <result property="date" column="harvest_date"/>
+        <result property="way" column="harvest_way"/>
+        <result property="delivery" column="harvest_delivery"/>
+        <result property="earnings" column="harvest_earnings"/>
+        <result property="state" column="harvest_state"/>
+        <!--外键 orders_id-->
+        <association property="orders" column="orders_id"
+                     select="com.cloudcultivation.dao.OrdersMapper.selectOrdersById"
+                     javaType="orders"/>
+    </resultMap>
+
+    <!--通过订单id查询-->
+    <select id="selectHarvestByOrdersId" parameterType="Integer"
+            resultMap="selectHarvestResult">
+        SELECT *
+        FROM harvest
+        WHERE orders_id=#{ordersId}
+    </select>
+
+    <!--查询所有收获信息-->
+    <select id="selectAllHarvest" parameterType="Integer"
+            resultMap="selectAllHarvestResult">
+        SELECT * FROM harvest
+    </select>
+    <resultMap id="selectAllHarvestResult" type="harvest">
+        <id property="id" column="harvest_id"/>
+        <result property="date" column="harvest_date"/>
+        <result property="way" column="harvest_way"/>
+        <result property="delivery" column="harvest_delivery"/>
+        <result property="earnings" column="harvest_earnings"/>
+        <result property="state" column="harvest_state"/>
+        <result property="number" column="harvest_number"/>
+        <!--外键 orders_id-->
+        <association property="orders" column="orders_id"
+                     select="com.cloudcultivation.dao.OrdersMapper.selectOrdersById"
+                     javaType="orders"/>
+    </resultMap>
+
+    <!--添加新收获信息-->
+    <insert id="addHarvest" parameterType="harvest">
+        INSERT INTO
+            harvest(harvest_id, orders_id, harvest_date, harvest_way, harvest_delivery, harvest_earnings, harvest_state)
+        VALUES (#{id},#{orders.id},#{date},#{way},#{delivery},#{earnings},#{state})
+    </insert>
+
+
+    <!--更新收获信息-->
+    <update id="updateHarvest" parameterType="harvest">
+        UPDATE harvest
+        SET harvest_id=#{id}, orders_id=#{orders.id}, harvest_date=#{date}, harvest_way=#{way},
+            harvest_delivery=#{delivery}, harvest_earnings=#{earnings}, harvest_state=#{state}
+        WHERE harvest_id = #{id}
+    </update>
+
+    <!--通过ID删除收获信息-->
+    <delete id="deleteHarvestById" parameterType="Integer">
+        DELETE FROM harvest
+        WHERE harvest_id = #{id}
+    </delete>
+
+</mapper>
+
+

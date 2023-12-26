@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- @author lzx-->
+
+<mapper namespace="com.cloudcultivation.dao.FeedMapper">
+
+    <!--通过id查询饲料-->
+    <select id="selectFeedById" parameterType="Integer" resultMap="selectFeedResult">
+        SELECT *
+        FROM feed
+        WHERE feed_id=#{id}
+    </select>
+    <resultMap id="selectFeedResult" type="feed">
+        <id property="id" column="feed_id"/>
+        <result property="name" column="feed_name"/>
+        <result property="price" column="feed_price"/>
+        <result property="amount" column="feed_amount"/>
+        <result property="description" column="feed_description"/>
+        <result property="remain" column="feed_remain"/>
+        <!--外键 merchant_id-->
+        <association property="merchant" column="merchant_id"
+                     select="com.cloudcultivation.dao.MerchantMapper.selectMerchantById"
+                     javaType="com.cloudcultivation.po.Merchant"/>
+
+        <!--一对多 多个buy-->
+        <collection property="buyList" javaType="list" column="orders_id"
+                    select="com.cloudcultivation.dao.BuyMapper.selectBuyByOrdersId"
+                    ofType="buy"/>
+    </resultMap>
+
+
+
+    <!--通过商家id查询饲料-->
+    <select id="selectFeedByMerchantId" parameterType="Integer"
+            resultMap="selectFeedResult">
+        SELECT *
+        FROM feed
+        WHERE merchant_id=#{merchantId}
+    </select>
+
+
+
+    <!--查询所有饲料-->
+    <select id="selectAllFeed" resultMap="selectFeedResult">
+        SELECT *
+        FROM feed
+    </select>
+
+
+
+    <!--新增饲料-->
+    <insert id="addFeed" parameterType="feed">
+        INSERT INTO feed(feed_id, feed_name, feed_price, feed_amount, feed_description, merchant_id, feed_remain)
+        VALUES (#{id},#{name},#{price},#{amount},#{description},#{merchant.id},#{remain})
+    </insert>
+
+
+
+    <!--update饲料-->
+    <update id="updateFeed" parameterType="feed">
+        UPDATE feed
+        SET feed_id=#{id}, feed_name=#{name}, feed_price=#{price}, feed_amount=#{amount},
+            feed_description=#{description}, merchant_id=#{merchant.id}, feed_remain=#{remain}
+        WHERE feed_id=#{id}
+    </update>
+
+
+
+    <!--通过id删除饲料-->
+    <delete id="deleteFeedById" parameterType="Integer">
+        DELETE FROM feed
+        WHERE feed_id=#{id}
+    </delete>
+</mapper>

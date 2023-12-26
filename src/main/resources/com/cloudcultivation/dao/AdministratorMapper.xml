@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudcultivation.dao.AdministratorMapper">
+    <!--通过administrator_id查询管理员-->
+    <select id="selectAdministratorById" resultMap="selectAdministratorResult"
+            parameterType="Integer">
+        SELECT *
+        FROM administrator
+        WHERE administrator_id=#{id}
+    </select>
+    <resultMap id="selectAdministratorResult" type="administrator">
+        <id property="id" column="administrator_id"/>
+        <result property="account" column="administrator_account"/>
+        <result property="password" column="administrator_password"/>
+        <result property="phone" column="administrator_phone"/>
+        <result property="type" column="administrator_type"/>
+        <result property="description" column="administrator_description"/>
+    </resultMap>
+
+
+    <!--通过account查询管理员-->
+    <select id="selectAdministratorByAccount" parameterType="string"
+            resultMap="selectAdministratorResult">
+        SELECT *
+        FROM administrator
+        WHERE administrator_account=#{account}
+    </select>
+
+    <!--查询所有管理员-->
+    <select id="selectAllAdministrator" parameterType="Integer"
+            resultMap="selectAllAdministratorResult">
+        SELECT * FROM administrator
+    </select>
+    <resultMap id="selectAllAdministratorResult" type="administrator">
+        <id property="id" column="administrator_id"/>
+        <result property="account" column="administrator_account"/>
+        <result property="password" column="administrator_password"/>
+        <result property="phone" column="administrator_phone"/>
+        <result property="type" column="administrator_type"/>
+        <result property="description" column="administrator_description"/>
+    </resultMap>
+
+    <!--添加管理员-->
+    <insert id="addAdministrator" parameterType="administrator">
+        INSERT INTO
+            administrator(administrator_account,administrator_password,administrator_phone,administrator_type,administrator_description)
+        VALUES (#{account},#{password},#{phone},#{type},#{description})
+    </insert>
+
+
+    <!--更新管理员信息-->
+    <update id="updateAdministrator" parameterType="administrator">
+        UPDATE administrator
+        SET administrator_account=#{account}, administrator_password=#{password}, administrator_phone=#{phone},
+            administrator_type=#{type}, administrator_description=#{description}
+        WHERE administrator_id = #{id}
+    </update>
+
+    <!--通过ID删除管理员-->
+    <delete id="deleteAdministratorById" parameterType="Integer">
+        DELETE FROM administrator
+        WHERE administrator_id = #{id}
+    </delete>
+</mapper>

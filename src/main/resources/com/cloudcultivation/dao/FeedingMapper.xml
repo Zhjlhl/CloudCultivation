@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- @author lzx-->
+
+<mapper namespace="com.cloudcultivation.dao.FeedingMapper">
+    <!--通过id查询饲养信息-->
+    <select id="selectFeedingById" parameterType="Integer" resultMap="selectFeedingResult">
+        SELECT *
+        FROM feeding
+        WHERE feeding_id=#{id}
+    </select>
+    <resultMap id="selectFeedingResult" type="feeding">
+        <id property="id" column="feeding_id"/>
+        <result property="state" column="feeding_state"/>
+        <result property="photo" column="feeding_photo"/>
+        <result property="video" column="feeding_video"/>
+        <result property="date" column="feeding_date"/>
+        <result property="weight" column="feeding_weight"/>
+        <result property="check" column="feeding_check"/>
+        <!--外键 orders_id-->
+        <association property="orders" column="orders_id"
+                     select="com.cloudcultivation.dao.OrdersMapper.selectOrdersById"
+                     javaType="com.cloudcultivation.po.Orders"/>
+    </resultMap>
+
+    <!--通过orders_id查询-->
+    <select id="selectFeedingByOrdersId" parameterType="Integer"
+            resultMap="selectFeedingResult">
+        SELECT *
+        FROM feeding
+        WHERE orders_id=#{ordersId}
+    </select>
+
+    <!--查询所有饲养信息-->
+    <select id="selectAllFeeding" resultMap="selectFeedingResult">
+        SELECT *
+        FROM feeding
+    </select>
+
+    <!--新增饲养信息-->
+    <insert id="addFeeding" parameterType="feeding">
+        INSERT INTO feeding(feeding_id, orders_id, feeding_state, feeding_photo, feeding_video, feeding_date)
+        VALUES (#{id},#{orders.id},#{state},#{photo},#{video},#{date})
+    </insert>
+
+    <!--update饲养信息-->
+    <update id="updateFeeding" parameterType="feeding">
+        UPDATE feeding
+        SET feeding_id=#{id}, orders_id=#{orders.id}, feeding_state=#{state}, feeding_photo=#{photo},
+            feeding_video=#{video}, feeding_date=#{date}
+        WHERE feeding_id=#{id}
+    </update>
+
+    <!--通过id删除饲养信息-->
+    <delete id="deleteFeedingById" parameterType="Integer">
+        DELETE FROM feeding
+        WHERE feeding_id=#{id}
+    </delete>
+</mapper>

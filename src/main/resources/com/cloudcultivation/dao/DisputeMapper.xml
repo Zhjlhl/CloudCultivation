@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudcultivation.dao.DisputeMapper">
+    <!--通过id查询纠纷-->
+    <select id="selectDisputeById" parameterType="Integer" resultMap="selectDisputeResult">
+        SELECT *
+        FROM dispute
+        WHERE dispute_id=#{id}
+    </select>
+    <resultMap id="selectDisputeResult" type="dispute">
+        <id property="id" column="dispute_id"/>
+        <result property="description" column="dispute_description"/>
+        <result property="state" column="dispute_state"/>
+        <result property="result" column="dispute_result"/>
+        <result property="amount" column="dispute_amount"/>
+        <result property="type" column="dispute_type"/>
+        <result property="date" column="dispute_date"/>
+        <!--外键 orders_id-->
+        <association property="orders" column="orders_id"
+                     select="com.cloudcultivation.dao.OrdersMapper.selectOrdersById"
+                     javaType="com.cloudcultivation.po.Orders"/>
+        <!--外键 service_id-->
+        <association property="service" column="service_id"
+                     select="com.cloudcultivation.dao.ServiceMapper.selectServiceById"
+                     javaType="com.cloudcultivation.po.Service"/>
+    </resultMap>
+
+    <!--通过订单id查询-->
+    <select id="selectDisputeByOrdersId" parameterType="Integer"
+            resultMap="selectDisputeResult">
+        SELECT *
+        FROM dispute
+        WHERE orders_id=#{ordersId}
+    </select>
+
+    <!--通过客服id查询-->
+    <select id="selectDisputeByServiceId" parameterType="Integer"
+            resultMap="selectDisputeResult">
+        SELECT *
+        FROM dispute
+        WHERE service_id=#{serviceId}
+    </select>
+
+    <!--查询所有纠纷-->
+    <select id="selectAllDispute" resultMap="selectDisputeResult">
+        SELECT *
+        FROM dispute
+    </select>
+
+
+    <!--新增纠纷-->
+    <insert id="addDispute" parameterType="dispute">
+        INSERT INTO dispute(orders_id, service_id, dispute_description,
+                            dispute_state, dispute_result, dispute_amount,dispute_type)
+        VALUES (#{orders.id},#{service.id},#{description},
+                #{state},#{result},#{amount},#{type})
+    </insert>
+
+    <!--update纠纷-->
+    <update id="updateDispute" parameterType="dispute">
+        UPDATE dispute
+        SET orders_id=#{orders.id}, service_id=#{service.id},  dispute_description=#{description},
+            dispute_state=#{state}, dispute_result=#{result}, dispute_amount=#{amount},dispute_type=#{type}
+        WHERE dispute_id=#{id}
+    </update>
+
+
+    <!--通过id删除纠纷-->
+    <delete id="deleteDisputeById" parameterType="Integer">
+        DELETE FROM dispute
+        WHERE dispute_id=#{id}
+    </delete>
+</mapper>
