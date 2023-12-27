@@ -1,101 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Lenovo
+  Date: 2023/12/27
+  Time: 15:11
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>云养殖出售网站</title>
-  <style>
-    /* styles.css */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    .container {
-      background-color: #fff;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 80%;
-      max-width: 1200px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .product {
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .product img {
-      max-width: 100%;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-
-    h3 {
-      color: #333;
-    }
-
-    p {
-      color: #666;
-      margin-bottom: 10px;
-    }
-
-    .view-details {
-      padding: 10px 20px;
-      background-color: #1877f2; /* Facebook blue */
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .view-details:hover {
-      background-color: #1659a3; /* Darker shade of blue on hover */
-    }
-   </style>
+    <script>
+        function handleBuyClick(GoodId) {
+            // 在这里，您可以使用feedName执行您想要的操作
+            // 例如，将其发送到服务器或在页面上显示
+            alert("用户点击购买了：" + GoodId);
+        }
+    </script>
+    <title>认养界面</title>
 </head>
 <body>
-<div class="container">
-  <h1>云养殖商品列表</h1>
-
-  <div class="product-grid">
-    <div class="product">
-      <img src="img/product1.jpg" alt="Product 1">
-      <h3>商品名称 1</h3>
-      <p>商品描述 1</p>
-      <button class="view-details">查看详情</button>
-    </div>
-
-    <div class="product">
-      <img src="img/product2.jpg" alt="Product 2">
-      <h3>商品名称 2</h3>
-      <p>商品描述 2</p>
-      <button class="view-details">查看详情</button>
-    </div>
-
-    <!-- 添加更多商品... -->
-
-  </div>
-</div>
+<table>
+    <tr>
+        <th>宠物种类</th>
+        <th>成熟周期</th>
+        <th>预期收益</th>
+        <th>剩余数量</th>
+        <th>描述</th>
+        <th>价格</th>
+        <th>购买</th>
+    </tr>
+<c:forEach items="${goods}" var="good">
+<tr>
+    <td>${good.type}</td>
+    <td>${good.growth}</td>
+    <td>${good.yield}</td>
+    <td>${good.amount}</td>
+    <td>${good.description}</td>
+    <td>${good.price}</td>
+    <td><form>
+        <input type="button" value="购买" onclick="handleBuyClick('${good.id}')">
+    </form></td>
+</tr>
+</c:forEach>
+</table>
 </body>
 </html>
