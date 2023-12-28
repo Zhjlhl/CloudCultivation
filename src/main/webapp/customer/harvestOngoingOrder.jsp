@@ -61,7 +61,7 @@
                 <td align="center">${harvest.earnings}</td>
                 <td align="center">
                     <c:choose>
-                        <c:when test="${${harvest.state} eq '已发货'}">
+                        <c:when test="${harvest.state eq '已发货'}">
                             <button onclick="showPopup()">$</button>
                             <div id="popup-container">
                                 <p>已发货，物流公司：${harvest.delivery}</p>

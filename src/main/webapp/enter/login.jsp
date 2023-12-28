@@ -105,15 +105,15 @@
     <h2>用户登录界面</h2>
     <form class="login" action="${pageContext.request.contextPath}/login" method="post">
         <label for="username">用户名:</label>
-        <input type="text" id="username" name="username" value="DAGetmOCPk" required ><br>
+        <input type="text" id="username" name="account" value="DAGetmOCPk" required ><br>
 
         <label for="password">密码:</label>
         <input type="password" id="password" name="password" value="GF0v7NmioG" required><br>
         <div >
-            <input type="radio" id="user" name="radio" value="user" required>用户
-            <input type="radio" id="merchant" name="radio" value="merchant" required>商家
-            <input type="radio" id="service" name="radio" value="service" required>客服
-            <input type="radio" id="administrator" name="radio" value="administrator" required>管理员
+            <input type="radio" id="user" name="type" value="user" required>用户
+            <input type="radio" id="merchant" name="type" value="merchant" required>商家
+            <input type="radio" id="service" name="type" value="service" required>客服
+            <input type="radio" id="administrator" name="type" value="administrator" required>管理员
         </div>
         <div class="checkbox">
             <input type="checkbox" id="agree" name="agree" required>

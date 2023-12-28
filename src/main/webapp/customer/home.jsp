@@ -9,14 +9,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>用户主界面</title>
 </head>
 <body>
 <p>欢迎您!${user.name}</p>
 <p>余额:${user.balance}</p>
 <a href="/customer/finishedOrder.jsp" >已完成订单</a>
 <a href="/customer/feedOngoingOrder.jsp" >饲养中订单</a>
-<a href="/customer/harvestOngoingOrder.jsp" >收获中订单</a>
+<a href="${pageContext.request.contextPath}/toHarvestInformation">收获中订单</a>
 <a href="/customer/disputeOngoingOrder.jsp">售后中订单</a>
 <a href="/customer/watingPaid.jsp">待支付订单</a>
 <a href="/customer/watingEvaluate.jsp">待评价订单</a>
