@@ -17,6 +17,8 @@ public interface OrdersMapper {
 
     public Orders selectOrdersByGoodsId(int goodsId);
 
+    public Orders selectOrdersByUserMerchantGoodsId(int userId, int merchantId , int goodsId);
+
     public List<Orders> selectAllOrders();
 
     public int addOrder(Orders orders);

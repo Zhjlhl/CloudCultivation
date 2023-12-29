@@ -29,5 +29,7 @@ public interface OrdersService {
     /*通过id删除订单*/
     public int deleteOrderById(int id);
 
+    /*通过用户，商家，货物id查询订单*/
+    public Orders selectOrdersByUserMerchantGoodsId(int userId, int merchantId , int goodsId);
 
 }

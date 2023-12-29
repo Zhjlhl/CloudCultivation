@@ -80,6 +80,13 @@
         FROM orders
         WHERE goods_id=#{goodsId}
     </select>
+    <!--通过用户商家货物的id查询订单-->
+    <select id="selectOrdersByUserMerchantGoodsId" parameterType="Integer"
+            resultMap="selectOrdersResult">
+        SELECT *
+        FROM orders
+        WHERE user_id=#{userId} and merchant_id=#{merchantID} and goods_id=#{goodsID}
+    </select>
 
     <!--查询所有用户-->
     <select id="selectAllOrders" resultMap="selectOrdersResult">

@@ -1,5 +1,5 @@
 package com.cloudcultivation.service;
-import com.cloudcultivation.po.Feeding;
+import com.cloudcultivation.po.*;
 
 import java.util.List;
 
@@ -24,4 +24,7 @@ public interface FeedingService {
 
     /*通过id删除饲养信息*/
     public int deleteFeedingById(int id);
+
+    /*通过密码支付购买饲料*/
+    public boolean paymentFeedByPassword(User user , Merchant merchant , Goods goods , Feed feed, String password);
 }

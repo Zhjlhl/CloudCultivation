@@ -41,4 +41,9 @@ public class OrdersServiceImpl implements OrdersService {
     public int deleteOrderById(int id) {
         return ordersMapper.deleteOrderById(id);
     }
+
+    @Override
+    public Orders selectOrdersByUserMerchantGoodsId(int userId, int merchantId , int goodsId){
+        return ordersMapper.selectOrdersByUserMerchantGoodsId(userId,merchantId,goodsId);
+    }
 }
