@@ -20,6 +20,7 @@
         <result property="amount" column="feed_amount"/>
         <result property="description" column="feed_description"/>
         <result property="remain" column="feed_remain"/>
+        <result property="check" column="feed_check"/>
         <!--外键 merchant_id-->
         <association property="merchant" column="merchant_id"
                      select="com.cloudcultivation.dao.MerchantMapper.selectMerchantById"

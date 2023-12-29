@@ -13,8 +13,9 @@ public class Feed {
     private BigDecimal price;
     private int amount;
     private String description;
-    private Merchant merchant ;
+    private Merchant merchant;
     private int remain;
+    private String check;
     private List<Buy> buyList;
 
     public Feed() {
@@ -30,6 +31,7 @@ public class Feed {
                 ", description='" + description + '\'' +
                 ", merchant=" + merchant +
                 ", remain=" + remain +
+                ", check='" + check + '\'' +
                 ", buyList=" + buyList +
                 '}';
     }
@@ -96,5 +98,13 @@ public class Feed {
 
     public void setBuyList(List<Buy> buyList) {
         this.buyList = buyList;
+    }
+
+    public String getCheck() {
+        return check;
+    }
+
+    public void setCheck(String check) {
+        this.check = check;
     }
 }

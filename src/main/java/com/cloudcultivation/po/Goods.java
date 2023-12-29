@@ -17,6 +17,8 @@ public class Goods {
     private String growth;
     private String yield;
     private int amount;
+    private int remain;
+    private String check;
     private List<Orders> ordersList;
 
     public Goods() {
@@ -34,6 +36,8 @@ public class Goods {
                 ", growth='" + growth + '\'' +
                 ", yield='" + yield + '\'' +
                 ", amount=" + amount +
+                ", remain=" + remain +
+                ", check='" + check + '\'' +
                 ", ordersList=" + ordersList +
                 '}';
     }
@@ -108,6 +112,22 @@ public class Goods {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public int getRemain() {
+        return remain;
+    }
+
+    public void setRemain(int remain) {
+        this.remain = remain;
+    }
+
+    public String getCheck() {
+        return check;
+    }
+
+    public void setCheck(String check) {
+        this.check = check;
     }
 
     public List<Orders> getOrdersList() {

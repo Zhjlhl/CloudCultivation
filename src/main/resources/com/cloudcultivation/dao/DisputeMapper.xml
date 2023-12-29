@@ -18,6 +18,7 @@
         <result property="amount" column="dispute_amount"/>
         <result property="type" column="dispute_type"/>
         <result property="date" column="dispute_date"/>
+        <result property="check" column="dispute_check"/>
         <!--外键 orders_id-->
         <association property="orders" column="orders_id"
                      select="com.cloudcultivation.dao.OrdersMapper.selectOrdersById"

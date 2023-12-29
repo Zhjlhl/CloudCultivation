@@ -21,6 +21,8 @@
         <result property="growth" column="goods_growth"/>
         <result property="yield" column="goods_yield"/>
         <result property="amount" column="goods_amount"/>
+        <result property="remain" column="goods_remain"/>
+        <result property="check" column="goods_check"/>
         <!--外键 merchant_id-->
         <association property="merchant" column="merchant_id"
                      select="com.cloudcultivation.dao.MerchantMapper.selectMerchantById"

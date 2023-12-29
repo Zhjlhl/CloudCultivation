@@ -16,6 +16,7 @@ public class Dispute {
     private BigDecimal amount;
     private String type;
     private Timestamp date;
+    private String check;
 
     public Dispute() {
     }
@@ -32,6 +33,7 @@ public class Dispute {
                 ", amount=" + amount +
                 ", type='" + type + '\'' +
                 ", date=" + date +
+                ", check='" + check + '\'' +
                 '}';
     }
 
@@ -106,5 +108,13 @@ public class Dispute {
 
     public void setDate(Timestamp date) {
         this.date = date;
+    }
+
+    public String getCheck() {
+        return check;
+    }
+
+    public void setCheck(String check) {
+        this.check = check;
     }
 }

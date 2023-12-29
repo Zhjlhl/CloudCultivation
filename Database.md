@@ -88,8 +88,9 @@ CREATE TABLE administrator (
 ```
 
 ***5.动物植物表***  
-- 动植物(ID,名字,类别,商家ID,价格,描述,生长周期,预计收益,数量)  
-goods(**goods_id**,goods_name,goods_type,*merchant_id*,goods_price,goods_description,goods_growth,goods_yield,goods_amount)  
+- 动植物(ID,名字,类别,商家ID,价格,描述,生长周期,预计收益,数量,剩余数量,审核状态)  
+goods(**goods_id**,goods_name,goods_type,*merchant_id*,goods_price,goods_description,goods_growth,
+goods_yield,goods_amount,goods_remain,goods_check)  
 - 主键:ID(goods_id)
 - 外键:商家ID(merchant_id)
 ```mysql
@@ -103,14 +104,17 @@ CREATE TABLE goods (
   goods_growth VARCHAR(255),
   goods_yield VARCHAR(255),
   goods_amount INT,
+  goods_remain INT,
+  goods_check VARCHAR(50),
   PRIMARY KEY (goods_id),
   FOREIGN KEY (merchant_id) REFERENCES merchant(merchant_id)
 );
 ```
 
 ***6.饲料表***  
-- 饲料(ID,名称,价格,数量,描述,商家ID,剩余饲料)  
-feed(**feed_id**,feed_name,feed_price,feed_amount,feed_description,*merchant_id*,feed_remain)
+- 饲料(ID,名称,价格,数量,描述,商家ID,剩余饲料,审核状态)  
+feed(**feed_id**,feed_name,feed_price,feed_amount,feed_description,*merchant_id*,feed_remain,
+feed_check)
 - 主键:ID(feed_id)
 - 外键:商家ID(merchant_id)
 ```mysql
@@ -122,6 +126,7 @@ CREATE TABLE feed (
   feed_description TEXT,
   merchant_id INT,
   feed_remain INT,
+  feed_check VARCHAR(50),
   PRIMARY KEY (feed_id),
   FOREIGN KEY (merchant_id) REFERENCES merchant (merchant_id)
 );
@@ -183,7 +188,8 @@ CREATE TABLE harvest (
 
 ***9.饲养信息表***  
 - 饲养信息(ID,订单ID,当日状态,图片地址,视频地址,日期,体重,审核状态)  
-feeding(**feeding_id**,*orders_id*,feeding_state,feeding_photo,feeding_video,feeding_date,feeding_weight,feeding_check)
+feeding(**feeding_id**,*orders_id*,feeding_state,feeding_photo,feeding_video,feeding_date,
+feeding_weight,feeding_check)
 - 主键:ID(feeding_id)
 - 外键:订单ID(orders_id)
 ```mysql
@@ -224,8 +230,9 @@ CREATE TABLE buy (
 ```
 
 ***11.纠纷表***  
-- 纠纷(ID,订单ID,客服ID,描述,状态,结果,处理金额,纠纷类别,时间)  
-dispute(**dispute_id**,*orders_id*,*service_id*,dispute_description,dispute_state,dispute_result,dispute_amount,dispute_type,dispute_date)
+- 纠纷(ID,订单ID,客服ID,描述,状态,结果,处理金额,纠纷类别,时间,审核状态)  
+dispute(**dispute_id**,*orders_id*,*service_id*,dispute_description,dispute_state,dispute_result,
+dispute_amount,dispute_type,dispute_date,dispute_check)
 - 主键:ID(dispute_id)
 - 外键:订单ID(orders_id),客服ID(service_id)
 ```mysql
@@ -239,6 +246,7 @@ CREATE TABLE dispute (
   dispute_amount DECIMAL(10, 2),
   dispute_type VARCHAR(50),
   dispute_date DATETIME,
+  dispute_check VARCHAR(50),
   PRIMARY KEY (dispute_id),
   FOREIGN KEY (orders_id) REFERENCES orders (orders_id),
   FOREIGN KEY (service_id) REFERENCES service (service_id)
