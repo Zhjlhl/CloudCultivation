@@ -125,7 +125,7 @@
                         </c:otherwise>
                     </c:choose>
                 </td>
-                <td> <a href="applyForAfterSaleService.jsp">申请售后</a></td>
+                <td> <a href="${pageContext.request.contextPath}/toApplyForAfterSaleService?harvestId=${harvest.id}">申请售后</a></td>
             </tr>
         </c:forEach>
     </c:if>

@@ -9,6 +9,7 @@ import com.cloudcultivation.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -52,6 +53,14 @@ public class EntryController {
     @RequestMapping("/toRegister")
     public String toRegister(){
         return "/enter/register.jsp";
+    }
+
+    /*
+     * @description: 页面跳转到用户主界面
+     */
+    @GetMapping("/toUserHome")
+    public String toUserHome(){
+        return "/customer/home.jsp";
     }
 
     /*用户登录判断*/

@@ -23,10 +23,10 @@
             <th>问题描述</th>
         </tr>
         <tr>
-            <th>${order.id}</th>
-            <th>${order.nickName}</th>
-            <th>${order.goods.type}</th>
-            <th>${order.buy.date}</th>
+            <th>${orders.id}</th>
+            <th>${orders.nickname}</th>
+            <th>${orders.goods.type}</th>
+            <th>${orders.date}</th>
             <th>
             <input type="radio" id="动物死亡" name="radio" value="user" required>动物死亡
             <input type="radio" id="商家跑路" name="radio" value="merchant" required>商家跑路
@@ -39,6 +39,6 @@
         </tr>
     </table>
 </form>
-<a href="./home.jsp">返回首页</a>
+<a href="${pageContext.request.contextPath}/toUserHome">返回首页</a>
 </body>
 </html>
