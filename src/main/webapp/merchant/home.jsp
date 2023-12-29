@@ -8,14 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>商家信息</title>
 </head>
 <body>
 <p>欢迎您!${merchant.name}</p>
 <p>余额:${merchant.balance}</p>
 <a href="/merchant/finishedOrder.jsp" >已完成订单</a>
 <a href="/merchant/feedOngoingOrder.jsp" >饲养中订单</a>
-<a href="/merchant/harvestOngoingOrder.jsp" >收获中订单</a>
+<a href="${pageContext.request.contextPath}/toMerchantHarvestInformation">收获中订单</a>
 <a href="/merchant/disputeOrder.jsp">售后中订单</a>
 <a href="/merchant/watingUpdate.jsp">待上传宠物信息订单</a>
 <br>

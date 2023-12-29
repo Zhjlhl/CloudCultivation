@@ -2,6 +2,7 @@ package com.cloudcultivation.controller;
 
 
 import com.cloudcultivation.po.Harvest;
+import com.cloudcultivation.po.Merchant;
 import com.cloudcultivation.po.Orders;
 import com.cloudcultivation.po.User;
 import com.cloudcultivation.service.HarvestService;
@@ -28,11 +29,27 @@ public class HarvestController {
     private UserService userService;
 
 
-    /*
-     * @description: 页面跳转
+    /**
+     * @description: 页面跳转 回到商家页面
      */
-    @RequestMapping("/toHarvestInformation")
-    public String toHarvestInformation(HttpSession httpSession){
+    @RequestMapping("/toMerchantHome")
+    public String toMerchantHome(){
+        return "/merchant/home.jsp";
+    }
+
+    /*
+     * @description: 跳转填写快递单号
+     */
+    @RequestMapping("/toMerchantUpdateDelivery")
+    public String toMerchantUpdateDelivery(){
+        return  "/merchant/update/updateDelivery.jsp";
+    }
+
+    /*
+     * @description: 用户页面跳转
+     */
+    @RequestMapping("/toUserHarvestInformation")
+    public String toUserHarvestInformation(HttpSession httpSession){
         User user = (User) httpSession.getAttribute("user");
         List<Harvest> harvestList = new ArrayList<>();
         for (Orders orders : user.getOrdersList()){
@@ -41,5 +58,21 @@ public class HarvestController {
         httpSession.setAttribute("harvests", harvestList);
         return "customer/harvestOngoingOrder.jsp";
     }
+
+    /*
+     * @description: 商家信息 页面跳转
+     */
+    @RequestMapping("/toMerchantHarvestInformation")
+    public String toMerchantHarvestInformation(HttpSession httpSession){
+        Merchant merchant = (Merchant) httpSession.getAttribute("merchant");
+        List<Harvest> harvestList = new ArrayList<>();
+        for (Orders orders : merchant.getOrdersList()){
+            harvestList.addAll(orders.getHarvestList());
+        }
+        httpSession.setAttribute("harvests", harvestList);
+        return "merchant/harvestOngoingOrder.jsp";
+    }
+
+
 
 }

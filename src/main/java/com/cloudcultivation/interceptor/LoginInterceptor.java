@@ -27,7 +27,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         Object type = session.getAttribute("type");
         Object user = session.getAttribute("user");
-        if (user!=null || type!=null){
+        Object merchant = session.getAttribute("merchant");
+        if (user!=null || type!=null || merchant!=null){
             //登录成功，放行
             return true;
         }

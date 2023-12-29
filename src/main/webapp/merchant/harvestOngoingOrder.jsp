@@ -9,10 +9,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>商家进行中订单</title>
 </head>
 <body>
-<a href="update/updateDelivery.jsp">填写快递信息</a>
+<a href="${pageContext.request.contextPath}/toMerchantUpdateDelivery">填写快递信息</a>
 <br>
 <p> 单号： 收获日期： 收获方式 ： 快递：</p>
 <c:if test="${!empty orders}">
@@ -26,7 +26,7 @@
     </c:forEach>
     </table>
 </c:if>
-<a href="/merchant/home.jsp">回到上一级</a>
+<a href="${pageContext.request.contextPath}/toMerchantHome">回到上一级</a>
 </body>
 
 </html>

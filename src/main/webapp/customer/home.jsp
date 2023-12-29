@@ -64,7 +64,7 @@
 <div id="content">
     <a class="order-link" href="/customer/finishedOrder.jsp">已完成订单</a>
     <a class="order-link" href="/customer/feedOngoingOrder.jsp">饲养中订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toHarvestInformation">收获中订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toUserHarvestInformation">收获中订单</a>
     <a class="order-link" href="/customer/disputeOngoingOrder.jsp">售后中订单</a>
     <a class="order-link" href="/customer/watingPaid.jsp">待支付订单</a>
     <a class="order-link" href="/customer/watingEvaluate.jsp">待评价订单</a>
