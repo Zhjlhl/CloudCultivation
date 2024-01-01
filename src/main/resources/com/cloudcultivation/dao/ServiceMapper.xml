@@ -46,7 +46,8 @@
 
     <!--新增客服-->
     <insert id="addService" parameterType="service">
-        INSERT INTO service(service_account, service_name, service_nickname, service_gender, service_phone, service_description, service_password)
+        INSERT INTO service(service_account, service_name, service_nickname, service_gender,
+                            service_phone, service_description, service_password)
         VALUES (#{account}, #{name},#{nickname},#{gender},#{phone},#{description},#{password})
     </insert>
 

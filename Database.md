@@ -230,9 +230,9 @@ CREATE TABLE buy (
 ```
 
 ***11.纠纷表***  
-- 纠纷(ID,订单ID,客服ID,描述,状态,结果,处理金额,纠纷类别,时间,审核状态)  
+- 纠纷(ID,订单ID,客服ID,描述,状态,结果,处理金额,纠纷类别,时间,审核状态,投诉人)  
 dispute(**dispute_id**,*orders_id*,*service_id*,dispute_description,dispute_state,dispute_result,
-dispute_amount,dispute_type,dispute_date,dispute_check)
+dispute_amount,dispute_type,dispute_date,dispute_check,dispute_man)
 - 主键:ID(dispute_id)
 - 外键:订单ID(orders_id),客服ID(service_id)
 ```mysql
@@ -247,6 +247,7 @@ CREATE TABLE dispute (
   dispute_type VARCHAR(50),
   dispute_date DATETIME,
   dispute_check VARCHAR(50),
+  dispute_man VARCHAR(50),
   PRIMARY KEY (dispute_id),
   FOREIGN KEY (orders_id) REFERENCES orders (orders_id),
   FOREIGN KEY (service_id) REFERENCES service (service_id)

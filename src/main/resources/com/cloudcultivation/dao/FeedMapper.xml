@@ -54,8 +54,9 @@
 
     <!--新增饲料-->
     <insert id="addFeed" parameterType="feed">
-        INSERT INTO feed(feed_id, feed_name, feed_price, feed_amount, feed_description, merchant_id, feed_remain)
-        VALUES (#{id},#{name},#{price},#{amount},#{description},#{merchant.id},#{remain})
+        INSERT INTO feed(feed_name, feed_price, feed_amount, feed_description, merchant_id,
+                         feed_remain, feed_check)
+        VALUES (#{name},#{price},#{amount},#{description},#{merchant.id},#{remain},#{check})
     </insert>
 
 
@@ -63,8 +64,9 @@
     <!--update饲料-->
     <update id="updateFeed" parameterType="feed">
         UPDATE feed
-        SET feed_id=#{id}, feed_name=#{name}, feed_price=#{price}, feed_amount=#{amount},
-            feed_description=#{description}, merchant_id=#{merchant.id}, feed_remain=#{remain}
+        SET feed_name=#{name}, feed_price=#{price}, feed_amount=#{amount},
+            feed_description=#{description}, merchant_id=#{merchant.id}, feed_remain=#{remain},
+            feed_check=#{check}
         WHERE feed_id=#{id}
     </update>
 

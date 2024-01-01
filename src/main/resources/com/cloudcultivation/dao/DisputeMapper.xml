@@ -19,6 +19,7 @@
         <result property="type" column="dispute_type"/>
         <result property="date" column="dispute_date"/>
         <result property="check" column="dispute_check"/>
+        <result property="man" column="dispute_man"/>
         <!--外键 orders_id-->
         <association property="orders" column="orders_id"
                      select="com.cloudcultivation.dao.OrdersMapper.selectOrdersById"
@@ -55,16 +56,18 @@
     <!--新增纠纷-->
     <insert id="addDispute" parameterType="dispute">
         INSERT INTO dispute(orders_id, service_id, dispute_description,
-                            dispute_state, dispute_result, dispute_amount,dispute_type)
+                            dispute_state, dispute_result, dispute_amount,dispute_type,
+                            dispute_date, dispute_check, dispute_man)
         VALUES (#{orders.id},#{service.id},#{description},
-                #{state},#{result},#{amount},#{type})
+                #{state},#{result},#{amount},#{type},#{date},#{check},#{man})
     </insert>
 
     <!--update纠纷-->
     <update id="updateDispute" parameterType="dispute">
         UPDATE dispute
         SET orders_id=#{orders.id}, service_id=#{service.id},  dispute_description=#{description},
-            dispute_state=#{state}, dispute_result=#{result}, dispute_amount=#{amount},dispute_type=#{type}
+            dispute_state=#{state}, dispute_result=#{result}, dispute_amount=#{amount},dispute_type=#{type},
+            dispute_date=#{date}, dispute_check=#{check}, dispute_man=#{man}
         WHERE dispute_id=#{id}
     </update>
 

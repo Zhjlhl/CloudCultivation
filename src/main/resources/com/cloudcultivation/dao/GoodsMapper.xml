@@ -54,8 +54,10 @@
     <!--添加新商品信息-->
     <insert id="addGoods" parameterType="goods">
         INSERT INTO
-            goods(goods_id, goods_name, goods_type, merchant_id, goods_price, goods_description, goods_growth, goods_yield, goods_amount)
-        VALUES (#{id},#{name},#{type},#{merchant.id},#{price},#{description},#{growth},#{yield},#{amount})
+            goods(goods_name, goods_type, merchant_id, goods_price, goods_description,
+                  goods_growth, goods_yield, goods_amount, goods_remain, goods_check)
+        VALUES (#{name},#{type},#{merchant.id},#{price},#{description},#{growth},#{yield},
+                #{amount},#{remain},#{check})
     </insert>
 
 
@@ -63,7 +65,8 @@
     <update id="updateGoods" parameterType="goods">
         UPDATE goods
         SET merchant_id=#{merchant.id}, goods_id=#{id}, goods_name=#{name}, goods_type=#{type},
-            goods_price=#{price}, goods_description=#{description}, goods_growth=#{growth}, goods_yield=#{yield}, goods_amount=#{amount}
+            goods_price=#{price}, goods_description=#{description}, goods_growth=#{growth},
+            goods_yield=#{yield}, goods_amount=#{amount}, goods_remain=#{remain}, goods_check=#{check}
         WHERE goods_id = #{id}
     </update>
 

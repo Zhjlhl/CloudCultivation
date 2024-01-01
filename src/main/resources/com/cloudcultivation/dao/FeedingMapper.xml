@@ -42,15 +42,17 @@
 
     <!--新增饲养信息-->
     <insert id="addFeeding" parameterType="feeding">
-        INSERT INTO feeding(feeding_id, orders_id, feeding_state, feeding_photo, feeding_video, feeding_date)
-        VALUES (#{id},#{orders.id},#{state},#{photo},#{video},#{date})
+        INSERT INTO feeding(orders_id, feeding_state, feeding_photo, feeding_video,
+                            feeding_date, feeding_weight, feeding_check)
+        VALUES (#{orders.id},#{state},#{photo},#{video},#{date},#{weight},#{check})
     </insert>
 
     <!--update饲养信息-->
     <update id="updateFeeding" parameterType="feeding">
         UPDATE feeding
-        SET feeding_id=#{id}, orders_id=#{orders.id}, feeding_state=#{state}, feeding_photo=#{photo},
-            feeding_video=#{video}, feeding_date=#{date}
+        SET orders_id=#{orders.id}, feeding_state=#{state}, feeding_photo=#{photo},
+            feeding_video=#{video}, feeding_date=#{date}, feeding_weight=#{weight},
+            feeding_check=#{check}
         WHERE feeding_id=#{id}
     </update>
 

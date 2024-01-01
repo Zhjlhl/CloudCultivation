@@ -55,16 +55,18 @@
     <!--添加新收获信息-->
     <insert id="addHarvest" parameterType="harvest">
         INSERT INTO
-            harvest(harvest_id, orders_id, harvest_date, harvest_way, harvest_delivery, harvest_earnings, harvest_state)
-        VALUES (#{id},#{orders.id},#{date},#{way},#{delivery},#{earnings},#{state})
+            harvest(orders_id, harvest_date, harvest_way, harvest_delivery, harvest_earnings,
+                    harvest_state, harvest_number)
+        VALUES (#{orders.id},#{date},#{way},#{delivery},#{earnings},#{state},#{number})
     </insert>
 
 
     <!--更新收获信息-->
     <update id="updateHarvest" parameterType="harvest">
         UPDATE harvest
-        SET harvest_id=#{id}, orders_id=#{orders.id}, harvest_date=#{date}, harvest_way=#{way},
-            harvest_delivery=#{delivery}, harvest_earnings=#{earnings}, harvest_state=#{state}
+        SET orders_id=#{orders.id}, harvest_date=#{date}, harvest_way=#{way},
+            harvest_delivery=#{delivery}, harvest_earnings=#{earnings}, harvest_state=#{state},
+            harvest_number=#{number}
         WHERE harvest_id = #{id}
     </update>
 

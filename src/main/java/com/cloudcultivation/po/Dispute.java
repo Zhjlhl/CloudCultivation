@@ -17,6 +17,7 @@ public class Dispute {
     private String type;
     private Timestamp date;
     private String check;
+    private String man;
 
     public Dispute() {
     }
@@ -34,6 +35,7 @@ public class Dispute {
                 ", type='" + type + '\'' +
                 ", date=" + date +
                 ", check='" + check + '\'' +
+                ", man='" + man + '\'' +
                 '}';
     }
 
@@ -116,5 +118,13 @@ public class Dispute {
 
     public void setCheck(String check) {
         this.check = check;
+    }
+
+    public String getMan() {
+        return man;
+    }
+
+    public void setMan(String man) {
+        this.man = man;
     }
 }

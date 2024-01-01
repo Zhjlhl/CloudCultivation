@@ -54,16 +54,19 @@
     <!--添加新商家信息-->
     <insert id="addMerchant" parameterType="harvest">
         INSERT INTO
-            merchant(merchant_id, merchant_account, merchant_name , merchant_password, merchant_contacts , merchant_phone , merchant_description, merchant_balance )
-        VALUES (#{id},#{account},#{name},#{password},#{contacts},#{phone},#{description},#{balance})
+            merchant(merchant_account, merchant_name , merchant_password, merchant_contacts,
+                     merchant_phone, merchant_description, merchant_balance, merchant_promise)
+        VALUES (#{account},#{name},#{password},#{contacts},#{phone},#{description},#{balance},
+                #{promise})
     </insert>
 
 
     <!--更新商家信息-->
     <update id="updateMerchant" parameterType="harvest">
         UPDATE merchant
-        SET merchant_id=#{id}, merchant_account=#{account}, merchant_name=#{name}, merchant_password=#{password},
-            merchant_contacts=#{contacts}, merchant_phone=#{phone}, merchant_description=#{description}, merchant_balance=#{balance}
+        SET merchant_account=#{account}, merchant_name=#{name}, merchant_password=#{password},
+            merchant_contacts=#{contacts}, merchant_phone=#{phone}, merchant_description=#{description},
+            merchant_balance=#{balance}, merchant_promise=#{promise}
         WHERE merchant_id = #{id}
     </update>
 
