@@ -56,12 +56,27 @@
     </style>
 </head>
 <body>
-<div id="header">
-    <h1>欢迎您! ${user.name}</h1>
-    <p>余额: ${user.balance}</p>
-</div>
+<table>
+    <tr>
+        <th>账号</th>
+        <th>用户名</th>
+        <th>性别</th>
+        <th>联系电话</th>
+        <th>邮编地址</th>
+        <th>余额</th>
+    </tr>
+    <tr>
+        <td>${sessionScope.user.account}</td>
+        <td>${sessionScope.user.name}</td>
+        <td>${sessionScope.user.gender}</td>
+        <td>${sessionScope.user.phone}</td>
+        <td>${sessionScope.user.zipcode}</td>
+        <td>${sessionScope.user.balance}</td>
+    </tr>
+</table>
 
 <div id="content">
+    <a href="">修改个人信息</a>
     <a class="order-link" href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}">已完成订单</a>
     <a class="order-link" href="${pageContext.request.contextPath}/toUserFeedOngoing?userId=${user.id}">饲养中订单</a>
     <a class="order-link" href="${pageContext.request.contextPath}/toUserHarvestInformation?userId=${user.id}">收获中订单</a>
