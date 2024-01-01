@@ -29,6 +29,8 @@ public class Orders {
     private List<Dispute> disputeList;
     private List<Buy> buyList;
 
+    private int remainDay;
+
     public Orders() {
     }
 
@@ -217,5 +219,13 @@ public class Orders {
 
     public void setBuyList(List<Buy> buyList) {
         this.buyList = buyList;
+    }
+
+    public int getRemainDay() {
+        return remainDay;
+    }
+
+    public void setRemainDay(int remainDay) {
+        this.remainDay = remainDay;
     }
 }

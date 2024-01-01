@@ -63,14 +63,13 @@
 
 <div id="content">
     <a class="order-link" href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}">已完成订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toUserFeedOngoing">饲养中订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toUserHarvestInformation">收获中订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toDisputeOngoing">售后中订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toWatingPaid">待支付订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/towatingEvaluate">待评价订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toChatWithMerchant">和商家交流信息</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toUserFeedOngoing?userId=${user.id}">饲养中订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toUserHarvestInformation?userId=${user.id}">收获中订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toDisputeOngoing?userId=${user.id}">售后中订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toWaitingPaid?userId=${user.id}">待支付订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toWaitingEvaluate">待评价订单</a>
     <br>
-    <a class="order-link" href="${pageContext.request.contextPath}/toBuy">购买商品</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toBuy?userId=${user.id}">购买商品</a>
 </div>
 </body>
 </html>

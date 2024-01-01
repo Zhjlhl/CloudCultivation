@@ -31,6 +31,10 @@ public class EntryController {
     private AdministratorService administratorService;
     @Autowired
     private ServiceService serviceService;
+    @Autowired
+    private GoodsService goodsService;
+    @Autowired
+    private OrdersService ordersService;
 
     /*
     * 页面跳转，到登录页面
@@ -67,6 +71,16 @@ public class EntryController {
         return "/customer/home.jsp";
     }
 
+    //跳转到商城页面
+    @RequestMapping("/toBuy")
+    public String toBuy(@RequestParam("userId") int userId,
+                        Model model){
+        //返回一个商品goods数组添加到Model中用于展示
+        User user = userService.selectUserById(userId);
+        List<Goods> goodsList = goodsService.selectAllGoods();
+        model.addAttribute("goods", goodsList);
+        return "/customer/buy.jsp";
+    }
     /*
     跳转到用户已完成订单
      */
@@ -80,8 +94,19 @@ public class EntryController {
 
     //跳转到饲养中订单页面
     @GetMapping("/toUserFeedOngoing")
-    public String toUserFeedOngoing(){
-        //用session中的user信息获取饲养中订单，并在model中返回一个饲养中订单数组到model用于前端展示
+    public String toUserFeedOngoing(@RequestParam("userId") int userId,
+                                    Model model){
+        //并在model中返回一个饲养中订单数组到model用于前端展示
+        User user = userService.selectUserById(userId);
+        List<Orders> ordersList = new ArrayList<>();
+        for (Orders orders : user.getOrdersList()){
+            /*if (ordersService.isOnGoing(orders)){
+                ordersList.add(orders);
+            }*/
+            orders.setRemainDay(ordersService.setRemainDay(orders));
+            ordersList.add(orders);
+        }
+        model.addAttribute("orders", ordersList);
         return "/customer/feedOngoingOrder.jsp";
     }
 
@@ -89,14 +114,47 @@ public class EntryController {
      * @description: 用户页面跳转
      */
     @RequestMapping("/toUserHarvestInformation")
-    public String toUserHarvestInformation(HttpSession httpSession){
-        User user = (User) httpSession.getAttribute("user");
+    public String toUserHarvestInformation(@RequestParam("userId") int userId,
+                                           Model model){
+        User user = userService.selectUserById(userId);
         List<Harvest> harvestList = new ArrayList<>();
         for (Orders orders : user.getOrdersList()){
             harvestList.addAll(orders.getHarvestList());
         }
-        httpSession.setAttribute("harvests", harvestList);
+        model.addAttribute("harvests", harvestList);
         return "customer/harvestOngoingOrder.jsp";
+    }
+
+    //跳转到用户售后中页面
+    @RequestMapping("/toDisputeOngoing")
+    public String toDisputeOngoing(@RequestParam("userId") int userId,
+                                   Model model){
+        //根据session中的user信息，找到售后中disputes数组存到model中，并返回
+        User user = userService.selectUserById(userId);
+        List<Orders> ordersList = user.getOrdersList();
+        List<Dispute> disputeList = new ArrayList<>();
+        for (Orders orders : ordersList){
+            disputeList.addAll(orders.getDisputeList());
+        }
+        model.addAttribute("disputes", disputeList);
+        return "/customer/disputeOngoingOrder.jsp";
+    }
+
+    //跳转到待支付订单
+    @RequestMapping("/toWaitingPaid")
+    public String toWaitingPaid(@RequestParam("userId") int userId,
+                                Model model){
+        //根据session中的user信息，找到待支付订单orders数组存到model中，并返回
+        User user = userService.selectUserById(userId);
+        List<Orders> ordersList = new ArrayList<>();
+        for (Orders orders:user.getOrdersList()){
+            if (ordersService.isReadyForPaid(orders)){
+                ordersList.add(orders);
+            }
+        }
+        model.addAttribute("orders", ordersList);
+        model.addAttribute("user", user);
+        return "/customer/waitingPaid.jsp";
     }
 
     /*

@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>售后处理</title>
 </head>
 <body>
 <c:if test="${! empty disputes}">
@@ -26,10 +26,10 @@
         </tr>
         <c:forEach items="${disputes}" var="dispute">
             <tr>
-                <td>${dispute.order.id}</td>
-                <td>${dispute.order.nickName}</td>
-                <td>${dispute.order.goods.type}</td>
-                <td>${dispute.startTime}</td>
+                <td>${dispute.orders.id}</td>
+                <td>${dispute.orders.nickname}</td>
+                <td>${dispute.orders.goods.type}</td>
+                <td>${dispute.date}</td>
                 <td>${dispute.type}</td>
                 <td>${dispute.description}</td>
                 <td>${dispute.state}</td>

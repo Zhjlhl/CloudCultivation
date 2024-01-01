@@ -20,7 +20,7 @@
 <p>单号：  姓名：   当前状态：   上次饲养时间：   当前饲料：    待收货时间：
     <a href="feedGoodsInfo">查看更多</a>   <a href="disputeHandle">申请售后</a>
 </p>
-<a href="/customer/home.jsp">返回上一级</a>
+<a href="${pageContext.request.contextPath}/toUserHome">返回上一级</a>
 <table>
     <tr>
         <th>订单号</th>
@@ -33,12 +33,11 @@
         <c:forEach items="${orders}" var="order" varStatus="st">
             <tr>
                 <td align="center">${order.id}</td>
-                <td align="center">${order.nickName}</td>
+                <td align="center">${order.nickname}</td>
                 <td align="center">${order.goods.type}</td>
                 <td align="center"><c:choose>
-                    <c:when test="${order.harvestTime==0} ">
-                        <form action="${pageContext.request.contextPath}/applyForHarvest">
-                            <input type="hidden" name="orderId" value="${order.id}" >
+                    <c:when test="${order.remainDay == 0}">
+                        <form action="${pageContext.request.contextPath}/applyForHarvest?orderId=${order.id}">
                             <select id="harvestWay" name="harvestWay">
                                 <option value="0">全部寄回家</option>
                                 <option value="25">25%换收益</option>
@@ -49,8 +48,8 @@
                             <input type="button" value="收获">
                         </form>
                     </c:when>
-                    <c:when test="${order.harvest>0}">
-                        ${order.harvest}
+                    <c:when test="${order.goods.growth > 0}">
+                        ${order.remainDay}
                     </c:when>
                 </c:choose></td>
                 <td align="center">

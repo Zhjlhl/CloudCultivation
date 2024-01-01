@@ -27,4 +27,6 @@ public interface FeedingService {
 
     /*通过密码支付购买饲料*/
     public boolean paymentFeedByPassword(User user , Merchant merchant , Goods goods , Feed feed, String password);
+
+
 }

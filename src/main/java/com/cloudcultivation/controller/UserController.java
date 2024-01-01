@@ -17,12 +17,7 @@ public class UserController {
     @Autowired
     OrdersService ordersService;
 
-    //收获方式选择操作
-    @RequestMapping("/applyForHarvest")
-    public String applyForHarvest(@RequestParam("orderId") String orderId,@RequestParam("harvestWay") String harvestWay){
-        //harvestWay值是(0,25,50,75,100)代表换成收益的百分比，设置orderId的order的收获方式，并更新订单数组到model并返回一个新的订单数组在model中到已完成订单页面用于显示
-        return "/customer/feedOngoingOrder.jsp";
-    }
+
     //跳转到这个饲养中订单的详细信息页面
     @RequestMapping("/toCustomerFeedGoodsInfo")
     public String toCustomerFeedGoodsInfo(@RequestParam("orderId") String orderId){
@@ -47,23 +42,13 @@ public class UserController {
         //这个order要进行售后，type是(animalDeath,merchantMissing,userExitsMidway,merchantDefault,refundWithinSevenDaysWithoutReason,otherIssues)中的其中一个
         return "/customer/home.jsp";
     }
-    //跳转到售后中页面
-    @RequestMapping("/toDisputeOngoing")
-    public String toDisputeOngoing(){
-        //根据session中的user信息，找到售后中disputes数组存到model中，并返回
-        return "/customer/disputeOngoing.jsp";
-    }
+
     //根据orderId跳转到与客服聊天界面
     @RequestMapping("/toChatWithService")
     public String toChatWithService(@RequestParam("orderId") String orderId){
         return "/customer/chatWithService.jsp";
     }
-    //跳转到待支付订单
-    @RequestMapping("/toWaitingPaid")
-    public String toWaitingPaid(){
-        //根据session中的user信息，找到待支付订单orders数组存到model中，并返回
-        return "/customer/waitingPaid.jsp";
-    }
+
     //跳转到付款界面
     @RequestMapping("/pay")
     public String pay(@RequestParam("orderId") String orderId){
@@ -82,11 +67,6 @@ public class UserController {
         //多个订单的评价提交，每个状态对于这个orderid的order，设置remark为evaluateState，返回一个新的待评价order数组到model中
         return "/customer/waitingEvaluate.jsp";
     }
-    //跳转到商城页面
-    @RequestMapping("/toBuy")
-    public String toBuy(){
-        //返回一个商品goods数组添加到Model中用于展示
-        return "/customer/buy.jsp";
-    }
+
 
 }

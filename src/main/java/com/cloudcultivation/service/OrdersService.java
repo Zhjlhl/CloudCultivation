@@ -32,4 +32,18 @@ public interface OrdersService {
     /*通过用户，商家，货物id查询订单*/
     public Orders selectOrdersByUserMerchantGoodsId(int userId, int merchantId , int goodsId);
 
+    /*
+     * @description: 通过判断订单还在进行中
+     */
+    public boolean isOnGoing(Orders orders);
+
+    /*
+     * @description: 填写orders里面的剩余天数
+     */
+    public int setRemainDay(Orders orders);
+
+    /*
+     * @description: 判断订单是不是已经支付
+     */
+    public boolean isReadyForPaid(Orders orders);
 }

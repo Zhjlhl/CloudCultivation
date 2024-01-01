@@ -90,5 +90,23 @@ public class HarvestController {
     }
 
 
+    //收获方式选择操作
+    @RequestMapping("/applyForHarvest")
+    public String applyForHarvest(@RequestParam("orderId") int orderId,
+                                  @RequestParam("harvestWay") String harvestWay,
+                                  Model model){
+        //harvestWay值是(0,25,50,75,100)代表换成收益的百分比，设置orderId的order的收获方式，并更新订单数组到model并返回一个新的订单数组在model中到已完成订单页面用于显示
+        Orders ordersById = ordersService.selectOrdersById(orderId);
+        //ordersById
+        //User user = userService.selectUserById(userId);
+        /*List<Orders> ordersList = new ArrayList<>();
+        for (Orders orders : user.getOrdersList()){
+            if (ordersService.isOnGoing(orders)){
+                ordersList.add(orders);
+            }
+        }*/
+        //model.addAttribute("orders", ordersList);
+        return "/customer/feedOngoingOrder.jsp";
+    }
 
 }

@@ -125,10 +125,8 @@
                         </c:otherwise>
                     </c:choose>
                 </td>
-                <form action="">
-                    <input type="hidden" value="${order.id}">
-                    <input type="submit" value="提价">
-                </form><td> <a href="${pageContext.request.contextPath}/toApplyForAfterSaleService?harvestId=${harvest.id}">申请售后</a>
+                <td>
+                    <a href="${pageContext.request.contextPath}/toApplyForAfterSaleService?harvestId=${harvest.id}">申请售后</a>
                 </td>
             </tr>
         </c:forEach>

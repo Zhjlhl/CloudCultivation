@@ -33,15 +33,17 @@
                         <th>${order.goods.yield}</th>
                         <th>${order.goods.price}</th>
                         <th>${order.goods.description}</th>
-                        <th><c:if test="${sessionScope.user.account >= order.goods.price}">
+                        <th>
+                        <c:if test="${user.account >= BigDecimal.valueOf(order.goods.price)}">
                             <form action="${pageContext.request.contextPath}/pay">
                                 <input type="hidden" name="orderId" value="${order.id}">
                                 <input type="submit" value="确认支付">
                                 </c:if>
-                                <c:if test="${sessionScope.user.account < order.goods.price}">
+                                <c:if test="${user.account < BigDecimal.valueOf(order.goods.price)}">
                                     <p>余额不足</p>
                                 </c:if>
-                            </form></th>
+                            </form>
+                        </th>
                     </tr>
                 </c:when>
             </c:choose>
