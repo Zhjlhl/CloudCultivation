@@ -11,9 +11,21 @@
     <title>认养界面</title>
 </head>
 <body>
-<form>
-  <label for="nickName">请取名</label>
-  <input type="text" id="nickName">
+<p>余额：${user.account}</p>
+<form onsubmit="pay.jsp">
+    <table>
+        <tr>
+            <th>宠物种类</th>
+            <th>宠物价格</th>
+        </tr>
+        <tr>
+            <td>${tarGoods.type}</td>
+            <td>${tarGgoods.price}</td>
+        </tr>
+    </table>
+    <label for="nickName">请取名</label>
+    <input type="text" id="nickName">
+    <input type="submit" value="确认提交">
 </form>
 </body>
 </html>

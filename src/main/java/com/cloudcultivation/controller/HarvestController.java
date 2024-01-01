@@ -6,6 +6,7 @@ import com.cloudcultivation.po.Merchant;
 import com.cloudcultivation.po.Orders;
 import com.cloudcultivation.po.User;
 import com.cloudcultivation.service.HarvestService;
+import com.cloudcultivation.service.OrdersService;
 import com.cloudcultivation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,8 @@ public class HarvestController {
     private HarvestService harvestService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrdersService ordersService;
 
 
     /**
@@ -58,19 +61,6 @@ public class HarvestController {
         return "/customer/applyForAfterSaleService.jsp";
     }
 
-    /*
-     * @description: 用户页面跳转
-     */
-    @RequestMapping("/toUserHarvestInformation")
-    public String toUserHarvestInformation(HttpSession httpSession){
-        User user = (User) httpSession.getAttribute("user");
-        List<Harvest> harvestList = new ArrayList<>();
-        for (Orders orders : user.getOrdersList()){
-            harvestList.addAll(orders.getHarvestList());
-        }
-        httpSession.setAttribute("harvests", harvestList);
-        return "customer/harvestOngoingOrder.jsp";
-    }
 
     /*
      * @description: 商家信息 页面跳转
@@ -84,6 +74,19 @@ public class HarvestController {
         }
         httpSession.setAttribute("harvests", harvestList);
         return "merchant/harvestOngoingOrder.jsp";
+    }
+
+    //用于已完成订单页面中的提交评价跳转到已完成订单页面
+    @RequestMapping("/submitEvaluation")
+    public String submitEvaluation(@RequestParam("orderId") int orderId,
+                                   @RequestParam("evaluateState") String evaluateState,
+                                   Model model){
+        Orders orders = ordersService.selectOrdersById(orderId);
+        orders.setRemark(evaluateState);
+        ordersService.updateOrder(orders);
+        User user = userService.selectUserById(orders.getUser().getId());
+        model.addAttribute("orders", user.getOrdersList());
+        return "/customer/finishedOrder.jsp";
     }
 
 

@@ -12,7 +12,7 @@
     <title>申请售后页面</title>
 </head>
 <body>
-<form>
+<form action="${pageContext.request.contextPath}/resolveDispute">
     <table>
         <tr>
             <th>订单id</th>
@@ -21,6 +21,7 @@
             <th>购买时间</th>
             <th>问题选择</th>
             <th>问题描述</th>
+            <th>提交</th>
         </tr>
         <tr>
             <th>${orders.id}</th>
@@ -35,7 +36,9 @@
             <input type="radio" id="七天内无理由退款" name="radio" value="administrator" required>七天内无理由退款
             <input type="radio" id="其他问题" name="radio" value="administrator" required>其他问题
             </th>
-            <th><input type="text" id="description"></th>
+            <th><input type="text" name="description">
+                <input type="hidden" name="orderId" value="${order.id}"></th>
+            <th> <input type="submit" value="提交"></th>
         </tr>
     </table>
 </form>

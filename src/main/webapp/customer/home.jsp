@@ -62,14 +62,15 @@
 </div>
 
 <div id="content">
-    <a class="order-link" href="/customer/finishedOrder.jsp">已完成订单</a>
-    <a class="order-link" href="/customer/feedOngoingOrder.jsp">饲养中订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}">已完成订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toUserFeedOngoing">饲养中订单</a>
     <a class="order-link" href="${pageContext.request.contextPath}/toUserHarvestInformation">收获中订单</a>
-    <a class="order-link" href="/customer/disputeOngoingOrder.jsp">售后中订单</a>
-    <a class="order-link" href="/customer/watingPaid.jsp">待支付订单</a>
-    <a class="order-link" href="/customer/watingEvaluate.jsp">待评价订单</a>
-    <a class="order-link" href="/customer/chatWithMerchant.jsp">和商家交流信息</a>
-    <a class="order-link"  href="/customer/buy.jsp">购买商品</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toDisputeOngoing">售后中订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toWatingPaid">待支付订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/towatingEvaluate">待评价订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toChatWithMerchant">和商家交流信息</a>
+    <br>
+    <a class="order-link" href="${pageContext.request.contextPath}/toBuy">购买商品</a>
 </div>
 </body>
 </html>

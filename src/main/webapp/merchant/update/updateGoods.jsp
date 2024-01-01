@@ -11,23 +11,33 @@
     <title>Title</title>
 </head>
 <body>
-<form>
-    <label for="goodsType">商品种类：</label>
-    <input type="text" id="goodsType" name="type">
+<form action="${pageContext.request.contextPath}/updateGoods" enctype="multipart/form-data">
+    <label for="image">商品图片：</label>
+    <input type="file" id="image" accept="image/*" name="image" required>
+    <br>
+    <label for="name">商品名：</label>
+    <input type="text" id="name" name="type" required>
+    <br>
+    <label for="type">商品种类：</label>
+    <input type="text" id="type" name="type" required>
     <br>
     <label for="growth">成熟周期：</label>
-    <input type="text" id="growth" name="growth">
+    <input type="text" id="growth" name="growth" required>
     <br>
-    <label for="number">商品数量：</label>
-    <input type="number" id="number" name="number">
+    <label for="yield">预期收益：</label>
+    <input type="text" id="yield" name="yield" required>
+    <br>
+    <label for="amount">商品数量：</label>
+    <input type="number" id="amount" name="amount" required>
     <br>
     <label for="price">商品价格：</label>
-    <input type="number" id="price" name="price">
+    <input type="number" id="price" name="price" required>
     <br>
     <label for="description">商品描述：</label>
-    <input type="text" id="description" name="description">
+    <input type="text" id="description" name="description" required>
     <br>
+    <input type="submit" value="提交">
 </form>
-<a href="/merchant/home.jsp">回到上一级</a>
+<a href="${pageContext.request.contextPath}/toMerchantHome">回到首页</a>
 </body>
 </html>

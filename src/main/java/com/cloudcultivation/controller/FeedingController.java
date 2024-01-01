@@ -6,13 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lzx
  */
 public class FeedingController {
-    /*
-     * 页面跳转，到购认养面
-     */
-    @RequestMapping("/toFeeding")
-    public String toFeeding(){
-        return "/feeding.jsp";
-    }
+
+
 
     /*
      * 页面跳转，到购买饲料页面

@@ -8,25 +8,38 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>更新快递</title>
+    <title>Title</title>
 </head>
 <body>
-<form>
-    <label for="number">单号：</label>
-    <input type="text" id="number" name="number">
-    <br>
-    <label for="trackNumber">快递单号：</label>
-    <input type="text" id="trackNumber" name="trackNumber">
-    <br>
-    <label for="sourceAddress">发送地址：</label>
-    <input type="text" id="sourceAddress" name="sourceAddress">
-    <br>
-    <label for="destination">接收地址：</label>
-    <input type="text" id="destination" name="destination">
-    <br>
-    <label for="company">快递公司：</label>
-    <input type="text" id="company" name="company">
-</form>
-<a href="/merchant/harvestOngoingOrder.jsp">回到上一级</a>
+<c:if test="${! empty harvest}">
+    <table>
+        <tr>
+            <th>订单号</th>
+            <th>小名</th>
+            <th>种类</th>
+            <th>收获日期</th>
+            <th>收获方式</th>
+        </tr>
+        <tr>
+            <td>${harvest.orders.id}</td>
+            <td>${harvest.orders.nickname}</td>
+            <td>${harvest.orders.goods.name}</td>
+            <td>${harvest.date}</td>
+            <td>${harvest.way}</td>
+        </tr>
+    </table>
+    <form action="${pageContext.request.contextPath}/updateDelivery">
+        <br>
+        <input type="hidden" name="originalPage" value="${originalPage}" required>
+        <input type="hidden" name="harvestId" value="${harvest.id}" required>
+        <label for="trackNumber">快递单号：</label>
+        <input type="text" id="trackNumber" name="trackNumber" required>
+        <br>
+        <label for="delivery">快递公司：</label>
+        <input type="text" id="delivery" name="delivery" required>
+        <input type="submit" value="提交">
+    </form>
+</c:if>
+<a href="${pageContext.request.contextPath}/toMerchantHarvestOngoingOrder">回到所有收获中订单页面</a>
 </body>
 </html>

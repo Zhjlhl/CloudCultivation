@@ -24,8 +24,8 @@
             <th>最终结束时间</th>
             <th>评价</th>
         </tr>
-        <c:forEach items="${orders}" var="order">
-            <c:when test="${order.evaluateState eq null}">
+        <form action="${pageContext.request.contextPath}/submitEvaluation2">
+            <c:forEach items="${orders}" var="order">
                 <tr>
                     <th>${order.id}</th>
                     <th>${order.nickName}</th>
@@ -35,15 +35,14 @@
                     <th>${order.goods.price}</th>
                     <th>${order.endTime}</th>
                     <th>
-                        <form>
-                            <label for="evaluateState">评价等级</label>
-                            <input type="text" id="evaluateState">
-                            <input type="submit" value="提交">
-                        </form>
+                        <label for="evaluateState">评价等级</label>
+                        <input type="hidden" name="orderId" value="${order.id}">
+                        <input type="text" name="evaluateState" id="evaluateState">
                     </th>
                 </tr>
-            </c:when>
-        </c:forEach>
+            </c:forEach>
+            <input type="submit" value="提交">
+        </form>
     </table>
 </c:if>
 </body>

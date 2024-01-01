@@ -96,17 +96,28 @@
 
     <!--新增订单-->
     <insert id="addOrder" parameterType="orders">
-        INSERT INTO orders(user_id, merchant_id, goods_id, orders_description, orders_payment_state, orders_amount, orders_state)
-        VALUES (#{user.id},#{merchant.id},#{goods.id},#{description},#{paymentState},#{amount},#{state})
+        INSERT INTO orders(user_id, merchant_id, goods_id, orders_description, orders_payment_state,
+                           orders_amount, orders_state, orders_remark, orders_date, orders_insurance,
+                           orders_end_time, orders_end_yield, orders_end_state, orders_nickname,
+                           orders_feed)
+        VALUES (#{user.id},#{merchant.id},#{goods.id},#{description},#{paymentState},#{amount},#{state},
+                #{orders_remark},#{orders_date},#{orders_insurance},#{orders_end_time},#{orders_end_yield},
+                #{orders_end_state},#{orders_nickname},#{orders_feed})
     </insert>
 
-    <!--update订单-->
+    <!--更新订单-->
     <update id="updateOrder" parameterType="orders">
         UPDATE orders
-        SET user_id=#{user.id}, merchant_id=#{merchant.id}, goods_id=#{goods.id}, orders_description=#{description},
-            orders_payment_state=#{paymentState}, orders_amount=#{amount}, orders_state=#{state}
+        SET user_id=#{user.id}, merchant_id=#{merchant.id}, goods_id=#{goods.id},
+            orders_description=#{description}, orders_payment_state=#{paymentState},
+            orders_amount=#{amount}, orders_state=#{state},
+            orders_remark=#{remark}, orders_date=#{date},
+            orders_insurance=#{insurance}, orders_end_time=#{endTime},
+            orders_end_yield=#{endYield}, orders_end_state=#{endState},
+            orders_nickname=#{nickname}, orders_feed=#{feed}
         WHERE orders_id=#{id}
     </update>
+
 
     <!--通过id删除订单-->
     <delete id="deleteOrderById" parameterType="Integer">

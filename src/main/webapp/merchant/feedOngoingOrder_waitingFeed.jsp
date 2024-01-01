@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -9,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>饲养中订单</title>
+    <title>今日待投喂订单</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/chooseFeedOngoingOrder?type=waitingFeed">今日待投喂订单</a>
+<a href="${pageContext.request.contextPath}/chooseFeedOngoingOrder?type=all">所有饲养中订单</a>
 <a href="${pageContext.request.contextPath}/chooseFeedOngoingOrder?type=type=waitingUpdateInfo">今日待上传信息订单</a>
 <table>
     <tr>
@@ -20,35 +19,24 @@
         <th>宠物姓名</th>
         <th>宠物种类</th>
         <th>主人</th>
-        <th>今日饲料</th>
-        <th>投喂状态</th>
-        <th>上传信息状态</th>
+        <th>今日投喂饲料</th>
+        <th>今日投喂状态</th>
     </tr>
     <c:if test="${!empty orders}">
         <c:forEach items="${orders}" var="order" varStatus="st">
             <tr>
-                <td >${order.id}</td>
-                <td >${order.nickName}</td>
-                <td >${order.goods.type}</td>
+                <td align="center">${order.id}</td>
+                <td align="center">${order.nickName}</td>
+                <td align="center">${order.goods.type}</td>
                 <td>${order.user.name}</td>
                 <td>${order.feed.name}</td>
                 <td>
                     <c:choose>
                         <c:when test="${order.feedState == '待投喂'}">
-                            <a href="${pageContext.request.contextPath}/feed?feedState=already&originalPage=all&orderId=${order.id}">已投喂</a>"
+                            <a href="${pageContext.request.contextPath}/feed?feedState=already&originalPage=waitingFeed&orderId=${order.id}">已投喂</a>"
                         </c:when>
                         <c:when test="${order.feedState == '已投喂'}">
                             ${order.feedState}
-                        </c:when>
-                    </c:choose>
-                </td>
-                <td>
-                    <c:choose>
-                        <c:when test="${order.feedState == '待上传'}">
-                            <a href="${pageContext.request.contextPath}/toUpdateFeedOngoingInfo?orderId=${order.id}">去上传</a>"
-                        </c:when>
-                        <c:when test="${order.feedState == '已上传'}">
-                            ${order.UpdateState}
                         </c:when>
                     </c:choose>
                 </td>

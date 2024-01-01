@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>饲养中订单页面</title>
@@ -25,6 +26,7 @@
         <th>订单号</th>
         <th>宠物姓名</th>
         <th>宠物种类</th>
+        <th>剩余收获时间</th>
         <th>查看更多</th>
     </tr>
     <c:if test="${!empty orders}">
@@ -33,8 +35,34 @@
                 <td align="center">${order.id}</td>
                 <td align="center">${order.nickName}</td>
                 <td align="center">${order.goods.type}</td>
-                <td align="center">${order.harvestTime}</td>
-                <td align="center"><a href="/customer/feedGoodsInfo.jsp">查看更多</a></td>
+                <td align="center"><c:choose>
+                    <c:when test="${order.harvestTime==0} ">
+                        <form action="${pageContext.request.contextPath}/applyForHarvest">
+                            <input type="hidden" name="orderId" value="${order.id}" >
+                            <select id="harvestWay" name="harvestWay">
+                                <option value="0">全部寄回家</option>
+                                <option value="25">25%换收益</option>
+                                <option value="50">50%换收益</option>
+                                <option value="75">75%换收益</option>
+                                <option value="100">100%换收益</option>
+                            </select>
+                            <input type="button" value="收获">
+                        </form>
+                    </c:when>
+                    <c:when test="${order.harvest>0}">
+                        ${order.harvest}
+                    </c:when>
+                </c:choose></td>
+                <td align="center">
+                    <form action="${pageContext.request.contextPath}/toCustomerFeedGoodsInfo">
+                        <input type="hidden" name="orderId" value="${order.id}" >
+                        <input type="submit" value="查看更多">
+                    </form>
+                </td>
+
+            </tr>
+        </c:forEach>
+    </c:if>
 </table>
 </body>
 </html>

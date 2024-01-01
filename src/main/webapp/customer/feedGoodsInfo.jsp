@@ -50,17 +50,17 @@
     <input type="date" id="date">
     <input type="submit" value="选择查看">
 </form>
-<p>已有饲料</p>
+<p>已有饲料:</p>
 <table>
     <tr>
         <th>饲料名</th>
         <th>拥有数量</th>
         <th>投喂</th>
     </tr>
-    <c:forEach items="${order.feeds}" var="feed">
+    <c:forEach items="${}" var="feed">
         <tr>
-            <td>${feed.name}</td>
-            <td>${feed.remain}</td>
+            <td>${}</td>
+            <td>${}</td>
             <td>
                 <form>
                     <!-- 在按钮上添加一个点击事件处理函数，并传递饲料名作为参数 -->
