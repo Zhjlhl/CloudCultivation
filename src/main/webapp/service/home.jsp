@@ -11,6 +11,6 @@
     <title>主页</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/toServiceDisputeOngoing">纠纷中的订单</a>
+<a href="${pageContext.request.contextPath}/toServiceDisputeOngoing?serviceId=${service.id}">纠纷中的订单</a>
 </body>
 </html>

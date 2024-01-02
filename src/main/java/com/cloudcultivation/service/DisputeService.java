@@ -23,5 +23,7 @@ public interface DisputeService {
     /*通过id删除纠纷*/
     public int deleteDisputeById(int id);
 
+    /*判断是否为已解决状态*/
+    public boolean isDisputeResolve(Dispute dispute);
 }
 

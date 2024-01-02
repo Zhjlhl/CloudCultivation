@@ -174,6 +174,18 @@ public class EntryController {
     }
 
     /*
+     * @description: 客服跳转自己的纠纷
+     */
+    @GetMapping("/toServiceDisputeOngoing")
+    public String toServiceDisputeOngoing(@RequestParam("serviceId") int serviceId,
+                                          Model model){
+        Service service = serviceService.selectServiceById(serviceId);
+        model.addAttribute("disputes", service.getDisputeList());
+        model.addAttribute("service", service);
+        return "/service/disputeOngoing.jsp";
+    }
+
+    /*
      * @description: 页面跳转到管理员主界面
      */
     @GetMapping("/toAdministratorHome")

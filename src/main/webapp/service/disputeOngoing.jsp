@@ -12,7 +12,7 @@
     <title>纠纷中订单</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/toServiceUncheck">未审核订单</a>
+<a href="${pageContext.request.contextPath}/toServiceUncheck?serviceId=${service.id}">未审核订单</a>
 <c:if test="${! empty disputes}">
   <table>
       <tr>

@@ -41,4 +41,9 @@ public class DisputeServiceImpl implements DisputeService {
     public int deleteDisputeById(int id) {
         return disputeMapper.deleteDisputeById(id);
     }
+
+    @Override
+    public boolean isDisputeResolve(Dispute dispute) {
+        return "已解决".equals(dispute.getState());
+    }
 }
