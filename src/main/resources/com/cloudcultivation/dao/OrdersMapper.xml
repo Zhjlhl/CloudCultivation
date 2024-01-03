@@ -101,8 +101,8 @@
                            orders_end_time, orders_end_yield, orders_end_state, orders_nickname,
                            orders_feed)
         VALUES (#{user.id},#{merchant.id},#{goods.id},#{description},#{paymentState},#{amount},#{state},
-                #{orders_remark},#{orders_date},#{orders_insurance},#{orders_end_time},#{orders_end_yield},
-                #{orders_end_state},#{orders_nickname},#{orders_feed})
+                #{remark},#{date},#{insurance},#{endTime},#{endYield},
+                #{endState},#{nickname},#{feed})
     </insert>
 
     <!--更新订单-->

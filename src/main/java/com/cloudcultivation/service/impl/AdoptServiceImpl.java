@@ -4,6 +4,7 @@ import com.cloudcultivation.po.Goods;
 import com.cloudcultivation.po.Merchant;
 import com.cloudcultivation.po.Orders;
 import com.cloudcultivation.po.User;
+import com.cloudcultivation.service.AdoptService;
 import com.cloudcultivation.service.GoodsService;
 import com.cloudcultivation.service.OrdersService;
 import com.cloudcultivation.service.UserService;
@@ -15,7 +16,7 @@ import java.sql.Timestamp;
  * @author lzx
  */
 @org.springframework.stereotype.Service
-public class AdoptServiceImpl {
+public class AdoptServiceImpl implements AdoptService {
 
     @Autowired
     private UserService userService;
@@ -29,29 +30,33 @@ public class AdoptServiceImpl {
 
 
     /*通过密码购买货物*/
-    public boolean paymentGoodsByPassword(User user , Merchant merchant , Goods goods ,String password){
+    @Override
+    public boolean paymentGoodsByPassword(int userId , int goodsId){
 
+        User user = userService.selectUserById(userId);
+        Goods goods = goodsService.selectGoodsById(goodsId);
         Orders orders=new Orders();
         int x=user.getBalance().compareTo(goods.getPrice());
-        if(user.getPassword().equals(password)&&x>=0&&goods.getAmount()>0){
             user.setBalance(user.getBalance().subtract(goods.getPrice()));
-            userService.updateUser(user);  //更新用户余额
-
+            if(userService.updateUser(user)==0) {  //更新用户余额
+                return false;
+            }
             goods.setAmount(goods.getAmount()-1);
-            goodsService.updateGoods(goods);  //更新货物数量
-
+            if(goodsService.updateGoods(goods)==0) {//更新货物数量
+                return false;
+            }
             orders.setUser(user);
             orders.setGoods(goods);
+            Merchant merchant = goods.getMerchant();
             orders.setMerchant(merchant);
             orders.setPaymentState("已支付");
             Timestamp ts = new Timestamp(System.currentTimeMillis());
             orders.setDate(ts);
-            ordersService.addOrder(orders);  //添加订单表
-
+            if(ordersService.addOrder(orders)==0){//添加订单表
+                return false;
+            }
             return true;
 
-        }
-        else return false;
     }
 
 

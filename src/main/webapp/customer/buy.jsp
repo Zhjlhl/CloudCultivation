@@ -1,3 +1,4 @@
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -37,11 +38,15 @@
             <td>${good.amount}</td>
             <td>${good.description}</td>
             <td>${good.price}</td>
-            <td><form>
-                <input type="button" value="购买" onclick="handleBuyClick('${good.id}')">
-            </form></td>
+            <td>
+                <a href="${pageContext.request.contextPath}/toAdopt?userId=${user.id}&goodsId=${good.id}">购买</a>
+            </td>
         </tr>
     </c:forEach>
 </table>
+<c:forEach items="${indexList}" var="index">
+<a href="${pageContext.request.contextPath}/toBuy?userId=${user.id}&index=${index}">${index}</a>
+</c:forEach>
 </body>
 </html>
+
