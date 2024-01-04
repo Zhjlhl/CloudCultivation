@@ -49,6 +49,9 @@
           </tr>
       </c:forEach>
   </table>
+        <c:forEach items="${indexList}" var="index">
+            <a href="${pageContext.request.contextPath}">${index}</a>
+        </c:forEach>
 </c:if>
 <a href="${pageContext.request.contextPath}/toServiceHome">返回主页</a>
 </body>

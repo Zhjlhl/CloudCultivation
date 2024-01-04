@@ -40,4 +40,15 @@ public class DisputeController {
         model.addAttribute("disputes", disputeList);
         return "/service/uncheckDispute.jsp";
     }
+
+    /*
+     * @description: 跳转审核商品
+     */
+    @GetMapping("/toCheckGoods")
+    public String toCheckGoods(@RequestParam("serviceId") int serviceId,
+                               Model model){
+        Service service = serviceService.selectServiceById(serviceId);
+
+        return "/service/checkGoods.jsp";
+    }
 }
