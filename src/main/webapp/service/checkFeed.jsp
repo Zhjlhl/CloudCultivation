@@ -23,7 +23,7 @@
       <th>原因</th>
       <th>审核状态</th>
     </tr>
-    <c:forEach items="${goods}" var="good">
+    <c:forEach items="${feeds}" var="feed">
       <tr>
         <td>${feed.name}</td>
         <td>${feed.merchant.name}</td>

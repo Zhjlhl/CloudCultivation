@@ -13,6 +13,6 @@
 <body>
 <a href="${pageContext.request.contextPath}/toServiceDisputeOngoing?serviceId=${service.id}">纠纷中的订单</a>
 <a href="${pageContext.request.contextPath}/toCheckGoods?serviceId=${service.id}">审核商品</a>
-<a href="${pageContext.request.contextPath}">审核饲料</a>
+<a href="${pageContext.request.contextPath}/toCheckFeed?serviceId=${service.id}">审核饲料</a>
 </body>
 </html>

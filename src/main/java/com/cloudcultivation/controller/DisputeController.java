@@ -1,9 +1,10 @@
 package com.cloudcultivation.controller;
 
 import com.cloudcultivation.po.Dispute;
+import com.cloudcultivation.po.Feed;
+import com.cloudcultivation.po.Goods;
 import com.cloudcultivation.po.Service;
-import com.cloudcultivation.service.DisputeService;
-import com.cloudcultivation.service.ServiceService;
+import com.cloudcultivation.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,12 @@ public class DisputeController {
     private DisputeService disputeService;
     @Autowired
     private ServiceService serviceService;
+    @Autowired
+    private MerchantService merchantService;
+    @Autowired
+    private GoodsService goodsService;
+    @Autowired
+    private FeedService feedService;
 
     /*
      * @description: 跳转未审核订单
@@ -48,7 +55,21 @@ public class DisputeController {
     public String toCheckGoods(@RequestParam("serviceId") int serviceId,
                                Model model){
         Service service = serviceService.selectServiceById(serviceId);
-
+        List<Goods> goodsList = goodsService.selectAllGoods();
+        model.addAttribute("goods", goodsList);
         return "/service/checkGoods.jsp";
     }
+
+    /*
+    *  跳转审核饲料
+    * */
+    @GetMapping("/toCheckFeed")
+    public String toCheckFeed(@RequestParam("serviceId") int serviceId,
+                              Model model){
+        Service service = serviceService.selectServiceById(serviceId);
+        List<Feed> feedList = feedService.selectAllFeed();
+        model.addAttribute("feeds", feedList);
+        return "/service/checkFeed.jsp";
+    }
+
 }
