@@ -76,10 +76,6 @@ public class AdoptController {
             httpSession.setAttribute("goods", goods2);
             return "/customer/adoptSuccess.jsp";
         }else{
-            User user2 = userService.selectUserById(userId);
-            Goods goods2 = goodsService.selectGoodsById(goodsId);
-            httpSession.setAttribute("user", user2);
-            httpSession.setAttribute("goods", goods2);
             return "/customer/adoptFail.jsp";
         }
 
@@ -93,8 +89,6 @@ public class AdoptController {
         BigDecimal temp2 = new BigDecimal(number);
         user.setBalance(temp.add(temp2));
         if(userService.updateUser(user)==0){
-            User user2 = userService.selectUserById(userId);
-            httpSession.setAttribute("user", user2);
             return "/customer/chargeFail.jsp";
         }
         User user2 = userService.selectUserById(userId);

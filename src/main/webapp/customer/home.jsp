@@ -76,15 +76,15 @@
 </table>
 
 <div id="content">
-    <a href="">修改个人信息</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}">已完成订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toUserFeedOngoing?userId=${user.id}">饲养中订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toUserHarvestInformation?userId=${user.id}">收获中订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toDisputeOngoing?userId=${user.id}">售后中订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toWaitingPaid?userId=${user.id}">待支付订单</a>
-    <a class="order-link" href="${pageContext.request.contextPath}/toWaitingEvaluate">待评价订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/updateSelf?userId=${user.id}">修改个人信息</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}&index=1">已完成订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toUserFeedOngoing?userId=${user.id}&index=1">饲养中订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toUserHarvestInformation?userId=${user.id}&index=1">收获中订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toDisputeOngoing?userId=${user.id}&index=1">售后中订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toWaitingPaid?userId=${user.id}&index=1">待支付订单</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toWaitingEvaluate&index=1">待评价订单</a>
     <br>
-    <a class="order-link" href="${pageContext.request.contextPath}/toBuy?userId=${user.id}">购买商品</a>
+    <a class="order-link" href="${pageContext.request.contextPath}/toBuy?userId=${user.id}&index=1">购买商品</a>
 </div>
 </body>
 </html>

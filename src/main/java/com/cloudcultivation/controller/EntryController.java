@@ -218,4 +218,34 @@ public class EntryController {
         }
         return "/enter/login.jsp";
     }
+
+    /*跳转更新个人信息*/
+    @RequestMapping("/updateSelf")
+    private String updateSelf(@RequestParam("userId") int userId,Model model){
+        User user = userService.selectUserById(userId);
+        model.addAttribute("user",user);
+        return "/customer/updateSelfInfo.jsp";
+    }
+
+    /*实现更新功能*/
+    @RequestMapping("/updateSelfInfo")
+    private String updateSelfInfo(@RequestParam("userId") int userId,@RequestParam("name") String name,
+                                  @RequestParam("phone") String phone,@RequestParam("gender") String gender,
+                                  @RequestParam("zipcode") String zipcode,@RequestParam("password") String password,
+                                  @RequestParam("rePassword") String rePassword,HttpSession httpSession) {
+        User user = userService.selectUserById(userId);
+        user.setName(name);
+        user.setPhone(phone);
+        user.setGender(gender);
+        user.setZipcode(zipcode);
+        user.setPassword(password);
+        user.setRepassword(rePassword);
+        if (userService.updateUser(user) == 0) {
+            return "/customer/updateSelfInfoFail.jsp";
+        } else {
+            User user2 = userService.selectUserById(userId);
+            httpSession.setAttribute("user", user2);
+            return "/customer/updateSelfInfoSuccess.jsp";
+        }
+    }
 }
