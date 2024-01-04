@@ -26,6 +26,7 @@
         <th>预期收益</th>
         <th>剩余数量</th>
         <th>描述</th>
+        <th>图片</th>
         <th>价格</th>
         <th>购买</th>
     </tr>
@@ -37,6 +38,7 @@
             <td>${good.yield}</td>
             <td>${good.amount}</td>
             <td>${good.description}</td>
+            <td></td>
             <td>${good.price}</td>
             <td>
                 <a href="${pageContext.request.contextPath}/toAdopt?userId=${user.id}&goodsId=${good.id}">购买</a>

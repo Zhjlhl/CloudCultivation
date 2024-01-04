@@ -21,4 +21,6 @@
     <mvc:interceptors>
         <bean class="com.cloudcultivation.interceptor.LoginInterceptor"/>
     </mvc:interceptors>
+    
+    <mvc:resources mapping="/img/**" location="/customer/img/"/>
 </beans>

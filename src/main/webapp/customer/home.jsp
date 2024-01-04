@@ -388,7 +388,7 @@
                 <img src="img/product2.jpg" alt="图片2">
             </div>
             <div class="slide">
-                <img src="img/product3.jpg" alt="图片3">
+                <img src="img/product1.jpg" alt="图片3">
             </div>
         </div>
     </div>

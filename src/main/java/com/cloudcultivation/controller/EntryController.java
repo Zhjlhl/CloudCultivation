@@ -78,6 +78,9 @@ public class EntryController {
         //返回一个商品goods数组添加到Model中用于展示
         User user = userService.selectUserById(userId);
         List<Goods> goodsList = goodsService.selectAllGoods();
+        /*尝试图片显示*/
+        String filePath = "O:\\Files\\图片";
+
         model.addAttribute("goods", goodsList);
         return "/customer/buy.jsp";
     }
