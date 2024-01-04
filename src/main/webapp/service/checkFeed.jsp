@@ -39,6 +39,7 @@
             <input type="submit" name="checkState" value="pass">通过
             <input type="submit" name="checkState" value="fail">不通过
           </td>
+        </form>
       </tr>
     </c:forEach>
   </table>
