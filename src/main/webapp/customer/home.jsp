@@ -16,9 +16,8 @@
             display: flex;
             align-items: center;
         }
-        .navbar-center {
-            display: flex;
-            align-items: center;
+        .navbar-brand{
+            width: 100px;
         }
         .navbar-right {
             display: flex;
@@ -87,8 +86,9 @@
         .navbar-link:hover {
             border-bottom-color: #4267b2;
         }
-
-
+        .search{
+            margin-right: 100px;
+        }
         .username {
             margin-right: 10px;
         }
@@ -108,11 +108,6 @@
             padding: 0;
             height: 50vh;
         }
-        .left-content,
-        .right-content {
-            flex: 1;
-            padding: 20px;
-        }
         .center-content {
             flex: 1;
             display: flex;
@@ -129,54 +124,11 @@
         }
         .slide img {
             max-width: 100%;
-            height: auto;
             display: inline-block;
             vertical-align: middle;
-        }
-        .right-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-        }
-        .left-content {
-            float: left;
-            width: 190px;
-            height: 50px;
-            padding-top: 11px;
-            box-sizing: border-box;
-            margin-top: 12px;
+            height:50vh;
         }
 
-        .left-content li {
-            margin: 5px 0;
-            text-align: center;
-            font-size: 16px;
-            list-style-type: none;
-        }
-        .left-content li a visited{
-            color:#4267b2;
-        }
-        .left-content li a {
-            color:#4267b2;
-        }
-        .left-content li:hover {
-            background-color: white;
-        }
-
-        .info h1 {
-            margin-bottom: 20px;
-            color: #4267b2;
-            font-size: 30px;
-        }
-        p {
-            margin: 5px 0;
-            text-align: left;
-            font-size: 15px;
-        }
-        strong {
-            color:#4267b2;
-        }
         #adv-content {
             width: 100%;
             height:120px;
@@ -247,22 +199,26 @@
         }
         .middle_footer dl {
             float: left;
-            width: 198px;
+            text-align: center;
+            width: 200px;
             margin-top: 28px;
         }
         .middle_footer dt {
             height: 30px;
+            text-align: center;
             font-size: 16px;
             font-weight: 700;
             color: #4267b2;
         }
         .middle_footer dd {
             height: 25px;
+            text-align: center;
             font-size: 13px;
         }
 
         .middle_footer .last-dl {
             height: 147px;
+
         }
 
         .middle_footer .last-dl dt {
@@ -321,64 +277,54 @@
 <body>
 <div class="navbar">
     <div class="navbar-left">
-        <span class="navbar-brand">用户主界面</span>
-    </div>
-    <div class="navbar-center">
+        <span class="navbar-brand">云养殖系统</span>
         <ul>
             <li>
-                <a class="navbar-link" href="#">订单</a>
+                <a class="navbar-link" href="${pageContext.request.contextPath}/toBuy?userId=${user.id}">购买</a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a class="navbar-link" href="${pageContext.request.contextPath}/toUserFeedOngoing?userId=${user.id}">饲养</a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a class="navbar-link" href="#">收获</a>
                 <ul>
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}&index=1">已完成</a>
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/toUserFeedOngoing?userId=${user.id}&index=1">饲养中</a>
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/toUserHarvestInformation?userId=${user.id}&index=1">收获中</a>
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/toDisputeOngoing?userId=${user.id}&index=1">售后中</a>
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/toWaitingPaid?userId=${user.id}&index=1">待支付</a>
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/toWaitingEvaluate&index=1">待评价</a>
+                    <a class="navbar-link" href="${pageContext.request.contextPath}/toWaitingPaid?userId=${user.id}">支付</a>
+                    <a class="navbar-link" href="${pageContext.request.contextPath}/toUserHarvestInformation?userId=${user.id}">收获</a>
                 </ul>
             </li>
+        </ul>
+        <ul>
             <li>
-                <a class="navbar-link" href="${pageContext.request.contextPath}/toBuy?userId=${user.id}&index=1">购买</a>
+                <a class="navbar-link" href="#">售后</a>
+                <ul>
+                    <a class="navbar-link" href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}">完成</a>
+                    <a class="navbar-link" href="${pageContext.request.contextPath}/toDisputeOngoing?userId=${user.id}">售后</a>
+                    <a class="navbar-link" href="${pageContext.request.contextPath}/toWaitingEvaluate">评价</a>
+                </ul>
             </li>
+        </ul>
+        <ul>
             <li>
                 <a class="navbar-link" href="#">客服</a>
             </li>
         </ul>
     </div>
     <div class="navbar-right">
+        <div class="search">
+            <form action="/search" method="get">
+                <input type="text" name="query" placeholder="搜索" style="height: 30px;width: 200px;margin-top:18px">
+                <input type="submit" class="button" value="搜索" style="height: 30px;width:50px;margin-top:20px">
+            </form>
+        </div>
         <span class="username">${user.name}</span>
-        <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn">登出</a>
+        <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">登出</a>
     </div>
 </div>
 <div class="content">
-    <div class="left-content">
-        <!-- 左侧内容 -->
-        <ul>
-            <li>
-                <a style="text-decoration: none;" href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}&index=1">已完成订单</a>
-            </li>
-            <li>
-                <a style="text-decoration: none;" href="${pageContext.request.contextPath}/toUserFeedOngoing?userId=${user.id}&index=1">饲养中订单</a>
-            </li>
-            <li>
-                <a style="text-decoration: none;" href="${pageContext.request.contextPath}/toUserHarvestInformation?userId=${user.id}&index=1">收获中订单</a>
-            </li>
-            <li>
-                <a style="text-decoration: none;" href="${pageContext.request.contextPath}/toDisputeOngoing?userId=${user.id}&index=1">售后中订单</a>
-            </li>
-            <li>
-                <a style="text-decoration: none;" href="${pageContext.request.contextPath}/toWaitingPaid?userId=${user.id}&index=1">待支付订单</a>
-            </li>
-            <li>
-                <a style="text-decoration: none;" href="${pageContext.request.contextPath}/toWaitingEvaluate&index=1">待评价订单</a>
-            </li>
-            <li>
-                <a style="text-decoration: none;" href="${pageContext.request.contextPath}/toBuy?userId=${user.id}&index=1">购买商品</a>
-            </li>
-            <li>
-                <a style="text-decoration: none;" href="#">人工客服</a>
-            </li>
-        </ul>
-    </div>
     <div class="center-content">
         <div class="picture">
             <div class="slide">
@@ -388,21 +334,8 @@
                 <img src="img/product2.jpg" alt="图片2">
             </div>
             <div class="slide">
-                <img src="img/product1.jpg" alt="图片3">
+                <img src="img/product3.jpg" alt="图片3">
             </div>
-        </div>
-    </div>
-    <div class="right-content">
-        <!-- 右侧内容 -->
-        <div class="info">
-            <h1>用户信息</h1>
-            <p><strong>id:</strong>${user.id}</p>
-            <p><strong>账户:</strong>${user.account}</p>
-            <p><strong>用户名:</strong>${user.name}</p>
-            <p><strong>性别:</strong>${user.gender}</p>
-            <p><strong>联系电话:</strong>${user.phone}</p>
-            <p><strong>邮编:</strong>${user.zipcode}</p>
-            <p><strong>余额:</strong>${user.balance}</p>
         </div>
     </div>
 </div>
@@ -451,7 +384,7 @@
     </div>
     <div class="middle_footer  w">
         <dl>
-            <dt>养殖指南</dt>
+            <dt>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp养殖指南</dt>
             <dd>养殖流程</dd>
             <dd>养殖介绍</dd>
             <dd>养殖攻略</dd>
@@ -460,7 +393,7 @@
             <dd>联系客服</dd>
         </dl>
         <dl>
-            <dt>配送方式</dt>
+            <dt>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp配送方式</dt>
             <dd>上门自提</dd>
             <dd>211限时达</dd>
             <dd>商品抵价</dd>
@@ -469,14 +402,14 @@
             <dd>海外配送</dd>
         </dl>
         <dl>
-            <dt>支付方式</dt>
+            <dt>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp支付方式</dt>
             <dd>货到付款</dd>
             <dd>在线支付</dd>
             <dd>分期付款</dd>
             <dd>公司转账</dd>
         </dl>
         <dl>
-            <dt>售后服务</dt>
+            <dt>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp售后服务</dt>
             <dd>售后政策</dd>
             <dd>价格保护</dd>
             <dd>退款说明</dd>
@@ -484,17 +417,16 @@
             <dd>取消订单</dd>
         </dl>
         <dl>
-            <dt>特色服务</dt>
+            <dt>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp特色服务</dt>
             <dd>养殖农场</dd>
             <dd>合作养殖</dd>
             <dd>共享养殖</dd>
             <dd>智能养殖</dd>
         </dl>
         <dl class="last-dl">
-            <dt>云养殖网站介绍</dt>
+            <dt>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp云养殖网站介绍</dt>
             <dd>
-                本网站是一个新型智能的云养殖网站，各位网民可以在网站中挑选心仪的养殖对象进行购买，我们将提供场地和饲料保障养殖对象的健康生长。本网站
-                提供的服务包括但不限于养殖信息查询、社交互动、在线购买等，期待各位网民的选购。
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本网站是一个新型的云养殖网站，各位网民可以在网站中挑选心仪的养殖对象进行购买.本公司将提供场地和饲料保障养殖对象的健康生长，期待各位网民选购！
             </dd>
         </dl>
     </div>

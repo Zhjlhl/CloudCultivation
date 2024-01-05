@@ -30,6 +30,8 @@ public class DisputeController {
     private GoodsService goodsService;
     @Autowired
     private FeedService feedService;
+    @Autowired
+    private CheckService checkService;
 
     /*
      * @description: 跳转未审核订单
@@ -55,10 +57,20 @@ public class DisputeController {
     public String toCheckGoods(@RequestParam("serviceId") int serviceId,
                                Model model){
         Service service = serviceService.selectServiceById(serviceId);
-        List<Goods> goodsList = goodsService.selectAllGoods();
+        List<Goods> goodsList = new ArrayList<>();
+        for (Goods goods : goodsService.selectAllGoods()){
+            if (!checkService.isGoodsChecked(goods)) {
+                goodsList.add(goods);
+            }
+        }
         model.addAttribute("goods", goodsList);
         return "/service/checkGoods.jsp";
     }
+
+    /*
+     * @description: 实现通过商品审核
+     */
+
 
     /*
     *  跳转审核饲料

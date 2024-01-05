@@ -42,9 +42,10 @@
                         <input type="text" name="reason">
                     </td>
                     <td>
-                        <input type="sumbit" name="checkState" value="pass">通过
-                        <input type="sumbit" name="checkState" value="fail">不通过
+                        <input type="submit" name="checkState" value="pass">通过
+                        <input type="submit" name="checkState" value="fail">不通过
                     </td>
+                </form>
             </tr>
         </c:forEach>
 </table>
