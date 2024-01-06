@@ -11,6 +11,11 @@ public interface HarvestService {
     /*通过id查询收获信息*/
     public Harvest selectHarvestById(int id);
 
+    /*通过orders_id查询收获信息*/
+    public Harvest selectHarvestByOrdersId(int id);
+
+    public List<Harvest> selectHarvestsByOrdersId(int id);
+
     /*查询所有收获信息*/
     public List<Harvest> selectAllHarvest();
 

@@ -22,22 +22,6 @@ public class Dispute {
     public Dispute() {
     }
 
-    @Override
-    public String toString() {
-        return "Dispute{" +
-                "id=" + id +
-                ", orders=" + orders +
-                ", service=" + service +
-                ", description='" + description + '\'' +
-                ", state='" + state + '\'' +
-                ", result='" + result + '\'' +
-                ", amount=" + amount +
-                ", type='" + type + '\'' +
-                ", date=" + date +
-                ", check='" + check + '\'' +
-                ", man='" + man + '\'' +
-                '}';
-    }
 
 
     public int getId() {

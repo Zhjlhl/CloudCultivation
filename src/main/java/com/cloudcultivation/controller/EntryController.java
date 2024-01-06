@@ -35,6 +35,8 @@ public class EntryController {
     private GoodsService goodsService;
     @Autowired
     private OrdersService ordersService;
+    @Autowired
+    private HarvestService harvestService;
 
     /*
     * 页面跳转，到登录页面
@@ -174,6 +176,147 @@ public class EntryController {
     @GetMapping("/toServiceHome")
     public String toServiceHome(){
         return "/service/home.jsp";
+    }
+
+    /*
+     * @lzx: 页面跳转到修改个人信息
+     */
+    @GetMapping("/toMerchantUpdateSelfInfo")
+    public String toMerchantUpdateSelfInfo(){
+        return "/merchant/update/updateSelfInfo.jsp";
+    }
+
+    /*
+     * @lzx: 页面跳转到所有售后订单
+     */
+    @GetMapping("/toMerchantDisputeOrder")
+    public String toMerchantDisputeOrder(@RequestParam("merchantId") int merchantId,
+                                         Model model){
+        Merchant merchant=merchantService.selectMerchantById(merchantId);
+        List<Orders> ordersList = merchant.getOrdersList();
+        List<Dispute> disputeList = new ArrayList<>();
+        for (Orders orders : ordersList){
+            disputeList.addAll(orders.getDisputeList());
+        }
+        model.addAttribute("disputes", disputeList);
+        System.out.println(model);
+        return "/merchant/allDisputeOrder.jsp";
+    }
+
+    /*
+     * @lzx: 页面跳转到饲养中订单
+     */
+    @GetMapping("/toMerchantFeedOngoingOrder")
+    public String toMerchantFeedOngoingOrder(@RequestParam("merchantId") int merchantId,
+                                             Model model){
+        Merchant merchant=merchantService.selectMerchantById(merchantId);
+        List<Orders> ordersList=new ArrayList<>();
+        for(Orders orders:merchant.getOrdersList()){
+            if("养殖中ing".equals(orders.getState())){
+                ordersList.add(orders);
+            }
+            /*ordersList.add(orders);*/
+        }
+        model.addAttribute("orders",ordersList);
+        return "/merchant/feedOngoingOrder.jsp";
+    }
+
+    /*
+     * @lzx: 页面跳转到所有审核中饲料
+     */
+    @GetMapping("/toMerchantFeedCheck")
+    public String toMerchantFeedCheck(@RequestParam("merchantId") int merchantId,
+                                      Model model){
+        Merchant merchant=merchantService.selectMerchantById(merchantId);
+        model.addAttribute("feeds",merchant.getFeedList());
+        return "/merchant/feedCheck.jsp";
+
+    }
+
+    /*
+     * @lzx: 页面跳转到上传饲料
+     */
+    @GetMapping("/toMerchantUpdateFeed")
+    public String toMerchantUpdateFeed(@RequestParam("merchantId") int merchantId,
+                                       Model model){
+        return "/merchant/update/updateFeed.jsp";
+
+    }
+
+
+
+    /*
+     * @商家主页面跳转到已结束订单界面
+     * 陈宇豪
+     */
+    @GetMapping("/toMerchantFinished")
+    public String toMerchantFinished(@RequestParam("merchantId") int merchantId,
+                                     Model model){
+        Merchant merchant = merchantService.selectMerchantById(merchantId);
+        List<Orders> ordersList=new ArrayList<>();
+        for(Orders orders:merchant.getOrdersList()){
+            if("已结束".equals(orders.getState())) {
+                ordersList.add(orders);
+            }
+        }
+        model.addAttribute("orders", ordersList);
+        return "/merchant/finishedOngoingOrder.jsp";
+    }
+    /*
+     * @商家主页面跳转到收获中订单界面
+     * 陈宇豪
+     */
+    @GetMapping("/toMerchantHarvestOngoingOrder")
+    public String toMerchantHarvestOngoingOrder(@RequestParam("merchantId") int merchantId,
+                                                Model model){
+        Merchant merchant = merchantService.selectMerchantById(merchantId);
+        List<Orders> ordersList=merchant.getOrdersList();
+        List<Harvest>harvestList=new ArrayList<>();
+        for (Orders order:ordersList){
+            /*Harvest harvest = new Harvest();
+            if(harvestService.selectHarvestByOrdersId(order.getId())!=null) {
+                harvest=harvestService.selectHarvestByOrdersId(order.getId());
+            } else {
+                continue;
+            }
+            if(!"已结束".equals(harvest.getState())){
+                harvestList.add(harvest);
+            }*/
+            for (Harvest harvest:order.getHarvestList()){
+                if (!"已结束".equals(harvest.getState())){
+                    harvestList.add(harvest);
+                }
+            }
+        }
+        model.addAttribute("harvests", harvestList);
+
+        return "/merchant/harvestOngoingOrder.jsp";
+    }
+    /*
+     * @商家主页面跳转到所有审核中的商品界面
+     * 陈宇豪
+     */
+    @GetMapping("/toMerchantGoodsCheck")
+    public String toMerchantGoodsCheck(@RequestParam("merchantId") int merchantId,
+                                       Model model){
+        Merchant merchant = merchantService.selectMerchantById(merchantId);
+        List<Goods> goodsList=new ArrayList<>();
+        for(Goods good:merchant.getGoodsList()) {
+            if("审核中".equals(good.getCheck())) {
+                goodsList.add(good);
+            }
+        }
+        model.addAttribute("goods", goodsList);
+        return "/merchant/goodsCheck.jsp";
+    }
+    /*
+     * @商家主页面跳转到上传商品界面
+     * 陈宇豪
+     */
+    @GetMapping("/toMerchantUpdateGoods")
+    public String toMerchantUpdateGoods(@RequestParam("merchantId") int merchantId,
+                                        Model model){
+        return "/merchant/update/updateGoods.jsp";
     }
 
     /*

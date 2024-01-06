@@ -24,22 +24,6 @@ public class User {
     public User() {
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", account='" + account + '\'' +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", repassword='" + repassword + '\'' +
-                ", gender='" + gender + '\'' +
-                ", phone='" + phone + '\'' +
-                ", zipcode='" + zipcode + '\'' +
-                ", balance=" + balance +
-                ", ordersList=" + ordersList +
-                '}';
-    }
-
     public int getId() {
         return id;
     }

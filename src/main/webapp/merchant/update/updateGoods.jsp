@@ -11,12 +11,12 @@
     <title>Title</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/updateGoods" enctype="multipart/form-data">
+<form class="updateGoods" action="${pageContext.request.contextPath}/updateGoods?merchantId=${merchant.id}"  method="post">
     <label for="image">商品图片：</label>
     <input type="file" id="image" accept="image/*" name="image" required>
     <br>
     <label for="name">商品名：</label>
-    <input type="text" id="name" name="type" required>
+    <input type="text" id="name" name="name" required>
     <br>
     <label for="type">商品种类：</label>
     <input type="text" id="type" name="type" required>
@@ -36,7 +36,7 @@
     <label for="description">商品描述：</label>
     <input type="text" id="description" name="description" required>
     <br>
-    <input type="submit" value="提交">
+    <input type="submit" value="提交" class="updateGoods-button">
 </form>
 <a href="${pageContext.request.contextPath}/toMerchantHome">回到首页</a>
 </body>

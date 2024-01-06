@@ -14,6 +14,8 @@ public interface HarvestMapper {
 
     public Harvest selectHarvestByOrdersId(int ordersId);
 
+    public List<Harvest> selectHarvestsByOrdersId(int ordersId);
+
     public List<Harvest> selectAllHarvest();
 
     public int addHarvest(Harvest harvest);

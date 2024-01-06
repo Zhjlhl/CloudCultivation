@@ -12,6 +12,7 @@
     <title>审核商品页面</title>
 </head>
 <body>
+<div>${message}</div>
 <c:if test="${! empty goods}">
     <table>
         <tr>
@@ -37,11 +38,12 @@
                 <td>${good.amount}</td>
                 <td>${good.description}</td>
                 <%--提交商品的审核信息--%>
-                <form action="">
+                <form action="${pageContext.request.contextPath}/passGoodsCheck">
                     <td>
                         <input type="text" name="reason">
                     </td>
                     <td>
+                        <input type="hidden" name="goodsId" value="${good.id}">
                         <input type="submit" name="checkState" value="pass">通过
                         <input type="submit" name="checkState" value="fail">不通过
                     </td>

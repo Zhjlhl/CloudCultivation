@@ -23,6 +23,16 @@ public class HarvestServiceImpl implements HarvestService {
     }
 
     @Override
+    public Harvest selectHarvestByOrdersId(int id) {
+        return harvestMapper.selectHarvestByOrdersId(id);
+    }
+
+    @Override
+    public List<Harvest> selectHarvestsByOrdersId(int id) {
+        return harvestMapper.selectHarvestsByOrdersId(id);
+    }
+
+    @Override
     public List<Harvest> selectAllHarvest() {
         return harvestMapper.selectAllHarvest();
     }

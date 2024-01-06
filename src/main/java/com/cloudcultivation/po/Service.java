@@ -20,21 +20,7 @@ public class Service {
     public Service() {
     }
 
-    @Override
-    public String toString() {
-        return "Service{" +
-                "id=" + id +
-                ", account='" + account + '\'' +
-                ", name='" + name + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", gender='" + gender + '\'' +
-                ", phone='" + phone + '\'' +
-                ", description='" + description + '\'' +
-                ", password='" + password + '\'' +
-                ", repassword='" + repassword + '\'' +
-                ", disputeList=" + disputeList +
-                '}';
-    }
+
 
     public int getId() {
         return id;

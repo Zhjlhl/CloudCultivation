@@ -38,7 +38,7 @@
               <td>${dispute.date}</td>
               <c:if test="${dispute.check == '未审核'}">
                   <td>
-                      <a href="${pageContext.request.contextPath}/toCheck">去审核</a>
+                      <a href="${pageContext.request.contextPath}/toCheck?disputeId=${dispute.id}">去审核</a>
                   </td>
               </c:if>
               <c:if test="${dispute.check=='已审核'}">

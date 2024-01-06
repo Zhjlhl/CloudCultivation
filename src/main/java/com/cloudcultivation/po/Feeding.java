@@ -19,20 +19,6 @@ public class Feeding {
     public Feeding() {
     }
 
-    @Override
-    public String toString() {
-        return "Feeding{" +
-                "id=" + id +
-                ", orders=" + orders +
-                ", state='" + state + '\'' +
-                ", photo='" + photo + '\'' +
-                ", video='" + video + '\'' +
-                ", date=" + date +
-                ", weight=" + weight +
-                ", check='" + check + '\'' +
-                '}';
-    }
-
     public int getId() {
         return id;
     }

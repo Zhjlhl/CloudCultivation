@@ -25,5 +25,8 @@ public interface DisputeService {
 
     /*判断是否为已解决状态*/
     public boolean isDisputeResolve(Dispute dispute);
+
+    /*判断是否为已解决状态*/
+    public boolean isDisputeUnResolve(Dispute dispute);
 }
 

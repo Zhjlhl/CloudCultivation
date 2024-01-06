@@ -46,7 +46,10 @@ public class HarvestController {
      * @description: 跳转填写快递单号
      */
     @RequestMapping("/toMerchantUpdateDelivery")
-    public String toMerchantUpdateDelivery(){
+    public String toMerchantUpdateDelivery(@RequestParam(name = "harvestId") int harvestId,
+                                           Model model){
+        Harvest harvest=harvestService.selectHarvestById(harvestId);
+        model.addAttribute(harvest);
         return  "/merchant/update/updateDelivery.jsp";
     }
 

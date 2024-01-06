@@ -46,4 +46,9 @@ public class DisputeServiceImpl implements DisputeService {
     public boolean isDisputeResolve(Dispute dispute) {
         return "已解决".equals(dispute.getState());
     }
+
+    @Override
+    public boolean isDisputeUnResolve(Dispute dispute) {
+        return "未解决".equals(dispute.getState());
+    }
 }

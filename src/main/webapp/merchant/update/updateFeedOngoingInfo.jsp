@@ -39,6 +39,6 @@
     <button type="submit">上传</button>
 </form>
 <a href="${pageContext.request.contextPath}/toFeedOngoingOrder">返回到所有饲养订单页面</a>
-<a href="${pageContext.request.contextPath}/toFeedOngoingOrder_waitingUpdate">返回到今日待上传信息订单页面</a>
+<a href="${pageContext.request.contextPath}/toMerchantHome">返回到主页</a>
 </body>
 </html>

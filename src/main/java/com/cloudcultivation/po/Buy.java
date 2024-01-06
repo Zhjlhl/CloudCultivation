@@ -20,22 +20,6 @@ public class Buy {
     public Buy() {
     }
 
-    @Override
-    public String toString() {
-        return "Buy{" +
-                "id=" + id +
-                ", orders=" + orders +
-                ", feed=" + feed +
-                ", amount=" + amount +
-                ", description='" + description + '\'' +
-                ", paymentState='" + paymentState + '\'' +
-                ", paymentAmount=" + paymentAmount +
-                ", date=" + date +
-                ", remain=" + remain +
-                '}';
-    }
-
-
     public int getId() {
         return id;
     }

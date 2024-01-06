@@ -12,7 +12,8 @@
   <title>审核饲料页面</title>
 </head>
 <body>
-<c:if test="${! empty goods}">
+<div>${message}</div>
+<c:if test="${! empty feeds}">
   <table>
     <tr>
       <th>饲料名</th>
@@ -31,11 +32,12 @@
         <td>${feed.amount}</td>
         <td>${feed.description}</td>
           <%--提交饲料的审核信息--%>
-        <form action="">
+        <form action="${pageContext.request.contextPath}/passFeedCheck">
           <td>
             <input type="text" name="reason">
           </td>
           <td>
+            <input type="hidden" name="feedId" value="${feed.id}">
             <input type="submit" name="checkState" value="pass">通过
             <input type="submit" name="checkState" value="fail">不通过
           </td>

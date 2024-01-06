@@ -35,32 +35,6 @@ public class Orders {
     }
 
 
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "id=" + id +
-                ", user=" + user +
-                ", merchant=" + merchant +
-                ", goods=" + goods +
-                ", description='" + description + '\'' +
-                ", paymentState='" + paymentState + '\'' +
-                ", amount=" + amount +
-                ", state='" + state + '\'' +
-                ", remark='" + remark + '\'' +
-                ", date=" + date +
-                ", insurance='" + insurance + '\'' +
-                ", endTime=" + endTime +
-                ", endYield=" + endYield +
-                ", endState='" + endState + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", feed='" + feed + '\'' +
-                ", feedingList=" + feedingList +
-                ", harvestList=" + harvestList +
-                ", disputeList=" + disputeList +
-                ", buyList=" + buyList +
-                '}';
-    }
-
     public int getId() {
         return id;
     }

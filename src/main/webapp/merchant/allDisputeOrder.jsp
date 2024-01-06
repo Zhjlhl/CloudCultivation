@@ -5,13 +5,14 @@
   Time: 15:14
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>所有售后订单</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/toMerchantDisputeOngoingOrder">售后中订单</a>
+<a href="${pageContext.request.contextPath}/toMerchantDisputeOngoingOrder?merchantId=${merchant.id}">售后中订单</a>
 <c:if test="${! empty disputes}">
     <table>
         <tr>
@@ -25,10 +26,10 @@
         </tr>
         <c:forEach items="${disputes}" var="dispute">
             <tr>
-                <td>${dispute.order.id}</td>
-                <td>${dispute.order.nickName}</td>
-                <td>${dispute.order.goods.type}</td>
-                <td>${dispute.startTime}</td>
+                <td>${dispute.orders.id}</td>
+                <td>${dispute.orders.nickname}</td>
+                <td>${dispute.orders.goods.type}</td>
+                <td>${dispute.date}</td>
                 <td>${dispute.type}</td>
                 <td>${dispute.description}</td>
                 <td>${dispute.state}</td>
@@ -36,5 +37,6 @@
         </c:forEach>
     </table>
 </c:if>
+<a href="${pageContext.request.contextPath}/toMerchantHome">返回到主页</a>
 </body>
 </html>

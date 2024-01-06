@@ -21,20 +21,6 @@ public class Harvest {
     public Harvest(){
     }
 
-    @Override
-    public String toString() {
-        return "Harvest{" +
-                "id=" + id +
-                ", date=" + date +
-                ", way='" + way + '\'' +
-                ", delivery='" + delivery + '\'' +
-                ", earnings=" + earnings +
-                ", state='" + state + '\'' +
-                ", number='" + number + '\'' +
-                ", orders=" + orders +
-                '}';
-    }
-
     public int getId() {
         return id;
     }

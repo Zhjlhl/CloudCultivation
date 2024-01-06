@@ -29,15 +29,15 @@
         <td>${sessionScope.merchant.phone}</td>
     </tr>
 </table>
-<a href="">修改个人信息</a>
-<a href="${pageContext.request.contextPath}/toMerchantFinished" >已完成订单</a>
-<a href="${pageContext.request.contextPath}/toMerchantFeedOngoingOrder" >饲养中订单</a>
-<a href="${pageContext.request.contextPath}/toMerchantHarvestOngoingOrder" >收获中订单</a>
-<a href="${pageContext.request.contextPath}/toMerchantDisputeOrder">所有售后订单</a>
-<a href="${pageContext.request.contextPath}/toMerchantFeedCheck">所有审核中饲料</a>
-<a href="${pageContext.request.contextPath}/toMerchantGoodsCheck">所有审核中商品</a>
+<a href="${pageContext.request.contextPath}/toMerchantUpdateSelfInfo?merchantId=${merchant.id}">修改个人信息</a>
+<a href="${pageContext.request.contextPath}/toMerchantFinished?merchantId=${merchant.id}" >已完成订单</a>
+<a href="${pageContext.request.contextPath}/toMerchantFeedOngoingOrder?merchantId=${merchant.id}" >饲养中订单</a>
+<a href="${pageContext.request.contextPath}/toMerchantHarvestOngoingOrder?merchantId=${merchant.id}" >收获中订单</a>
+<a href="${pageContext.request.contextPath}/toMerchantDisputeOrder?merchantId=${merchant.id}">所有售后订单</a>
+<a href="${pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">所有审核中饲料</a>
+<a href="${pageContext.request.contextPath}/toMerchantGoodsCheck?merchantId=${merchant.id}">所有审核中商品</a>
 <br>
-<a href="${pageContext.request.contextPath}/toMerchantUpdateFeed">上传饲料</a>
-<a href="/merchant/update/updateGoods.jsp">上传商品</a>
+<a href="${pageContext.request.contextPath}/toMerchantUpdateFeed?merchantId=${merchant.id}">上传饲料</a>
+<a href="${pageContext.request.contextPath}/toMerchantUpdateGoods?merchantId=${merchant.id}">上传商品</a>
 </body>
 </html>

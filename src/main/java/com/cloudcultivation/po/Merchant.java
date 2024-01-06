@@ -25,25 +25,6 @@ public class Merchant {
     public Merchant() {
     }
 
-    @Override
-    public String toString() {
-        return "Merchant{" +
-                "id=" + id +
-                ", account='" + account + '\'' +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", repassword='" + repassword + '\'' +
-                ", contacts='" + contacts + '\'' +
-                ", phone='" + phone + '\'' +
-                ", description='" + description + '\'' +
-                ", balance=" + balance +
-                ", promise=" + promise +
-                ", ordersList=" + ordersList +
-                ", feedList=" + feedList +
-                ", goodsList=" + goodsList +
-                '}';
-    }
-
     public int getId() {
         return id;
     }

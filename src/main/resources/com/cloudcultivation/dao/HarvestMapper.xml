@@ -33,6 +33,14 @@
         WHERE orders_id=#{ordersId}
     </select>
 
+    <!--通过订单id查询-->
+    <select id="selectHarvestsByOrdersId" parameterType="Integer"
+            resultMap="selectHarvestResult">
+        SELECT *
+        FROM harvest
+        WHERE orders_id=#{ordersId}
+    </select>
+
     <!--查询所有收获信息-->
     <select id="selectAllHarvest" parameterType="Integer"
             resultMap="selectAllHarvestResult">

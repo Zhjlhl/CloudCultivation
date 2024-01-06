@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class DisputeController {
     private FeedService feedService;
     @Autowired
     private CheckService checkService;
+
 
     /*
      * @description: 跳转未审核订单
@@ -59,7 +61,7 @@ public class DisputeController {
         Service service = serviceService.selectServiceById(serviceId);
         List<Goods> goodsList = new ArrayList<>();
         for (Goods goods : goodsService.selectAllGoods()){
-            if (!checkService.isGoodsChecked(goods)) {
+            if (checkService.isGoodsUnChecked(goods)) {
                 goodsList.add(goods);
             }
         }
@@ -70,18 +72,85 @@ public class DisputeController {
     /*
      * @description: 实现通过商品审核
      */
-
+    @RequestMapping("/passGoodsCheck")
+    public String passGoodsCheck(@RequestParam("checkState") String checkState,
+                                 @RequestParam("goodsId") int goodsId,
+                                 Model model){
+        Goods goods = goodsService.selectGoodsById(goodsId);
+        if ("pass".equals(checkState)){
+            goods.setCheck("已审核");
+        }else {
+            goods.setCheck("不通过");
+        }
+        int i = goodsService.updateGoods(goods);
+        if (i >0) {
+            model.addAttribute("message", "更新成功");
+        }else {
+            model.addAttribute("message", "更新不成功");
+        }
+        List<Goods> goodsList = new ArrayList<>();
+        for (Goods good : goodsService.selectAllGoods()){
+            if (checkService.isGoodsUnChecked(good)) {
+                goodsList.add(good);
+            }
+        }
+        model.addAttribute("goods", goodsList);
+        return "/service/checkGoods.jsp";
+    }
 
     /*
     *  跳转审核饲料
     * */
     @GetMapping("/toCheckFeed")
-    public String toCheckFeed(@RequestParam("serviceId") int serviceId,
-                              Model model){
-        Service service = serviceService.selectServiceById(serviceId);
-        List<Feed> feedList = feedService.selectAllFeed();
+    public String toCheckFeed(Model model){
+        List<Feed> feedList = new ArrayList<>();
+        for (Feed feed : feedService.selectAllFeed()){
+            if (checkService.isFeedUnChecked(feed)){
+                feedList.add(feed);
+            }
+        }
         model.addAttribute("feeds", feedList);
         return "/service/checkFeed.jsp";
     }
 
+    /*
+     * @description: 审核饲料
+     */
+    @RequestMapping("/passFeedCheck")
+    public String passFeedCheck(@RequestParam("checkState") String checkState,
+                                @RequestParam("feedId") int feedId,
+                                Model model){
+        Feed feed = feedService.selectFeedById(feedId);
+        if ("pass".equals(checkState)){
+            feed.setCheck("已审核");
+        }else {
+            feed.setCheck("不通过");
+        }
+        int i = feedService.updateFeed(feed);
+        if (i >0) {
+            model.addAttribute("message", "更新成功");
+        }else {
+            model.addAttribute("message", "更新不成功");
+        }
+        List<Feed> feedList = new ArrayList<>();
+        for (Feed feeds : feedService.selectAllFeed()){
+            if (checkService.isFeedUnChecked(feeds)){
+                feedList.add(feeds);
+            }
+        }
+        model.addAttribute("feeds", feedList);
+        return "/service/checkFeed.jsp";
+    }
+
+
+    /*
+     * @description: 跳转处理纠纷页面
+     */
+    @GetMapping("/toCheck")
+    public String toCheck(@RequestParam("disputeId") int disputeId,
+                          Model model){
+        Dispute dispute = disputeService.selectDisputeById(disputeId);
+        model.addAttribute("dispute", dispute);
+        return "/service/checkDispute.jsp";
+    }
 }

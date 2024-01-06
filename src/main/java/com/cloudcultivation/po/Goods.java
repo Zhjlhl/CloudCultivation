@@ -24,23 +24,6 @@ public class Goods {
     public Goods() {
     }
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", merchant=" + merchant +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", growth='" + growth + '\'' +
-                ", yield='" + yield + '\'' +
-                ", amount=" + amount +
-                ", remain=" + remain +
-                ", check='" + check + '\'' +
-                ", ordersList=" + ordersList +
-                '}';
-    }
 
     public int getId() {
         return id;

@@ -21,21 +21,6 @@ public class Feed {
     public Feed() {
     }
 
-    @Override
-    public String toString() {
-        return "Feed{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", amount=" + amount +
-                ", description='" + description + '\'' +
-                ", merchant=" + merchant +
-                ", remain=" + remain +
-                ", check='" + check + '\'' +
-                ", buyList=" + buyList +
-                '}';
-    }
-
     public int getId() {
         return id;
     }

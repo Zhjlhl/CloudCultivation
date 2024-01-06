@@ -13,7 +13,7 @@
 </head>
 <body>
 <c:if test="${! empty dispute}">
-    <c:if test="${dispute=='已收获'}">
+    <%--<c:if test="${dispute=='已收获'}">--%>
     <table>
         <tr>
             <th>订单id</th>
@@ -51,6 +51,7 @@
         <c:forEach items="${indexList}" var="index">
             <a href="${pageContext.request.contextPath}">${index}</a>
         </c:forEach>
+    <%--</c:if>--%>
 </c:if>
 </body>
 </html>
