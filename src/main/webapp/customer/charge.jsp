@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>用户余额不足</title>
+    <title>用户充值</title>
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/toCharge">
@@ -16,7 +16,7 @@
     <input type=number name="amount" id="amount">
     <input type="hidden" name="userId" id="userId" value="${user.id}">
     <input type=submit name="operate" value="我已完成支付"><br>
-    <a href="${pageContext.request.contextPath}/toBuy?userId=${user.id}&index=1">取消充值</a>
+    <a href="${pageContext.request.contextPath}/toUserHome">取消充值</a>
 </form>
 <img src="${pageContext.request.contextPath}/customer/img/pay.png" alt="充值二维码"/><br>
 <%--

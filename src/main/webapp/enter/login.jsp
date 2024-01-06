@@ -105,10 +105,10 @@
     <h2>用户登录界面</h2>
     <form class="login" action="${pageContext.request.contextPath}/login" method="post">
         <label for="username">用户名:</label>
-        <input type="text" id="username" name="account" value="DAGetmOCPk" required ><br>
+        <input type="text" id="username" name="account" value="${account}" required ><br>
 
         <label for="password">密码:</label>
-        <input type="password" id="password" name="password" value="GF0v7NmioG" required><br>
+        <input type="password" id="password" name="password" value="${password}" required><br>
         <div >
             <input type="radio" id="user" name="type" value="user" required>用户
             <input type="radio" id="merchant" name="type" value="merchant" required>商家

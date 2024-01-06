@@ -59,19 +59,26 @@
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/register" method="post">
-    <h2>用户注册界面</h2>
+    <h2>注册界面</h2>
 
-    <label for="username">用户名:</label>
-    <input type="text" id="username" name="username" required>
+    <label for="account">用户名:</label>
+    <input type="text" id="account" name="account" required>
 
     <label for="password">密码:</label>
     <input type="password" id="password" name="password" required>
 
-    <label for="confirmPassword">确认密码:</label>
-    <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <label for="rePassword">确认密码:</label>
+    <input type="password" id="rePassword" name="rePassword" required>
+
+    <div >
+        <input type="radio" id="user" name="type" value="user" required>用户
+        <input type="radio" id="merchant" name="type" value="merchant" required>商家
+    </div>
 
     <input type="submit" value="注册">
     <input type="reset" value="重置">
+
+    <div>${message}</div>
 </form>
 </body>
 </html>

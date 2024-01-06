@@ -365,9 +365,54 @@ public class EntryController {
         return "/enter/login.jsp";
     }
 
+
+    /*
+     * @description: 注册
+     */
+    @RequestMapping("/register")
+    public String register(@RequestParam("account") String account,
+                           @RequestParam("password") String password,
+                           @RequestParam("type") String type,
+                           @RequestParam("rePassword") String rePassword,
+                           Model model){
+        if (!password.equals(rePassword)){
+            model.addAttribute("message", "两次密码不一样！");
+            return "/enter/register.jsp";
+        }
+        if ("user".equals(type)){
+            User user = new User();
+            user.setAccount(account);
+            user.setPassword(password);
+            user.setRepassword(rePassword);
+            if (loginService.registerUser(user)){
+                model.addAttribute("account", user.getAccount());
+                return "/enter/login.jsp";
+            }else {
+                model.addAttribute("message", "账号重复！");
+                return "/enter/register.jsp";
+            }
+        }else if ("merchant".equals(type)){
+            Merchant merchant = new Merchant();
+            merchant.setAccount(account);
+            merchant.setPassword(password);
+            merchant.setRepassword(rePassword);
+            if (loginService.registerMerchant(merchant)){
+                model.addAttribute("account", merchant.getAccount());
+                return "/enter/login.jsp";
+            }else {
+                model.addAttribute("message", "账号重复！");
+                return "/enter/register.jsp";
+            }
+        }else {
+            model.addAttribute("message", "请选择类别！");
+            return "/enter/register.jsp";
+        }
+        /*return "/enter/login.jsp";*/
+    }
+
     /*跳转更新个人信息*/
     @RequestMapping("/updateSelf")
-    private String updateSelf(@RequestParam("userId") int userId,Model model){
+    public String updateSelf(@RequestParam("userId") int userId,Model model){
         User user = userService.selectUserById(userId);
         model.addAttribute("user",user);
         return "/customer/updateSelfInfo.jsp";
@@ -375,7 +420,7 @@ public class EntryController {
 
     /*实现更新功能*/
     @RequestMapping("/updateSelfInfo")
-    private String updateSelfInfo(@RequestParam("userId") int userId,@RequestParam("name") String name,
+    public String updateSelfInfo(@RequestParam("userId") int userId,@RequestParam("name") String name,
                                   @RequestParam("phone") String phone,@RequestParam("gender") String gender,
                                   @RequestParam("zipcode") String zipcode,@RequestParam("password") String password,
                                   @RequestParam("rePassword") String rePassword,HttpSession httpSession) {

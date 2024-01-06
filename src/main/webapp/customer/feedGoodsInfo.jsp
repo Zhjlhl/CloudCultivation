@@ -12,14 +12,6 @@
     <meta charset="UTF-8">
     <title>饲养中动物信息</title>
 
-    <!-- 添加一个脚本部分，用于处理点击事件 -->
-    <script>
-        function handleFeedClick(feedName) {
-            // 在这里，您可以使用feedName执行您想要的操作
-            // 例如，将其发送到服务器或在页面上显示
-            alert("用户点击了饲料：" + feedName);
-        }
-    </script>
 </head>
 <body>
 <!--
@@ -36,11 +28,11 @@
         <th>申请售后</th>
     </tr>
     <tr>
-        <td>${order.id}</td>
-        <td>${order.nickName}</td>
-        <td>${order.goods.type}</td>
-        <td>${order.lastFeeding.state}</td>
-        <td>${order.lastFeeding.weight}</td>
+        <td>${orders.id}</td>
+        <td>${orders.nickname}</td>
+        <td>${orders.goods.type}</td>
+        <td>${feeding.state}</td>
+        <td>${feeding.weight}</td>
         <td><a href="applyForAfterSaleService.jsp">申请售后</a></td>
     </tr>
 </table>
@@ -57,22 +49,17 @@
         <th>拥有数量</th>
         <th>投喂</th>
     </tr>
-    <c:forEach items="${}" var="feed">
+    <c:forEach items="${feeds}" var="feed">
         <tr>
-            <td>${}</td>
-            <td>${}</td>
+            <td>${feed.name}</td>
+            <td>${feed.remain}</td>
             <td>
-                <form>
-                    <!-- 在按钮上添加一个点击事件处理函数，并传递饲料名作为参数 -->
-                    <input type="button" value="投喂" onclick="handleFeedClick('${feed.name}')">
-                </form>
+                <a href="${pageContext.request.contextPath}/feed?feedId=${feedId}&userId=${sessionScope.user.id}">投喂</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<form>
-    <input type="submit" value="去购买饲料">
-</form>
-<a href="home.jsp">返回首页</a>
+<a href="${pageContext.request.contextPath}/toBuyFeed?ordersId=${orders.id}">购买饲料</a>
+<a href="${pageContext.request.contextPath}/toUserHome">返回首页</a>
 </body>
 </html>
