@@ -23,6 +23,8 @@
             <th>处理类型</th>
             <th>处理原因</th>
             <th>处理状态</th>
+            <th>处理结果</th>
+            <th>操作</th>
         </tr>
         <c:forEach items="${disputes}" var="dispute">
             <tr>
@@ -33,6 +35,8 @@
                 <td>${dispute.type}</td>
                 <td>${dispute.description}</td>
                 <td>${dispute.state}</td>
+                <td>${dispute.result}</td>
+                <td><a href="${pageContext.request.contextPath}/">反馈</a></td>
             </tr>
         </c:forEach>
     </table>
