@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,22 @@ public class DisputeController {
             }
         }
         model.addAttribute("disputes", disputeList);
+        model.addAttribute("service", service);
         return "/service/uncheckDispute.jsp";
+    }
+
+    /*
+     * @description: 提交纠纷处理结果
+     */
+    @RequestMapping("/checkDispute")
+    public String checkDispute(@RequestParam("serviceId") int serviceId,
+                               RedirectAttributes attributes,
+                               Model model){
+        /*return "redirect:/toServiceUncheck";*/
+        /*Service service = serviceService.selectServiceById(serviceId);
+        model.addAttribute("service", service);*/
+        attributes.addAttribute("serviceId", serviceId);
+        return "redirect:/toServiceDisputeOngoing";
     }
 
     /*

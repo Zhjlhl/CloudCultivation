@@ -27,9 +27,10 @@
             <th>快递单号</th>  <%--好像物流信息是在harvest中--%>
             <th>物流公司</th>
             <th>收货状态</th>
+            <th>处理结果</th>
             <th>操作</th>
         </tr>
-        <form action="${pageContext.request.contextPath}/check">
+        <form action="${pageContext.request.contextPath}/checkDispute">
             <tr>
                 <td>${dispute.orders.id}</td>
                 <td>${dispute.orders.user.id}</td>
@@ -42,6 +43,8 @@
                 <td><input type="text" name="number" value="${harvest.number}"></td>
                 <td><input type="text" name="delivery" value="${harvest.delivery}"></td>
                 <td><input type="text" name="state" value="${harvest.state}"></td>
+                <td><input type="text" name="result" value=""></td>
+                <td><input type="hidden" name="serviceId" value="${service.id}"></td>
                 <td><input type="submit" value="提交"></td>
             </tr>
         </form>

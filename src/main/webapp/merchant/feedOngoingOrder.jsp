@@ -30,7 +30,16 @@
                 <td>${order.goods.type}</td>
                 <td>${order.user.name}</td>
                 <td>${order.feed}</td>
-                <td>${order.state}</td>
+                <td>
+                    <%--<c:choose>
+                        <c:when test="${order.feedState == '待上传'}">--%>
+                            <a href="${pageContext.request.contextPath}/toUpdateFeedOngoingInfo?orderId=${order.id}">去上传</a>
+                        <%--</c:when>
+                        <c:when test="${order.feedState == '已上传'}">
+                            ${order.UpdateState}
+                        </c:when>
+                    </c:choose>--%>
+                </td>
             </tr>
         </c:forEach>
     </c:if>
