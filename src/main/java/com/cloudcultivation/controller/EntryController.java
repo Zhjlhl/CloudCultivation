@@ -105,11 +105,10 @@ public class EntryController {
         User user = userService.selectUserById(userId);
         List<Orders> ordersList = new ArrayList<>();
         for (Orders orders : user.getOrdersList()){
-            /*if (ordersService.isOnGoing(orders)){
+            if (ordersService.isOnGoing(orders)){
+                orders.setRemainDay(ordersService.setRemainDay(orders));
                 ordersList.add(orders);
-            }*/
-            orders.setRemainDay(ordersService.setRemainDay(orders));
-            ordersList.add(orders);
+            }
         }
         model.addAttribute("orders", ordersList);
         return "/customer/feedOngoingOrder.jsp";
@@ -341,7 +340,9 @@ public class EntryController {
 
     /*用户登录判断*/
     @RequestMapping("/login")
-    public String login(String account, String password, String type, HttpSession httpSession) {
+    public String login(String account, String password, String type,
+                        HttpSession httpSession,
+                        Model model) {
         boolean isRight = loginService.loginByAccountAndPassword(account, password, type);
         if (isRight) {
             if ("user".equals(type)) {
@@ -361,6 +362,9 @@ public class EntryController {
                 httpSession.setAttribute("administrator", administrator);
                 return "/administrator/home.jsp";
             }
+        }else {
+            model.addAttribute("message", "登录失败");
+            return "/enter/login.jsp";
         }
         return "/enter/login.jsp";
     }

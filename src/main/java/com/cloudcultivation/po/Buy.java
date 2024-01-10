@@ -80,8 +80,8 @@ public class Buy {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = Timestamp.valueOf(date);
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
     public int getRemain() {

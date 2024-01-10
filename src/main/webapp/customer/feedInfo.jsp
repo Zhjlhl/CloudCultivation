@@ -38,7 +38,7 @@
 <body>
 <p>用户名：${user.name}     余额：${user.balance}</p >
 <a href="${pageContext.request.contextPath}/customer/charge.jsp">充值</a><br>
-
+<a href="${pageContext.request.contextPath}/toUserHome">返回首页</a><br>
 <%--<c:if test="${! empty message}">
     <script>
         alert(${message})

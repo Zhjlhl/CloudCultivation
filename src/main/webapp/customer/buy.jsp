@@ -13,11 +13,12 @@
     <title>购买界面</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/select">
-    <input type="radio" name="type" value="植物">
-    <input type="radio" name="type" value="动物">
+<form action="${pageContext.request.contextPath}/selectBySearch">
     <input type="text" name="name">
+    <input type="hidden" name="userId" value="${user.id}">
+    <input type="submit"  value="搜索">
 </form>
+<a href="${pageContext.request.contextPath}/toUserHome">返回首页</a>
 <table>
     <tr>
         <th>大类别</th>
@@ -47,7 +48,7 @@
     </c:forEach>
 </table>
 <c:forEach items="${indexList}" var="index">
-<a href="${pageContext.request.contextPath}/toBuy?userId=${user.id}&index=${index}">${index}</a>
+    <a href="${pageContext.request.contextPath}/toBuy?userId=${user.id}&index=${index}">${index}</a>
 </c:forEach>
 </body>
 </html>

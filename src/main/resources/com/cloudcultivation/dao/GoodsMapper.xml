@@ -51,6 +51,8 @@
     </select>
 
 
+
+
     <!--添加新商品信息-->
     <insert id="addGoods" parameterType="goods">
         INSERT INTO
@@ -75,4 +77,12 @@
         DELETE FROM goods
         WHERE goods_id = #{id}
     </delete>
+
+    <select id="selectGoodsByName" parameterType="String"
+            resultMap="selectGoodsResult">
+        SELECT *
+        FROM goods
+        WHERE goods_name like CONCAT('%',#{name},'%')
+    </select>
+
 </mapper>

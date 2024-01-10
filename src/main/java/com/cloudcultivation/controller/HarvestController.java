@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,16 +100,28 @@ public class HarvestController {
                                   @RequestParam("harvestWay") String harvestWay,
                                   Model model){
         //harvestWay值是(0,25,50,75,100)代表换成收益的百分比，设置orderId的order的收获方式，并更新订单数组到model并返回一个新的订单数组在model中到已完成订单页面用于显示
-        Orders ordersById = ordersService.selectOrdersById(orderId);
-        //ordersById
-        //User user = userService.selectUserById(userId);
-        /*List<Orders> ordersList = new ArrayList<>();
-        for (Orders orders : user.getOrdersList()){
-            if (ordersService.isOnGoing(orders)){
-                ordersList.add(orders);
+        Orders orders = ordersService.selectOrdersById(orderId);
+        Harvest harvest = new Harvest();
+        harvest.setOrders(orders);
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        harvest.setDate(ts);
+        harvest.setWay(harvestWay);
+        harvest.setState("未发货");
+        int i = harvestService.addHarvest(harvest);
+        if (i>0){
+            model.addAttribute("message", "收获成功");
+        }else {
+            model.addAttribute("message", "收获失败");
+        }
+        User user = userService.selectUserById(orders.getUser().getId());
+        List<Orders> ordersList = new ArrayList<>();
+        for (Orders orders1 : user.getOrdersList()){
+            if (ordersService.isOnGoing(orders1)){
+                orders1.setRemainDay(ordersService.setRemainDay(orders1));
+                ordersList.add(orders1);
             }
-        }*/
-        //model.addAttribute("orders", ordersList);
+        }
+        model.addAttribute("orders", ordersList);
         return "/customer/feedOngoingOrder.jsp";
     }
 

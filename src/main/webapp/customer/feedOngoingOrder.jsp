@@ -11,6 +11,11 @@
 <head>
     <title>饲养中订单页面</title>
 </head>
+<c:if test="${!empty message}">
+    <script>
+        alert("${message}")
+    </script>
+</c:if>
 <body>
 <%--
 用户点击，触发后端，进入饲养界面，看到饲养信息和购买饲料
@@ -20,7 +25,7 @@
 <p>单号：  姓名：   当前状态：   上次饲养时间：   当前饲料：    待收货时间：
     <a href="${pageContext.request.contextPath}/feedGoodsInfo">查看更多</a>   <a href="${pageContext.request.contextPath}/disputeHandle">申请售后</a>
 </p>
-<a href="${pageContext.request.contextPath}/toUserHome">返回上一级</a>
+<a href="${pageContext.request.contextPath}/toUserHome">返回首页</a>
 <table>
     <tr>
         <th>订单号</th>
@@ -37,7 +42,7 @@
                 <td align="center">${order.goods.type}</td>
                 <td align="center"><c:choose>
                     <c:when test="${order.remainDay == 0}">
-                        <form action="${pageContext.request.contextPath}/applyForHarvest?ordersId=${order.id}">
+                        <form action="${pageContext.request.contextPath}/applyForHarvest">
                             <select id="harvestWay" name="harvestWay">
                                 <option value="0">全部寄回家</option>
                                 <option value="25">25%换收益</option>
@@ -45,6 +50,7 @@
                                 <option value="75">75%换收益</option>
                                 <option value="100">100%换收益</option>
                             </select>
+                            <input type="hidden" name="orderId" value="${order.id}">
                             <input type="button" value="收获">
                         </form>
                     </c:when>

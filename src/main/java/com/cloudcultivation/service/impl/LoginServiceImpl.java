@@ -34,15 +34,27 @@ public class LoginServiceImpl implements LoginService {
     public boolean loginByAccountAndPassword(String account, String password, String type) {
         if ("user".equals(type)){
             User user = userMapper.selectUserByAccount(account);
+            if (user == null){
+                return false;
+            }
             return user.getPassword().equals(password);
         } else if ("merchant".equals(type)) {
             Merchant merchant = merchantMapper.selectMerchantByAccount(account);
+            if (merchant == null){
+                return false;
+            }
             return merchant.getPassword().equals(password);
         } else if ("service".equals(type)) {
             Service service = serviceMapper.selectServiceByAccount(account);
+            if (service == null){
+                return false;
+            }
             return service.getPassword().equals(password);
         } else if ("administrator".equals(type)) {
             Administrator administrator = administratorMapper.selectAdministratorByAccount(account);
+            if (administrator == null){
+                return false;
+            }
             return administrator.getPassword().equals(password);
         }
         return false;

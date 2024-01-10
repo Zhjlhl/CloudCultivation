@@ -44,7 +44,7 @@ public class BuyServiceTest extends TestCase {
         buy.setDescription("asduiohfiuya");
         buy.setPaymentState("已支付");
         buy.setPaymentAmount(new BigDecimal(3));
-        buy.setDate("2023-03-02 13:12:11");
+        //buy.setDate("2023-03-02 13:12:11");
         buy.setRemain(new BigDecimal(buy.getFeed().getRemain()).subtract(buy.getPaymentAmount()).intValue());
         int i = buyService.addBuy(buy);
         if (i > 0){
@@ -70,7 +70,7 @@ public class BuyServiceTest extends TestCase {
         buy.setDescription("asduiohfiuya");
         buy.setPaymentState("已支付");
         buy.setPaymentAmount(new BigDecimal(3));
-        buy.setDate("2023-03-02 13:12:11");
+        //buy.setDate("2023-03-02 13:12:11");
         buy.setRemain(new BigDecimal(buy.getFeed().getRemain()).subtract(buy.getPaymentAmount()).intValue());
         System.out.println(new BigDecimal(buy.getFeed().getRemain()));
         int i = buyService.updateBuy(buy);

@@ -20,4 +20,5 @@ public interface GoodsMapper {
     public int updateGoods(Goods goods);
 
     public int deleteGoodsById(int id);
+    public List<Goods> selectGoodsByName(String name);
 }

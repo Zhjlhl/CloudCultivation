@@ -18,6 +18,16 @@
 写2个图表，1：按天按周按月展示动物体重
          2：按天展示饲料种类
          !-->
+<c:if test="${message == '投喂成功'}">
+    <script>
+        alert("投喂成功！")
+    </script>
+</c:if>
+<c:if test="${message == '投喂失败'}">
+    <script>
+        alert("投喂失败！")
+    </script>
+</c:if>
 <table>
     <tr>
         <th>订单id：</th>
@@ -33,15 +43,15 @@
         <td>${orders.goods.type}</td>
         <td>${feeding.state}</td>
         <td>${feeding.weight}</td>
-        <td><a href="applyForAfterSaleService.jsp">申请售后</a></td>
+        <td><a href="/checkDispute">申请售后</a></td>
     </tr>
 </table>
-<p>查看宠物以往信息：</p>
+<%--<p>查看宠物以往信息：</p>
 <form>
     <label for="date">选择查看日期</label>
     <input type="date" id="date">
     <input type="submit" value="选择查看">
-</form>
+</form>--%>
 <p>已有饲料:</p>
 <table>
     <tr>
@@ -51,10 +61,10 @@
     </tr>
     <c:forEach items="${feeds}" var="feed">
         <tr>
-            <td>${feed.name}</td>
+            <td>${feed.feed.name}</td>
             <td>${feed.remain}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/feed?feedId=${feedId}&userId=${sessionScope.user.id}">投喂</a>
+                <a href="${pageContext.request.contextPath}/feed?buyId=${feed.id}&&userId=${sessionScope.user.id}">投喂</a>
             </td>
         </tr>
     </c:forEach>

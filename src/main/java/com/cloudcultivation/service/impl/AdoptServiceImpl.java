@@ -1,5 +1,6 @@
 package com.cloudcultivation.service.impl;
 
+import com.cloudcultivation.dao.GoodsMapper;
 import com.cloudcultivation.po.Goods;
 import com.cloudcultivation.po.Merchant;
 import com.cloudcultivation.po.Orders;
@@ -11,6 +12,7 @@ import com.cloudcultivation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @author lzx
@@ -26,6 +28,8 @@ public class AdoptServiceImpl implements AdoptService {
 
     @Autowired
     private OrdersService ordersService;
+    @Autowired
+    private GoodsMapper goodsMapper;
 
 
 
@@ -50,6 +54,7 @@ public class AdoptServiceImpl implements AdoptService {
             Merchant merchant = goods.getMerchant();
             orders.setMerchant(merchant);
             orders.setPaymentState("已支付");
+            orders.setState("养殖中ing");
             Timestamp ts = new Timestamp(System.currentTimeMillis());
             orders.setDate(ts);
             if(ordersService.addOrder(orders)==0){//添加订单表
@@ -57,6 +62,11 @@ public class AdoptServiceImpl implements AdoptService {
             }
             return true;
 
+    }
+
+    @Override
+    public List<Goods> selectGoodsByName(String name){
+        return goodsMapper.selectGoodsByName(name);
     }
 
 
