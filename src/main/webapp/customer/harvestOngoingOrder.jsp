@@ -95,6 +95,11 @@
 <%--
 如果状态是已发货，则设置按钮显示物流信息
 --%>
+<c:if test="${!empty message}">
+    <script>
+        alert("${message}")
+    </script>
+</c:if>
 <table>
     <tr>
         <th>单号</th>

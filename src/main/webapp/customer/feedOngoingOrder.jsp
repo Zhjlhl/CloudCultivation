@@ -23,7 +23,7 @@
 <%-- 如果待收货时间为0，则提供个按钮转区harvestHandle页面，否则就正常显示还有多少天收获
      --%>
 <p>单号：  姓名：   当前状态：   上次饲养时间：   当前饲料：    待收货时间：
-    <a href="${pageContext.request.contextPath}/feedGoodsInfo">查看更多</a>   <a href="${pageContext.request.contextPath}/disputeHandle">申请售后</a>
+    <a href="${pageContext.request.contextPath}/feedGoodsInfo">查看更多</a>
 </p>
 <a href="${pageContext.request.contextPath}/toUserHome">返回首页</a>
 <table>
@@ -44,14 +44,14 @@
                     <c:when test="${order.remainDay == 0}">
                         <form action="${pageContext.request.contextPath}/applyForHarvest">
                             <select id="harvestWay" name="harvestWay">
-                                <option value="0">全部寄回家</option>
-                                <option value="25">25%换收益</option>
-                                <option value="50">50%换收益</option>
-                                <option value="75">75%换收益</option>
-                                <option value="100">100%换收益</option>
+                                <option value="全部寄回家">全部寄回家</option>
+                                <option value="25%换收益">25%换收益</option>
+                                <option value="50%换收益">50%换收益</option>
+                                <option value="75%换收益">75%换收益</option>
+                                <option value="100%换收益">100%换收益</option>
                             </select>
                             <input type="hidden" name="orderId" value="${order.id}">
-                            <input type="button" value="收获">
+                            <input type="submit" value="收获">
                         </form>
                     </c:when>
                     <c:when test="${order.goods.growth > 0}">

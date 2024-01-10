@@ -107,6 +107,11 @@ public class HarvestController {
         harvest.setDate(ts);
         harvest.setWay(harvestWay);
         harvest.setState("未发货");
+        if ("动物".equals(harvest.getOrders().getGoods().getType())){
+            Orders orders1 = harvest.getOrders();
+            orders1.setState("已结束");
+            ordersService.updateOrder(orders1);
+        }
         int i = harvestService.addHarvest(harvest);
         if (i>0){
             model.addAttribute("message", "收获成功");

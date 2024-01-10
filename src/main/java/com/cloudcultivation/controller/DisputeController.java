@@ -1,9 +1,6 @@
 package com.cloudcultivation.controller;
 
-import com.cloudcultivation.po.Dispute;
-import com.cloudcultivation.po.Feed;
-import com.cloudcultivation.po.Goods;
-import com.cloudcultivation.po.Service;
+import com.cloudcultivation.po.*;
 import com.cloudcultivation.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +32,49 @@ public class DisputeController {
     private FeedService feedService;
     @Autowired
     private CheckService checkService;
+    @Autowired
+    private OrdersService ordersService;
+    @Autowired
+    private UserService userService;
+
+
+    /*
+     * @description: 用户提交纠纷
+     */
+    @RequestMapping("/resolveDispute")
+    public String resolveDispute(RedirectAttributes attributes,
+                                 @RequestParam("orderId") int orderId,
+                                 @RequestParam("description") String description,
+                                 @RequestParam("radio") String radio,
+                                 Model model){
+        Orders orders = ordersService.selectOrdersById(orderId);
+        Service service = serviceService.selectServiceById(10000);
+
+        Dispute dispute = new Dispute();
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        dispute.setDate(ts);
+        dispute.setDescription(description);
+        dispute.setOrders(orders);
+        dispute.setService(service);
+        dispute.setState("初步处理");
+        dispute.setType(radio);
+        dispute.setCheck("未审核");
+        dispute.setMan("用户");
+        int i = disputeService.addDispute(dispute);
+        if (i >0) {
+            model.addAttribute("message", "更新成功");
+        }else {
+            model.addAttribute("message", "更新不成功");
+        }
+        //attributes.addAttribute("userId", orders.getUser().getId());
+        User user = userService.selectUserById(orders.getUser().getId());
+        List<Harvest> harvestList = new ArrayList<>();
+        for (Orders orders1 : user.getOrdersList()){
+            harvestList.addAll(orders1.getHarvestList());
+        }
+        model.addAttribute("harvests", harvestList);
+        return "customer/harvestOngoingOrder.jsp";
+    }
 
 
     /*

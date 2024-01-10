@@ -29,15 +29,17 @@
             <th>${orders.goods.type}</th>
             <th>${orders.date}</th>
             <th>
-            <input type="radio" id="动物死亡" name="radio" value="user" required>动物死亡
-            <input type="radio" id="商家跑路" name="radio" value="merchant" required>商家跑路
-            <input type="radio" id="用户中途退出" name="radio" value="service" required>用户中途退出
-            <input type="radio" id="商家违约" name="radio" value="administrator" required>商家违约
-            <input type="radio" id="七天内无理由退款" name="radio" value="administrator" required>七天内无理由退款
-            <input type="radio" id="其他问题" name="radio" value="administrator" required>其他问题
+            <input type="radio" id="动物死亡" name="radio" value="动物死亡" required>动物死亡
+            <input type="radio" id="商家跑路" name="radio" value="商家跑路" required>商家跑路
+            <input type="radio" id="用户中途退出" name="radio" value="用户中途退出" required>用户中途退出
+            <input type="radio" id="商家违约" name="radio" value="商家违约" required>商家违约
+            <input type="radio" id="七天内无理由退款" name="radio" value="七天内无理由退款" required>七天内无理由退款
+            <input type="radio" id="其他问题" name="radio" value="其他问题" required>其他问题
             </th>
-            <th><input type="text" name="description">
-                <input type="hidden" name="orderId" value="${order.id}"></th>
+            <th>
+                <input type="text" name="description">
+                <input type="hidden" name="orderId" value="${orders.id}">
+            </th>
             <th> <input type="submit" value="提交"></th>
         </tr>
     </table>

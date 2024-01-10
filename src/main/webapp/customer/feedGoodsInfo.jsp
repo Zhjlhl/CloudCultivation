@@ -43,7 +43,7 @@
         <td>${orders.goods.type}</td>
         <td>${feeding.state}</td>
         <td>${feeding.weight}</td>
-        <td><a href="/checkDispute">申请售后</a></td>
+        <td><a href="${pageContext.request.contextPath}/toApplyForAfterSaleService?harvestId=${harvest.id}">申请售后</a></td>
     </tr>
 </table>
 <%--<p>查看宠物以往信息：</p>
