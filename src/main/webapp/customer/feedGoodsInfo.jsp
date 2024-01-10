@@ -46,6 +46,7 @@
         <td><a href="${pageContext.request.contextPath}/toApplyForAfterSaleService?harvestId=${harvest.id}">申请售后</a></td>
     </tr>
 </table>
+<a href="${pageContext.request.contextPath}/toNickname?orderId=${orders.id}">宠物取名</a>
 <%--<p>查看宠物以往信息：</p>
 <form>
     <label for="date">选择查看日期</label>

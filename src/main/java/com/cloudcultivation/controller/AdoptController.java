@@ -84,24 +84,46 @@ public class AdoptController {
     @RequestMapping("/toCharge")
     public String toCharge(@RequestParam("userId") int userId,@RequestParam("operate")String operate, @RequestParam("amount")int number,Model model,HttpSession httpSession){
         if(Objects.equals(operate, "我已完成支付")){
-        User user = userService.selectUserById(userId);
-        BigDecimal temp = user.getBalance();
-        BigDecimal temp2 = new BigDecimal(number);
-        user.setBalance(temp.add(temp2));
-        if(userService.updateUser(user)==0){
-            return "/customer/chargeFail.jsp";
-        }
-        User user2 = userService.selectUserById(userId);
-        httpSession.setAttribute("user", user2);
-        model.addAttribute(user);
-        return "/customer/chargeSuccess.jsp";
-    }else{
+            User user = userService.selectUserById(userId);
+            BigDecimal temp = user.getBalance();
+            BigDecimal temp2 = new BigDecimal(number);
+            user.setBalance(temp.add(temp2));
+            if(userService.updateUser(user)==0){
+                return "/customer/chargeFail.jsp";
+            }
+            User user2 = userService.selectUserById(userId);
+            httpSession.setAttribute("user", user2);
+            model.addAttribute(user);
+            return "/customer/chargeSuccess.jsp";
+        }else{
             return "/toUserHome";
         }
     }
 
 
 
+    @RequestMapping("/nickname")
+    public String nickname(@RequestParam("name") String name,@RequestParam("orderId") int orderId,Model model,HttpSession httpSession){
+        Orders orders = ordersService.selectOrdersById(orderId);
+        orders.setNickname(name);
+        if(ordersService.updateOrder(orders)>0){
+            String message = "取名成功";
+            model.addAttribute("message", message);
+        }else{
+            String message = "取名失败";
+            model.addAttribute("message", message);
+        }
+        Orders orders1 = ordersService.selectOrdersById(orderId);
+        model.addAttribute("order",orders1);
+
+        return "/customer/nickname.jsp";
+    }
+    @RequestMapping("/toNickname")
+    public String toNickname(@RequestParam("orderId") int orderId,Model model){
+        Orders orders = ordersService.selectOrdersById(orderId);
+        model.addAttribute("order",orders);
+        return "/customer/nickname.jsp";
+    }
 
 
 }
