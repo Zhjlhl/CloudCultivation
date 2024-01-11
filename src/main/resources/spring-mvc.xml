@@ -25,6 +25,7 @@
     <!--<mvc:default-servlet-handler/>-->
     <mvc:resources mapping="/customer/img/**" location="/customer/img/"/>
     <mvc:resources mapping="/merchant/img/**" location="/merchant/img/"/>
+    <mvc:resources mapping="/service/img/**" location="/service/img/"/>
     <mvc:resources mapping="/photos/**" location="/photos/"/>
     <mvc:resources mapping="/videos/**" location="/videos/"/>
 
