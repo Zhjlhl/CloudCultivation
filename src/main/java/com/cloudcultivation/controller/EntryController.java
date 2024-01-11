@@ -198,7 +198,6 @@ public class EntryController {
             disputeList.addAll(orders.getDisputeList());
         }
         model.addAttribute("disputes", disputeList);
-        //System.out.println(model);
         return "/merchant/allDisputeOrder.jsp";
     }
 

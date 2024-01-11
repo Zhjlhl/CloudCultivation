@@ -97,17 +97,17 @@ public class DisputeController {
 
     /*
      * @description: 提交纠纷处理结果
-     */
+     *//*
     @RequestMapping("/checkDispute")
     public String checkDispute(@RequestParam("serviceId") int serviceId,
                                RedirectAttributes attributes,
                                Model model){
-        /*return "redirect:/toServiceUncheck";*/
-        /*Service service = serviceService.selectServiceById(serviceId);
-        model.addAttribute("service", service);*/
+        *//*return "redirect:/toServiceUncheck";*//*
+        *//*Service service = serviceService.selectServiceById(serviceId);
+        model.addAttribute("service", service);*//*
         attributes.addAttribute("serviceId", serviceId);
         return "redirect:/toServiceDisputeOngoing";
-    }
+    }*/
 
     /*
      * @description: 跳转审核商品
