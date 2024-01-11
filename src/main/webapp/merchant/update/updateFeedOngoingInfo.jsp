@@ -434,17 +434,20 @@
         <td>${order.user.name}</td>
     </tr>
 </table>
-<form action="${pageContext.request.contextPath}/updateFeedOngoingInfo" method="post" enctype="multipart/form-data">
-    <input type="hidden"  name="orderId" value="${order.id}">健康
-    <label for="video">选择视频:</label>
-    <input type="file" id="video" name="video" accept="video/*" required>
-    <label for="video">选择图片:</label>
-    <input type="file" id="image" name="image" accept="image/*" required>
-    <label for="video">体重:</label>
-    <input type="file" id="weight" name="weight" required>
+<form action="${pageContext.request.contextPath}/updateFeedOngoingInfo" method="POST" enctype="multipart/form-data">
+    <input type="hidden" id="orderId" name="orderId" value="${order.id}">
+    <%--<label for="video">选择视频:</label>
+    <input type="file" id="video" name="video" accept="video/*" required>--%>
+    <label for="photos">选择图片:</label>
+    <input type="file" id="photos" name="photos" accept="image/*" required>
+    <label for="weight">体重:</label>
+    <input type="text" id="weight" name="weight" required>
     <input type="radio"  name="state" value="健康" required>健康
     <input type="radio"  name="state" value="生病" required>生病
+<%--
     <button type="submit">上传</button>
+--%>
+    <input type="submit" value="上传">
 </form>
 <a href="${pageContext.request.contextPath}/toMerchantFeedOngoingOrder?merchantId=${order.merchant.id}">返回到所有饲养订单页面</a>
 <a href="${pageContext.request.contextPath}/toMerchantHome">返回到主页</a>

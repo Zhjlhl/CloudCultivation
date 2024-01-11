@@ -39,6 +39,15 @@
 
         <!--初始化启动-->
         <load-on-startup>1</load-on-startup>
+
+        <multipart-config>
+            <!-- 临时路劲 -->
+            <location>O:\Files\软件工程\云养殖系统\源代码\CloudCultivation\src\main\webapp\videos</location>
+            <!-- 上传文件的最大值 -->
+            <max-file-size>2097152</max-file-size>
+            <!--请求的最大容量-->
+            <max-request-size>4194304</max-request-size>
+        </multipart-config>
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcherServlet</servlet-name>
@@ -68,5 +77,9 @@
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.css</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.png</url-pattern>
     </servlet-mapping>
 </web-app>

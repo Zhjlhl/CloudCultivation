@@ -53,6 +53,8 @@
     <input type="date" id="date">
     <input type="submit" value="选择查看">
 </form>--%>
+<p>查看宠物当前信息：</p>
+<img src="${pageContext.request.contextPath}/${feeding.photo}" alt="云养殖">
 <p>已有饲料:</p>
 <table>
     <tr>

@@ -539,14 +539,14 @@
             <div class="center-content">
                 <div class="picture">
                     <div class="slide">
-                        <img src="img/product1.jpg" alt="图片1">
+                        <img src="${pageContext.request.contextPath}/customer/img/product1.jpg" alt="图片1">
                     </div>
                     <div class="slide">
-                        <img src="img/product2.jpg" alt="图片2">
+                        <img src="${pageContext.request.contextPath}/customer/img/product2.jpg" alt="图片2">
                     </div>
-                    <div class="slide">
+                    <%--<div class="slide">
                         <img src="img/product3.jpg" alt="图片3">
-                    </div>
+                    </div>--%>
                 </div>
             </div>
         </div>

@@ -489,7 +489,7 @@
                         </div>
                     </a>
                     <ul class="accordion">
-                        <li><a href="{pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
                         <li><a href="${pageContext.request.contextPath}/toMerchantGoodsCheck?merchantId=${merchant.id}">商品</a></li>
                     </ul>
                 </li>
@@ -544,13 +544,13 @@
         <div class="center-content">
             <div class="picture">
                 <div class="slide">
-                    <img src="img/product1.jpg" alt="图片1">
+                    <img src="${pageContext.request.contextPath}/customer/img/product1.jpg" alt="图片1">
                 </div>
                 <div class="slide">
-                    <img src="img/product2.jpg" alt="图片2">
+                    <img src="${pageContext.request.contextPath}/merchant/img/product2.jpg" alt="图片2">
                 </div>
                 <div class="slide">
-                    <img src="img/product3.jpg" alt="图片3">
+                    <img src="${pageContext.request.contextPath}/merchant/img/product1.jpg" alt="图片3">
                 </div>
             </div>
         </div>
