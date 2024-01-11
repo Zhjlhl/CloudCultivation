@@ -51,10 +51,9 @@
         <tr>
         </tr>
     </table>
-        <c:forEach items="${indexList}" var="index">
-            <a href="${pageContext.request.contextPath}">${index}</a>
-        </c:forEach>
-    <%--</c:if>--%>
+    <c:forEach items="${indexList}" var="index">
+        <a href="${pageContext.request.contextPath}">${index}</a>
+    </c:forEach>
 </c:if>
 </body>
 </html>

@@ -14,44 +14,46 @@
 <body>
 <a href="${pageContext.request.contextPath}/toServiceUncheck?serviceId=${service.id}">未审核订单</a>
 <c:if test="${! empty disputes}">
-  <table>
-      <tr>
-          <th>订单id</th>
-          <th>用户id</th>
-          <th>商家id</th>
-          <th>涉及金额</th>
-          <th>描述</th>
-          <th>状态</th>
-          <th>纠纷类型</th>
-          <th>开始时间</th>
-          <th>审核状态</th>
-      </tr>
-      <c:forEach items="${disputes}" var="dispute">
-          <tr>
-              <td>${dispute.orders.id}</td>
-              <td>${dispute.orders.user.id}</td>
-              <td>${dispute.orders.merchant.id}</td>
-              <td>${dispute.amount}</td>
-              <td>${dispute.description}</td>
-              <td>${dispute.state}</td>
-              <td>${dispute.type}</td>
-              <td>${dispute.date}</td>
-              <c:if test="${dispute.check == '未审核'}">
-                  <td>
-                      <a href="${pageContext.request.contextPath}/toCheck?disputeId=${dispute.id}&serviceId=${service.id}">去审核</a>
-                  </td>
-              </c:if>
-              <c:if test="${dispute.check=='已审核'}">
-                  <td>
-                      ${dispute.check}
-                  </td>
-              </c:if>
-          </tr>
-      </c:forEach>
-  </table>
-        <c:forEach items="${indexList}" var="index">
-            <a href="${pageContext.request.contextPath}">${index}</a>
+    <table>
+        <tr>
+            <th>订单号</th>
+            <th>用户id</th>
+            <th>商家id</th>
+            <th>涉及金额</th>
+            <th>描述</th>
+            <th>状态</th>
+            <th>纠纷类型</th>
+            <th>更新时间</th>
+            <th>投诉人</th>
+            <th>审核状态</th>
+        </tr>
+        <c:forEach items="${disputes}" var="dispute">
+            <tr>
+                <td>${dispute.orders.id}</td>
+                <td>${dispute.orders.user.id}</td>
+                <td>${dispute.orders.merchant.id}</td>
+                <td>${dispute.amount}</td>
+                <td>${dispute.description}</td>
+                <td>${dispute.state}</td>
+                <td>${dispute.type}</td>
+                <td>${dispute.date}</td>
+                <td>${dispute.man}</td>
+                <c:if test="${dispute.check != '已审核'}">
+                    <td>
+                        <a href="${pageContext.request.contextPath}/toCheck?disputeId=${dispute.id}&serviceId=${service.id}">去审核</a>
+                    </td>
+                </c:if>
+                <c:if test="${dispute.check=='已审核'}">
+                    <td>
+                            ${dispute.check}
+                    </td>
+                </c:if>
+            </tr>
         </c:forEach>
+    </table>
+    <c:forEach items="${indexList}" var="index">
+        <a href="${pageContext.request.contextPath}">${index}</a>
+    </c:forEach>
 </c:if>
 <a href="${pageContext.request.contextPath}/toServiceHome">返回主页</a>
 </body>
