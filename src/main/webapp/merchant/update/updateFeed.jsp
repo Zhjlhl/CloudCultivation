@@ -433,9 +433,9 @@
         </div>
 <div class="content">
 <form class="addFeed" action="${pageContext.request.contextPath}/addFeed?merchantId=${merchant.id}" method="post">
-    <label for="image">饲料图片：</label>
+    <%--<label for="image">饲料图片：</label>
     <input type="file" id="image" accept="image/*" name="image" >
-    <br>
+    <br>--%>
     <label for="name">饲料名：</label>
     <input type="text" id="name" name="name"  required>
     <br>

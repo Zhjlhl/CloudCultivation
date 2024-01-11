@@ -120,7 +120,7 @@
         }
         .sidebar_inner .siderbar_menu> li.active > a,
         .sidebar_inner .siderbar_menu> li > a:hover{
-            background: #3d3d79;
+            background: #5558c9;
         }
 
 
@@ -148,7 +148,7 @@
 
         .sidebar .logout_btn a:hover{
             background: #fff;
-            color: #3d3d79;
+            color: #5558c9;
         }
 
         .sidebar_inner .close{
@@ -435,7 +435,6 @@
         })
     </script>
 </head>
-
 <body>
 <div class="wrapper">
     <div class="sidebar">
@@ -458,9 +457,9 @@
 
             <ul class="siderbar_menu">
                 <li class="active">
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/toUserHome">
                         <div class="icon">
-                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-home"></i>
                         </div>
                         <div class="active" >主页</div>
                     </a>
@@ -531,7 +530,7 @@
                 <i class="fas fa-bars"></i>
             </div>
             <div class="logo">
-                <a href="header.jsp">云养殖网站</a>
+                <a href="#">云养殖网站</a>
             </div>
         </div>
         <div class="content">
@@ -543,9 +542,6 @@
                     <div class="slide">
                         <img src="${pageContext.request.contextPath}/customer/img/product2.jpg" alt="图片2">
                     </div>
-                    <%--<div class="slide">
-                        <img src="img/product3.jpg" alt="图片3">
-                    </div>--%>
                 </div>
             </div>
         </div>

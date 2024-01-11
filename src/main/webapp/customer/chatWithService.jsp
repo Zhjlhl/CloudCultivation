@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>-->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
@@ -37,7 +37,7 @@
     }
 
     button {
-      background-color: #4CAF50;
+      background-color: #4267b2;
       color: #fff;
       border: none;
       padding: 10px;

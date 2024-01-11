@@ -1,39 +1,86 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
-  Date: 2023/12/30
-  Time: 22:00
+  Date: 2023/12/19
+  Time: 11:36
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云养殖出售网站</title>
     <style>
-        #dataTable tr:not(:first-child):nth-child(n+31) {
-            display: none;
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
-        #showMoreBtn {
-            display: block;
-            margin-top: 10px;
-        }
-        #dataTable {
-            border-collapse: collapse;
-            width: 100%;
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 1200px;
         }
 
-        #dataTable th, #dataTable td {
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .product {
             border: 1px solid #ddd;
-            padding: 8px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100px; /* 设置最大宽度，超过这个宽度会显示省略号 */
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .view-details {
+            padding: 10px 20px;
+            background-color: #4267b2;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .view-details:hover {
+            background-color: #4267b2;
         }
     </style>
-    <title>饲料购买页面</title>
 </head>
 <body>
 <p>用户名：${user.name}     余额：${user.balance}</p >
@@ -75,4 +122,3 @@
     </div>
 </body>
 </html>
-

@@ -102,7 +102,7 @@ public class MerchantController {
         feed.setAmount(amount);
         feed.setPrice(price);
         feed.setRemain(amount);
-        feed.setCheck("审核中");
+        feed.setCheck("未审核");
         feed.setDescription(description);
         feed.setMerchant(merchant);
         if(feedService.addFeed(feed)>0){
@@ -132,7 +132,7 @@ public class MerchantController {
         good.setYield(yield);
         good.setAmount(amount);
         good.setRemain(amount);
-        good.setCheck("审核中");
+        good.setCheck("未审核");
         goodsService.addGoods(good);
         return "/merchant/home.jsp";
     }
