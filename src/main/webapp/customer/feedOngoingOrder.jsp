@@ -22,9 +22,9 @@
 --%>
 <%-- 如果待收货时间为0，则提供个按钮转区harvestHandle页面，否则就正常显示还有多少天收获
      --%>
-<p>单号：  姓名：   当前状态：   上次饲养时间：   当前饲料：    待收货时间：
+<%--<p>单号：  姓名：   当前状态：   上次饲养时间：   当前饲料：    待收货时间：
     <a href="${pageContext.request.contextPath}/feedGoodsInfo">查看更多</a>
-</p>
+</p>--%>
 <a href="${pageContext.request.contextPath}/toUserHome">返回首页</a>
 <table>
     <tr>

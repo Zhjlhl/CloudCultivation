@@ -5,6 +5,7 @@ import com.cloudcultivation.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Jiejie
+ * @author hyy
  */
 @Controller
 public class UserController {
@@ -35,6 +36,10 @@ public class UserController {
     BuyService buyService;
     @Autowired
     GoodsService goodsService;
+    @Autowired
+    DisputeService disputeService;
+    @Autowired
+    ServiceService serviceService;
 
     //跳转到这个饲养中订单的详细信息页面
     @RequestMapping("/toCustomerFeedGoodsInfo")
@@ -183,5 +188,86 @@ public class UserController {
         }
 
 
+    }
+    @RequestMapping("/toResolveDispute")
+    public String resolveDispute(@RequestParam("orderId")int orderId,@RequestParam("radio") String type,@RequestParam("description") String description,Model model){
+        Dispute dispute = new Dispute();
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        Service service = serviceService.selectServiceById(10000);
+        dispute.setDate(ts);
+        dispute.setService(service);
+        dispute.setState("未处理");
+        dispute.setType(type);
+        dispute.setCheck("未审核");
+        dispute.setMan("用户");
+        Orders orders = ordersService.selectOrdersById(orderId);
+        dispute.setOrders(orders);
+        dispute.setDescription(description);
+        if(disputeService.addDispute(dispute)>0){
+            String message = "申请成功";
+            model.addAttribute("message1", message);
+        }else{
+            String message = "申请失败";
+            model.addAttribute("message1", message);
+        }
+        Orders orders1 = ordersService.selectOrdersById(orderId);
+        User user = orders1.getUser();
+        List<Harvest> harvestList = new ArrayList<>();
+        for (Orders orders2 : user.getOrdersList()){
+            harvestList.addAll(orders2.getHarvestList());
+        }
+        model.addAttribute("harvests", harvestList);
+        return "customer/harvestOngoingOrder.jsp";
+    }
+    @RequestMapping("/toDispute")
+    public String toDispute(@RequestParam("userId") int userId,Model model){
+        User user = userService.selectUserById(userId);
+        List<Orders> orders = user.getOrdersList();
+        List<Dispute> disputeList = new ArrayList<>();
+        for(Orders orders1 : orders){
+            List<Dispute> disputeList1=orders1.getDisputeList();
+            disputeList.addAll(disputeList1);
+        }
+        model.addAttribute("disputes",disputeList);
+        return "customer/disputeOngoingOrder.jsp";
+    }
+    @GetMapping("/toApplyForAfterSaleService2")
+    public String toApplyForAfterSaleService2(@RequestParam(name = "orderId") int orderId,
+                                              Model model) {
+        Orders orders = ordersService.selectOrdersById(orderId);
+        model.addAttribute("orders", orders);
+        return "/customer/applyForAfterSaleService2.jsp";
+    }
+    @RequestMapping("/toResolveDispute2")
+    public String resolveDispute2(@RequestParam("orderId")int orderId,@RequestParam("radio") String type,@RequestParam("description") String description,Model model){
+        Dispute dispute = new Dispute();
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        Service service = serviceService.selectServiceById(10000);
+        dispute.setDate(ts);
+        dispute.setService(service);
+        dispute.setState("未处理");
+        dispute.setType(type);
+        dispute.setCheck("未审核");
+        dispute.setMan("用户");
+        Orders orders = ordersService.selectOrdersById(orderId);
+        dispute.setOrders(orders);
+        dispute.setDescription(description);
+        if(disputeService.addDispute(dispute)>0){
+            String message = "申请成功";
+            model.addAttribute("message1", message);
+        }else{
+            String message = "申请失败";
+            model.addAttribute("message1", message);
+        }
+        Orders orders1 = ordersService.selectOrdersById(orderId);
+        User user = orders1.getUser();
+        List<Orders> orders2 = user.getOrdersList();
+        List<Dispute> disputeList = new ArrayList<>();
+        for(Orders orders3 : orders2){
+            List<Dispute> disputeList1=orders3.getDisputeList();
+            disputeList.addAll(disputeList1);
+        }
+        model.addAttribute("disputes",disputeList);
+        return "customer/disputeOngoingOrder.jsp";
     }
 }

@@ -492,7 +492,7 @@
                         </div>
                     </a>
                     <ul class="accordion">
-                        <li><a href="${pageContext.request.contextPath}/toWaitingPaid?userId=${user.id}" class="active">支付</a></li>
+                        <%--<li><a href="${pageContext.request.contextPath}/toWaitingPaid?userId=${user.id}" class="active">支付</a></li>--%>
                         <li><a href="${pageContext.request.contextPath}/toUserHarvestInformation?userId=${user.id}" >收获</a></li>
                     </ul>
                 </li>
@@ -507,9 +507,8 @@
                         </div>
                     </a>
                     <ul class="accordion">
-                        <li><a href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}" >完成</a></li>
-                        <li><a href="${pageContext.request.contextPath}/toDisputeOngoing?userId=${user.id}" >售后</a></li>
-                        <li><a href="${pageContext.request.contextPath}/toWaitingEvaluate">评价</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toDispute?userId=${user.id}" >售后</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}" >评价</a></li>
                     </ul>
                 </li>
                 <li>

@@ -10,20 +10,20 @@
 <html>
 <head>
     <meta charset=UTF-8>
-    <title>申请售后页面</title>
+    <title>申诉页面</title>
 </head>
 <body>
-<c:if test="${message == '申请成功'}">
+<c:if test="${message1 == '申请成功'}">
     <script>
         alert("申请成功！")
     </script>
 </c:if>
-<c:if test="${message == '申请失败'}">
+<c:if test="${message1 == '申请失败'}">
     <script>
         alert("申请失败！")
     </script>
 </c:if>
-<form action="${pageContext.request.contextPath}/toResolveDispute">
+<form action="${pageContext.request.contextPath}/toResolveDispute2">
     <table>
         <tr>
             <th>订单id</th>
@@ -40,12 +40,12 @@
             <th>${orders.goods.type}</th>
             <th>${orders.date}</th>
             <th>
-            <input type="radio" id="动物死亡" name="radio" value="动物死亡" required>动物死亡
-            <input type="radio" id="商家跑路" name="radio" value="商家跑路" required>商家跑路
-            <input type="radio" id="用户中途退出" name="radio" value="用户中途退出" required>用户中途退出
-            <input type="radio" id="商家违约" name="radio" value="商家违约" required>商家违约
-            <input type="radio" id="七天内无理由退款" name="radio" value="七天内无理由退款" required>七天内无理由退款
-            <input type="radio" id="其他问题" name="radio" value="其他问题" required>其他问题
+                <input type="radio" id="动物死亡" name="radio" value="动物死亡" required>动物死亡
+                <input type="radio" id="商家跑路" name="radio" value="商家跑路" required>商家跑路
+                <input type="radio" id="用户中途退出" name="radio" value="用户中途退出" required>用户中途退出
+                <input type="radio" id="商家违约" name="radio" value="商家违约" required>商家违约
+                <input type="radio" id="七天内无理由退款" name="radio" value="七天内无理由退款" required>七天内无理由退款
+                <input type="radio" id="其他问题" name="radio" value="其他问题" required>其他问题
             </th>
             <th>
                 <input type="text" name="description">

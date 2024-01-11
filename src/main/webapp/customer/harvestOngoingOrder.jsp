@@ -92,6 +92,16 @@
     </script>
 </head>
 <body>
+<c:if test="${message1 == '申请成功'}">
+    <script>
+        alert("申请成功！")
+    </script>
+</c:if>
+<c:if test="${message1 == '申请失败'}">
+    <script>
+        alert("申请失败！")
+    </script>
+</c:if>
 <%--
 如果状态是已发货，则设置按钮显示物流信息
 --%>
@@ -136,7 +146,7 @@
             </tr>
         </c:forEach>
     </c:if>
-</table>
-
+</table><br>
+<a href="${pageContext.request.contextPath}/toUserHome">返回首页</a>
 </body>
 </html>
