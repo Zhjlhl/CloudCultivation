@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <title>已完成</title>
+    <title>售后评价</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Trade+Winds&display=swap');
         *{
@@ -464,17 +464,10 @@
                         <li><a href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}" >评价</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-group"></i>
-                        </div>
-                        <div class="title">客服</div>
-                    </a>
-                </li>
+
             </ul>
             <div class="logout_btn">
-                <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登陆</a>
+                <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登录</a>
             </div>
         </div>
     </div>

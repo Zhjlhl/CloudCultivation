@@ -405,17 +405,10 @@
                         <li><a href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}" >评价</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-group"></i>
-                        </div>
-                        <div class="title">客服</div>
-                    </a>
-                </li>
+
             </ul>
             <div class="logout_btn">
-                <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登陆</a>
+                <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登录</a>
             </div>
         </div>
     </div>
@@ -451,23 +444,23 @@
             <th>提交</th>
         </tr>
         <tr>
-            <th>${orders.id}</th>
-            <th>${orders.nickname}</th>
-            <th>${orders.goods.type}</th>
-            <th>${orders.date}</th>
-            <th>
+            <td>${orders.id}</td>
+            <td>${orders.nickname}</td>
+            <td>${orders.goods.type}</td>
+            <td>${orders.date}</td>
+            <td>
                 <input type="radio" id="动物死亡" name="radio" value="动物死亡" required>动物死亡
                 <input type="radio" id="商家跑路" name="radio" value="商家跑路" required>商家跑路
                 <input type="radio" id="用户中途退出" name="radio" value="用户中途退出" required>用户中途退出
                 <input type="radio" id="商家违约" name="radio" value="商家违约" required>商家违约
                 <input type="radio" id="七天内无理由退款" name="radio" value="七天内无理由退款" required>七天内无理由退款
                 <input type="radio" id="其他问题" name="radio" value="其他问题" required>其他问题
-            </th>
-            <th>
+            </td>
+            <td>
                 <input type="text" name="description">
                 <input type="hidden" name="orderId" value="${orders.id}">
-            </th>
-            <th> <input type="submit" value="提交"></th>
+            </td>
+            <td> <input type="submit" value="提交"></td>
         </tr>
     </table>
 </form>

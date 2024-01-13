@@ -361,7 +361,7 @@
                         </div>
                     </a>
                     <ul class="accordion">
-                        <li><a href="{pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
                         <li><a href="${pageContext.request.contextPath}/toMerchantGoodsCheck?merchantId=${merchant.id}">商品</a></li>
                     </ul>
                 </li>
@@ -389,14 +389,7 @@
                         <div class="title">售后</div>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-comment"></i>
-                        </div>
-                        <div class="title">客服</div>
-                    </a>
-                </li>
+
             </ul>
             <div class="logout_btn">
                 <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登录</a>

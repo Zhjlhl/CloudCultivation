@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户主界面</title>
     <!--这里引入的是矢量图标签库-->
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -388,7 +387,7 @@
                         </div>
                     </a>
                     <ul class="accordion">
-                        <li><a href="{pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
                         <li><a href="${pageContext.request.contextPath}/toMerchantGoodsCheck?merchantId=${merchant.id}">商品</a></li>
                     </ul>
                 </li>
@@ -416,14 +415,6 @@
                         <div class="title">售后</div>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-comment"></i>
-                        </div>
-                        <div class="title">客服</div>
-                    </a>
-                </li>
             </ul>
             <div class="logout_btn">
                 <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登录</a>
@@ -439,35 +430,35 @@
                 <a href="#">云养殖网站</a>
             </div>
         </div>
-<div class="content">
-<c:if test="${! empty goods}">
-    <table>
-        <tr>
-            <th>名字</th>
-            <th>数量</th>
-            <th>种类</th>
-            <th>价格</th>
-            <th>生长周期</th>
-            <th>预期收益</th>
-            <th>描述</th>
-            <th>审核状态</th>
-        </tr>
-        <c:forEach items="${goods}" var="good">
-            <tr>
-                <td align="center">${good.name}</td>
-                <td align="center">${good.amount}</td>
-                <td align="center">${good.type}</td>
-                <td align="center">${good.price}</td>
-                <td align="center">${good.growth}</td>
-                <td align="center">${good.yield}</td>
-                <td align="center">${good.description}</td>
-                <td align="center">${good.check}</td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
-</div>
-</div>
+        <div class="content">
+            <c:if test="${! empty goods}">
+                <table>
+                    <tr>
+                        <th>名字</th>
+                        <th>数量</th>
+                        <th>种类</th>
+                        <th>价格</th>
+                        <th>生长周期</th>
+                        <th>预期收益</th>
+                        <th>描述</th>
+                        <th>审核状态</th>
+                    </tr>
+                    <c:forEach items="${goods}" var="good">
+                        <tr>
+                            <td align="center">${good.name}</td>
+                            <td align="center">${good.amount}</td>
+                            <td align="center">${good.type}</td>
+                            <td align="center">${good.price}</td>
+                            <td align="center">${good.growth}</td>
+                            <td align="center">${good.yield}</td>
+                            <td align="center">${good.description}</td>
+                            <td align="center">${good.check}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:if>
+        </div>
+    </div>
 </div>
 </body>
 </html>

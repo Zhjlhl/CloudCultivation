@@ -397,17 +397,9 @@ $(".wrapper").removeClass("active");
                         <li><a href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}" >评价</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-group"></i>
-                        </div>
-                        <div class="title">客服</div>
-                    </a>
-                </li>
             </ul>
             <div class="logout_btn">
-                <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登陆</a>
+                <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登录</a>
             </div>
         </div>
     </div>

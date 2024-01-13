@@ -155,7 +155,13 @@ public class UserController {
                 Orders orders = buy3.getOrders();
                 List<Buy> buys = orders.getBuyList();
                 List<Feeding> list = orders.getFeedingList();
-                Feeding feeding = list.get(list.size() - 1);
+                Feeding feeding = new Feeding();
+                if (list.isEmpty()){
+                    feeding =null;
+                }else {
+                    feeding = list.get(list.size() - 1);
+                }
+
                 Merchant merchant = orders.getMerchant();
                 model.addAttribute("orders", orders);
                 model.addAttribute("feeds", buys);

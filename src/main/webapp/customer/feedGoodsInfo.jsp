@@ -312,17 +312,19 @@
         }
 
         input[type="submit"],
-        input[type="button"] {
+        input[type="button"]{
             background-color: #4267b2;
             color: #fff;
             cursor: pointer;
             border-radius: 5px;
         }
 
-        a {
-            color: #4267b2;
-            text-decoration: none;
-            margin-right: 10px;
+        .content a {
+            background-color: #4267b2;
+            padding: 5px 10px;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
         }
         .center-content{
             text-align: center;
@@ -430,17 +432,9 @@
                         <li><a href="${pageContext.request.contextPath}/toUserFinished?userId=${user.id}" >评价</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-group"></i>
-                        </div>
-                        <div class="title">客服</div>
-                    </a>
-                </li>
             </ul>
             <div class="logout_btn">
-                <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登陆</a>
+                <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登录</a>
             </div>
         </div>
     </div>
@@ -480,19 +474,21 @@
                 <td>${orders.goods.type}</td>
                 <td>${feeding.state}</td>
                 <td>${feeding.weight}</td>
-                <td><a href="${pageContext.request.contextPath}/toApplyForAfterSaleService?harvestId=${harvest.id}">申请售后</a></td>
+                <td><a href="${pageContext.request.contextPath}/toApplyForAfterSaleService?harvestId=${harvest.id}" class="button">申请售后</a></td>
             </tr>
-        </table>
-        <a href="${pageContext.request.contextPath}/toNickname?orderId=${orders.id}">宠物取名</a>
+        </table><br>
+        <a href="${pageContext.request.contextPath}/toNickname?orderId=${orders.id}"class="button">宠物取名</a>
         <%--<p>查看宠物以往信息：</p>
         <form>
             <label for="date">选择查看日期</label>
             <input type="date" id="date">
             <input type="submit" value="选择查看">
         </form>--%>
-        <p>查看宠物当前信息：</p>
-        <img src="${pageContext.request.contextPath}/${feeding.photo}" alt="云养殖" width="200px" height="200px">
-        <p>已有饲料:</p>
+        <br><br><p>查看宠物当前信息：</p>
+        <c:if test="${feeding != null}">
+            <img src="${pageContext.request.contextPath}/${feeding.photo}" alt="云养殖" width="200px" height="200px">
+        </c:if>
+        <br><br><p>已有饲料:</p>
         <table>
             <tr>
                 <th>饲料名</th>
@@ -508,9 +504,8 @@
                     </td>
                 </tr>
             </c:forEach>
-        </table>
-        <a href="${pageContext.request.contextPath}/toBuyFeed?ordersId=${orders.id}">购买饲料</a>
-        <a href="${pageContext.request.contextPath}/toUserHome">返回首页</a>
+        </table><br><br>
+        <a href="${pageContext.request.contextPath}/toBuyFeed?ordersId=${orders.id}"class="button">购买饲料</a>
     </div>
 </div>
 </div>

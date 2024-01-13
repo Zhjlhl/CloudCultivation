@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户主界面</title>
     <!--这里引入的是矢量图标签库-->
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -515,14 +514,6 @@
                             <i class="fa fa-handshake-o"></i>
                         </div>
                         <div class="title">售后</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-comment"></i>
-                        </div>
-                        <div class="title">客服</div>
                     </a>
                 </li>
             </ul>

@@ -70,10 +70,8 @@
     <label for="rePassword">确认密码:</label>
     <input type="password" id="rePassword" name="rePassword" required>
 
-    <div >
         <input type="radio" id="user" name="type" value="user" required>用户
         <input type="radio" id="merchant" name="type" value="merchant" required>商家
-    </div>
 
     <input type="submit" value="注册">
     <input type="reset" value="重置">

@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <title>饲养中</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Trade+Winds&display=swap');
         *{
@@ -368,7 +367,7 @@
                         </div>
                     </a>
                     <ul class="accordion">
-                        <li><a href="{pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
                         <li><a href="${pageContext.request.contextPath}/toMerchantGoodsCheck?merchantId=${merchant.id}">商品</a></li>
                     </ul>
                 </li>
@@ -394,14 +393,6 @@
                             <i class="fa fa-handshake-o"></i>
                         </div>
                         <div class="title">售后</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-comment"></i>
-                        </div>
-                        <div class="title">客服</div>
                     </a>
                 </li>
             </ul>

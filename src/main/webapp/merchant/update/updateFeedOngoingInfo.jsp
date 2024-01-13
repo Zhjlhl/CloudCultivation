@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Lenovo
-  Date: 2023/12/19
-  Time: 11:01
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,7 +9,6 @@
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <title>饲养中</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Trade+Winds&display=swap');
         *{
@@ -196,7 +188,6 @@
             color: #5558c9;
             font-size: 20px;
         }
-
         .accordion{
             background: #6f6fc7;
             padding-left: 50px;
@@ -266,13 +257,15 @@
                 width: 100%;
             }
         }
-
         .content{
             font-family: Arial, sans-serif;
             display:flex;
             justify-content: center;
             align-items:center;
             height:80vh;
+        }
+        .center-content{
+            text-align:center;
         }
         table {
             border-collapse: collapse;
@@ -293,6 +286,19 @@
 
         tr:nth-child(even) {
             background-color: #f9f9f9;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #4267b2;
+            color: #fff;
+            border-radius: 5px;
+            width:220px;
+        }
+
+        .button:hover {
+            background-color: #4267b2;
         }
     </style>
     <script>
@@ -355,6 +361,7 @@
                     <ul class="accordion">
                         <li><a href="${pageContext.request.contextPath}/toMerchantUpdateFeed?merchantId=${merchant.id}">饲料</a></li>
                         <li><a href="${pageContext.request.contextPath}/toMerchantUpdateGoods?merchantId=${merchant.id}">商品</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toMerchantUpdateSelfInfo?merchantId=${merchant.id}">信息</a></li>
                     </ul>
                 </li>
                 <li>
@@ -368,7 +375,7 @@
                         </div>
                     </a>
                     <ul class="accordion">
-                        <li><a href="{pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
                         <li><a href="${pageContext.request.contextPath}/toMerchantGoodsCheck?merchantId=${merchant.id}">商品</a></li>
                     </ul>
                 </li>
@@ -396,14 +403,6 @@
                         <div class="title">售后</div>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-comment"></i>
-                        </div>
-                        <div class="title">客服</div>
-                    </a>
-                </li>
             </ul>
             <div class="logout_btn">
                 <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登录</a>
@@ -419,38 +418,38 @@
                 <a href="#">云养殖网站</a>
             </div>
         </div>
+
         <div class="content">
-<table>
-    <tr>
-        <th>订单号</th>
-        <th>宠物名</th>
-        <th>宠物种类</th>
-        <th>主人</th>
-    </tr>
-    <tr>
-        <td>${order.id}</td>
-        <td>${order.nickname}</td>
-        <td>${order.goods.name}</td>
-        <td>${order.user.name}</td>
-    </tr>
-</table>
-<form action="${pageContext.request.contextPath}/updateFeedOngoingInfo" method="POST" enctype="multipart/form-data">
-    <input type="hidden" id="orderId" name="orderId" value="${order.id}">
-    <%--<label for="video">选择视频:</label>
-    <input type="file" id="video" name="video" accept="video/*" required>--%>
-    <label for="photos">选择图片:</label>
-    <input type="file" id="photos" name="photos" accept="image/*" required>
-    <label for="weight">体重:</label>
-    <input type="text" id="weight" name="weight" required>
-    <input type="radio"  name="state" value="健康" required>健康
-    <input type="radio"  name="state" value="生病" required>生病
-<%--
-    <button type="submit">上传</button>
---%>
-    <input type="submit" value="上传">
-</form>
-<a href="${pageContext.request.contextPath}/toMerchantFeedOngoingOrder?merchantId=${order.merchant.id}">返回到所有饲养订单页面</a>
-<a href="${pageContext.request.contextPath}/toMerchantHome">返回到主页</a>
+            <div class="center-content">
+                <table>
+                    <tr>
+                        <th>订单号</th>
+                        <th>宠物名</th>
+                        <th>宠物种类</th>
+                        <th>主人</th>
+                    </tr>
+                    <tr>
+                        <td>${order.id}</td>
+                        <td>${order.nickname}</td>
+                        <td>${order.goods.name}</td>
+                        <td>${order.user.name}</td>
+                    </tr>
+                </table>
+                <br><br>
+                <form action="${pageContext.request.contextPath}/updateFeedOngoingInfo" method="post" enctype="multipart/form-data">
+                    <input type="hidden"  name="orderId" value="${order.id}">健康状态上传<br><br>
+                    <label for="photos">选择图片:</label>
+                    <input type="file" id="photos" name="photos" accept="photos/*" required>
+                    <label for="weight">体重:</label>
+                    <input type="text" id="weight" name="weight" required>
+                    <input type="radio"  name="state" value="健康" required>健康
+                    <input type="radio"  name="state" value="生病" required>生病
+                    <button type="submit">上传</button>
+                </form>
+                <br><br>
+                <a class="button" href="${pageContext.request.contextPath}/toMerchantFeedOngoingOrder?merchantId=${order.merchant.id}">返回到所有饲养订单页面</a>
+                <br><br><a class="button" href="${pageContext.request.contextPath}/toMerchantHome">返回到主页</a>
+            </div>
         </div>
     </div>
 </div>

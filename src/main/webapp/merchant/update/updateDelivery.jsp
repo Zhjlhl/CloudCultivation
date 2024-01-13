@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <title>饲养中</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Trade+Winds&display=swap');
         *{
@@ -190,6 +189,49 @@
             color: #5558c9;
             font-size: 20px;
         }
+        .content{
+            font-family: Arial, sans-serif;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            height:80vh;
+        }
+        .center-content{
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4267b2;
+            color:#fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .content a,input[type="submit"] {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #4267b2;
+            color: #fff;
+            border-radius: 5px;
+            width:220px;
+        }
+
+        .content a:hover,input[type="submit"]:hover {
+            background-color: #4267b2;
+        }
 
         .accordion{
             background: #6f6fc7;
@@ -260,34 +302,6 @@
                 width: 100%;
             }
         }
-
-        .content{
-            font-family: Arial, sans-serif;
-            display:flex;
-            justify-content: center;
-            align-items:center;
-            height:80vh;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #4267b2;
-            color:#fff;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
     </style>
     <script>
         $(document).ready(function(){
@@ -349,6 +363,7 @@
                     <ul class="accordion">
                         <li><a href="${pageContext.request.contextPath}/toMerchantUpdateFeed?merchantId=${merchant.id}">饲料</a></li>
                         <li><a href="${pageContext.request.contextPath}/toMerchantUpdateGoods?merchantId=${merchant.id}">商品</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toMerchantUpdateSelfInfo?merchantId=${merchant.id}">信息</a></li>
                     </ul>
                 </li>
                 <li>
@@ -362,7 +377,7 @@
                         </div>
                     </a>
                     <ul class="accordion">
-                        <li><a href="{pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
                         <li><a href="${pageContext.request.contextPath}/toMerchantGoodsCheck?merchantId=${merchant.id}">商品</a></li>
                     </ul>
                 </li>
@@ -390,14 +405,6 @@
                         <div class="title">售后</div>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-comment"></i>
-                        </div>
-                        <div class="title">客服</div>
-                    </a>
-                </li>
             </ul>
             <div class="logout_btn">
                 <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登录</a>
@@ -414,33 +421,35 @@
             </div>
         </div>
         <div class="content">
-<c:if test="${! empty harvest}">
-    <table>
-        <tr>
-            <th>订单号</th>
-            <th>宠物名</th>
-            <th>种类</th>
-            <th>收获日期</th>
-            <th>收获方式</th>
-        </tr>
-        <tr>
-            <td>${harvest.orders.id}</td>
-            <td>${harvest.orders.nickname}</td>
-            <td>${harvest.orders.goods.name}</td>
-            <td>${harvest.date}</td>
-            <td>${harvest.way}</td>
-        </tr>
-    </table>
-    <form class="updateDelivery" action="${pageContext.request.contextPath}/updateDelivery?harvestId=${harvest.id}" method="post">
-        <label for="number">快递单号：</label>
-        <input type="text" id="number" name="number" required>
-        <br>
-        <label for="delivery">快递公司：</label>
-        <input type="text" id="delivery" name="delivery" required>
-        <input type="submit" value="提交" class="updateDelivery-button">
-    </form>
-</c:if>
-<a href="${pageContext.request.contextPath}/toMerchantHarvestOngoingOrder?merchantId=${sessionScope.merchant.id}">回到所有收获中订单页面</a>
+            <div class="center-content">
+                <c:if test="${! empty harvest}">
+                    <table>
+                        <tr>
+                            <th>订单号</th>
+                            <th>宠物名</th>
+                            <th>种类</th>
+                            <th>收获日期</th>
+                            <th>收获方式</th>
+                        </tr>
+                        <tr>
+                            <td>${harvest.orders.id}</td>
+                            <td>${harvest.orders.nickname}</td>
+                            <td>${harvest.orders.goods.name}</td>
+                            <td>${harvest.date}</td>
+                            <td>${harvest.way}</td>
+                        </tr>
+                    </table><br><br>
+                    <form class="updateDelivery" action="${pageContext.request.contextPath}/updateDelivery?harvestId=${harvest.id}" method="post">
+                        <label for="number">快递单号：</label>
+                        <input type="text" id="number" name="number" required>
+                        <br><br>
+                        <label for="delivery">快递公司：</label>
+                        <input type="text" id="delivery" name="delivery" required><br><br>
+                        <input type="submit" value="提交" class="button"><br><br>
+                    </form>
+                </c:if>
+                <a class="button" href="${pageContext.request.contextPath}/toMerchantHarvestOngoingOrder?merchantId=${sessionScope.merchant.id}">回到所有收获中订单页面</a>
+            </div>
         </div>
     </div>
 </div>

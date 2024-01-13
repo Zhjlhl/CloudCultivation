@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <title>饲养中</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Trade+Winds&display=swap');
         *{
@@ -275,24 +274,53 @@
             align-items:center;
             height:80vh;
         }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
+        .scrollable-table {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Enable vertical scrolling for the entire table */
         }
 
-        th, td {
-            border: 1px solid #dddddd;
+        .scrollable-table table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* Fix the table layout */
+        }
+
+        .scrollable-table th,
+        .scrollable-table td {
+            border: 1px solid #fff;
             text-align: left;
             padding: 8px;
+            white-space: nowrap; /* Prevent text wrapping */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Show ellipsis for overflowed text */
         }
 
-        th {
+        .scrollable-column {
+            width: 30%; /* Set the width for the specific column */
+            white-space: normal; /* Allow text wrapping for the specific column */
+        }
+
+        .scrollable-column-content {
+            max-height:  120px; /* Maximum height for the specific column content */
+            overflow-y: auto; /* Enable vertical scrolling for the specific column content */
+        }
+
+        .scrollable-table th.scrollable-column,
+        .scrollable-table td.scrollable-column {
+            white-space: nowrap; /* Prevent text wrapping for the header */
+        }
+
+        .scrollable-table th.scrollable-column .scrollable-column-content,
+        .scrollable-table td.scrollable-column .scrollable-column-content {
+            white-space: normal; /* Allow text wrapping for the specific column content */
+        }
+
+        .scrollable-table th {
             background-color: #4267b2;
             color:#fff;
         }
-
-        tr:nth-child(even) {
+        .scrollable-table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
     </style>
@@ -369,7 +397,7 @@
                         </div>
                     </a>
                     <ul class="accordion">
-                        <li><a href="{pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toMerchantFeedCheck?merchantId=${merchant.id}">饲料</a></li>
                         <li><a href="${pageContext.request.contextPath}/toMerchantGoodsCheck?merchantId=${merchant.id}">商品</a></li>
                     </ul>
                 </li>
@@ -397,14 +425,7 @@
                         <div class="title">售后</div>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <div class="icon">
-                            <i class="fa fa-comment"></i>
-                        </div>
-                        <div class="title">客服</div>
-                    </a>
-                </li>
+
             </ul>
             <div class="logout_btn">
                 <a href="${pageContext.request.contextPath}/toLogin" class="logout-btn"style="text-decoration: none">退出登录</a>
@@ -422,12 +443,13 @@
         </div>
         <div class="content">
 <c:if test="${! empty feeds}">
+    <div class="scrollable-table">
     <table>
         <tr>
             <th>名字</th>
             <th>数量</th>
             <th>价格</th>
-            <th>描述</th>
+            <th class="scrollable-column">描述</th>
             <th>审核状态</th>
         </tr>
         <c:forEach items="${feeds}" var="feed">
@@ -435,13 +457,13 @@
                 <td>${feed.name}</td>
                 <td>${feed.amount}</td>
                 <td>${feed.price}</td>
-                <td>${feed.description}</td>
+                <td  class="scrollable-column"><div class="scrollable-column-content">${feed.description}</div></td>
                 <td>${feed.check}</td>
             </tr>
         </c:forEach>
     </table>
+    </div>
 </c:if>
-<a href="${pageContext.request.contextPath}/toMerchantHome">返回首页</a>
         </div>
     </div>
 </div>
